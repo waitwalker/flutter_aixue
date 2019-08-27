@@ -1,0 +1,29 @@
+
+import 'package:flutter/material.dart';
+class ETTColor {
+  static Color c1_color = ColorConvert.convert("4aacee");
+}
+
+class ColorConvert {
+
+  static Color convert(String hexCode){
+    if (hexCode.startsWith('#')) {
+      hexCode = hexCode.substring(1);
+    }
+    if (hexCode.length > 6) {
+      List<String> hexDigits = hexCode.split('');
+      int r = int.parse(hexDigits.sublist(0, 2).join(), radix: 16);
+      int g = int.parse(hexDigits.sublist(2, 4).join(), radix: 16);
+      int b = int.parse(hexDigits.sublist(4, 6).join(), radix: 16);
+      double opacity = (int.parse(hexDigits.sublist(6).join(), radix: 16) / 100);
+      return Color.fromRGBO(r, g, b, opacity);
+    } else {
+
+      List<String> hexDigits = hexCode.split('');
+      int r = int.parse(hexDigits.sublist(0, 2).join(), radix: 16);
+      int g = int.parse(hexDigits.sublist(2, 4).join(), radix: 16);
+      int b = int.parse(hexDigits.sublist(4).join(), radix: 16);
+      return Color.fromRGBO(r, g, b, 1);
+    }
+  }
+}
