@@ -316,10 +316,11 @@ class DialogContentState extends State<DialogContent> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController codeController = TextEditingController();
 
-
   Timer _timer;
   int _seconds = 60;
   String _countdownTitle = "获取验证码";
+
+  String _nextStepTitle = "下一步";
 
   @override
   void initState() {
@@ -383,7 +384,19 @@ class DialogContentState extends State<DialogContent> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       CupertinoButton(child: Icon(Icons.cancel,size: 24,color: Colors.grey,), onPressed: (){
-                        Navigator.of(context).pop();
+                        if (_timer != null) {
+                          _timer.cancel();
+                          _seconds = 60;
+                          _countdownTitle = "获取验证码";
+                        }
+                        if (_nextStepTitle == "下一步") {
+                          Navigator.of(context).pop();
+                        } else {
+                          _nextStepTitle = "下一步";
+                          setState(() {
+
+                          });
+                        }
                       },),
                     ],
                   ),
@@ -403,78 +416,8 @@ class DialogContentState extends State<DialogContent> {
                             child: Text("输入注册时的手机号",style: TextStyle(fontSize: 15,color: Colors.grey,decoration: TextDecoration.none),),
                           ),
 
-                          Padding(padding: EdgeInsets.only(left: 20,top: 40),
-                            child: Container(
-                              height: 120,
-                              width: 360,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.all(Radius.circular(2)),
-                                  boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
-                              ),
-                              child: Container(
-                                width: 360,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Container(
-                                      height: 59.5,
-                                      child: CupertinoTextField(
-                                        controller: phoneController,
-                                        placeholder: "手机号",
-                                        placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
-                                        prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
-                                          child: Image(image: AssetImage("lib/resources/images/login_phone.png",),width: 24,height: 24,),
-                                        ),
-                                        clearButtonMode: OverlayVisibilityMode.editing,
-                                        style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
-                                        decoration: BoxDecoration(
+                          phoneContainer(),
 
-                                        ),
-                                      ),
-                                    ),
-
-                                    Container(
-                                      height: 1,
-                                      color: Colors.grey,
-                                    ),
-
-                                    Container(
-                                      height: 59.5,
-                                      width: 360,
-                                      child: Row(
-                                        children: <Widget>[
-                                          Container(
-                                            width: 260,
-                                            child: CupertinoTextField(
-                                              controller: codeController,
-                                              placeholder: "验证码",
-                                              placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
-                                              prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
-                                                child: Image(image: AssetImage("lib/resources/images/login_idcode.png",),width: 24,height: 24,),
-                                              ),
-                                              clearButtonMode: OverlayVisibilityMode.editing,
-                                              style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
-                                              decoration: BoxDecoration(
-
-                                              ),
-                                            ),
-                                          ),
-                                          OutlineButton(
-                                            borderSide: BorderSide(color: _seconds > 0 ? ETTColor.c1_color : ETTColor.g4_color,width: 1.0),
-                                            child: Text(_countdownTitle,style: TextStyle(fontSize: 12,color: _seconds == 60 ? ETTColor.c1_color : ETTColor.g4_color),),
-                                            onPressed: _seconds != 60 ? null : (){
-                                              _startTimer();
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
                           Padding(padding: EdgeInsets.only(left: 20,top: 30),
                             child: Container(
                               height: 60,
@@ -487,9 +430,21 @@ class DialogContentState extends State<DialogContent> {
                               child: CupertinoButton(
                                 color: ETTColor.c1_color,
                                 pressedOpacity: 0.5,
-                                child: Text("下一步",style: TextStyle(fontSize: 18,color: Colors.white,decoration: TextDecoration.none),),
+                                child: Text(_nextStepTitle,style: TextStyle(fontSize: 18,color: Colors.white,decoration: TextDecoration.none),),
                                 onPressed: (){
+                                  if (_nextStepTitle == "下一步") {
+                                    _nextStepTitle = "确认";
+                                    if (_timer != null) {
+                                      _timer.cancel();
+                                      _seconds = 60;
+                                      _countdownTitle = "获取验证码";
+                                    }
+                                    setState(() {
 
+                                    });
+                                  } else {
+
+                                  }
                                 },
                               ),
                             ),
@@ -506,4 +461,142 @@ class DialogContentState extends State<DialogContent> {
       ),
     );
   }
+
+  Widget phoneContainer() {
+    if (_nextStepTitle == "下一步") {
+      return Padding(padding: EdgeInsets.only(left: 20,top: 40),
+        child: Container(
+          height: 120,
+          width: 360,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(2)),
+              boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
+          ),
+          child: Container(
+            width: 360,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: 59.5,
+                  child: CupertinoTextField(
+                    controller: phoneController,
+                    placeholder: "手机号",
+                    placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
+                    prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
+                      child: Image(image: AssetImage("lib/resources/images/login_phone.png",),width: 24,height: 24,),
+                    ),
+                    clearButtonMode: OverlayVisibilityMode.editing,
+                    style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
+                    decoration: BoxDecoration(
+
+                    ),
+                  ),
+                ),
+
+                Container(
+                  height: 1,
+                  color: Colors.grey,
+                ),
+
+                Container(
+                  height: 59.5,
+                  width: 360,
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width: 260,
+                        child: CupertinoTextField(
+                          controller: codeController,
+                          placeholder: "验证码",
+                          placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
+                          prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
+                            child: Image(image: AssetImage("lib/resources/images/login_idcode.png",),width: 24,height: 24,),
+                          ),
+                          clearButtonMode: OverlayVisibilityMode.editing,
+                          style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
+                          decoration: BoxDecoration(
+
+                          ),
+                        ),
+                      ),
+                      OutlineButton(
+                        borderSide: BorderSide(color: _seconds > 0 ? ETTColor.c1_color : ETTColor.g4_color,width: 1.0),
+                        child: Text(_countdownTitle,style: TextStyle(fontSize: 12,color: _seconds == 60 ? ETTColor.c1_color : ETTColor.g4_color),),
+                        onPressed: _seconds != 60 ? null : (){
+                          _startTimer();
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Padding(padding: EdgeInsets.only(left: 20,top: 40),
+        child: Container(
+          height: 120,
+          width: 360,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(2)),
+              boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
+          ),
+          child: Container(
+            width: 360,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: 59.5,
+                  child: CupertinoTextField(
+                    controller: phoneController,
+                    placeholder: "手机号",
+                    placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
+                    prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
+                      child: Image(image: AssetImage("lib/resources/images/login_phone.png",),width: 24,height: 24,),
+                    ),
+                    clearButtonMode: OverlayVisibilityMode.editing,
+                    style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
+                    decoration: BoxDecoration(
+
+                    ),
+                  ),
+                ),
+
+                Container(
+                  height: 1,
+                  color: Colors.grey,
+                ),
+
+                Container(
+                  height: 59.5,
+                  child: CupertinoTextField(
+                    controller: phoneController,
+                    placeholder: "手机号",
+                    placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
+                    prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
+                      child: Image(image: AssetImage("lib/resources/images/login_phone.png",),width: 24,height: 24,),
+                    ),
+                    clearButtonMode: OverlayVisibilityMode.editing,
+                    style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
+                    decoration: BoxDecoration(
+
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+  }
+
+
+
 }
