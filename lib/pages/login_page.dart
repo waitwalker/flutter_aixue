@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/common/theme/theme_manager.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -12,6 +13,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginState extends State<LoginPage> {
+
+  TextEditingController accountController = TextEditingController();
 
   @override
   void initState() {
@@ -45,6 +48,19 @@ class LoginState extends State<LoginPage> {
                 borderRadius: BorderRadius.all(Radius.circular(2)),
                 boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
               ),
+              child: CupertinoTextField(
+                controller: accountController,
+                placeholder: "手机号/用户名/邮箱",
+                placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
+                prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
+                  child: Image(image: AssetImage("lib/resources/images/login_user.png",),width: 24,height: 24,),
+                ),
+                clearButtonMode: OverlayVisibilityMode.editing,
+                style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
+                decoration: BoxDecoration(
+
+                ),
+              ),
             ),
           ),
 
@@ -56,6 +72,19 @@ class LoginState extends State<LoginPage> {
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(2)),
                   boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
+              ),
+              child: CupertinoTextField(
+                controller: accountController,
+                placeholder: "密码",
+                placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
+                prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
+                  child: Image(image: AssetImage("lib/resources/images/login_password.png",),width: 24,height: 24,),
+                ),
+                clearButtonMode: OverlayVisibilityMode.editing,
+                style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
+                decoration: BoxDecoration(
+
+                ),
               ),
             ),
           ),
@@ -82,11 +111,17 @@ class LoginState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  CupertinoButton(child: Text("城域网用户?",style: TextStyle(color: Colors.grey),), onPressed: (){}),
+                  CupertinoButton(
+                    pressedOpacity: 0.7,
+                    child: Text("城域网用户?",style: TextStyle(color: Colors.grey),),
+                    onPressed: (){
+                      
+                    },
+                  ),
                   Row(
                     children: <Widget>[
-                      CupertinoButton(child: Text("注册",style: TextStyle(color: ETTColor.c1_color),), onPressed: (){}),
-                      CupertinoButton(child: Text("忘记密码?",style: TextStyle(color: ETTColor.c1_color),), onPressed: (){}),
+                      CupertinoButton(pressedOpacity: 0.7,child: Text("注册",style: TextStyle(color: ETTColor.c1_color),), onPressed: (){}),
+                      CupertinoButton(pressedOpacity: 0.7,child: Text("忘记密码?",style: TextStyle(color: ETTColor.c1_color),), onPressed: (){}),
                     ],
                   ),
                 ],

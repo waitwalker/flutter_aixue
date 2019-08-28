@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 class ETTColor {
   static Color c1_color = ColorConvert.convert("4aacee");
+
+  static Color g4_color = ColorConvert.convert("cccccc");
 }
 
 class ColorConvert {
