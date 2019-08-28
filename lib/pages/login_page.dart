@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
@@ -19,6 +22,12 @@ class LoginState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+  }
+
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -205,141 +214,10 @@ class LoginState extends State<LoginPage> {
 
                       }),
                       CupertinoButton(pressedOpacity: 0.7,child: Text("忘记密码?",style: TextStyle(color: ETTColor.c1_color),), onPressed: (){
-                        showDialog(context: context,builder: (context){
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                width: 400,
-                                height: 430,
-                                child: Column(
-                                  children: <Widget>[
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: <Widget>[
-                                        CupertinoButton(child: Icon(Icons.cancel,size: 24,color: Colors.grey,), onPressed: (){
-                                          Navigator.of(context).pop();
-                                        },),
-                                      ],
-                                    ),
 
-                                    Padding(padding: EdgeInsets.only(top: 8,),
-                                      child: Container(
-                                        width: 400,
-                                        height: 340,
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-                                            color: Colors.white
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Padding(padding: EdgeInsets.only(left: 20,top: 20),
-                                              child: Text("输入注册时的手机号",style: TextStyle(fontSize: 15,color: Colors.grey,decoration: TextDecoration.none),),
-                                            ),
-
-                                            Padding(padding: EdgeInsets.only(left: 20,top: 40),
-                                              child: Container(
-                                                height: 120,
-                                                width: 360,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius: BorderRadius.all(Radius.circular(2)),
-                                                    boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
-                                                ),
-                                                child: Container(
-                                                  width: 360,
-                                                  child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: <Widget>[
-                                                      Container(
-                                                        height: 59.5,
-                                                        child: CupertinoTextField(
-                                                          controller: accountController,
-                                                          placeholder: "手机号",
-                                                          placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
-                                                          prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
-                                                            child: Image(image: AssetImage("lib/resources/images/login_phone.png",),width: 24,height: 24,),
-                                                          ),
-                                                          clearButtonMode: OverlayVisibilityMode.editing,
-                                                          style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
-                                                          decoration: BoxDecoration(
-
-                                                          ),
-                                                        ),
-                                                      ),
-
-                                                      Container(
-                                                        height: 1,
-                                                        color: Colors.grey,
-                                                      ),
-
-                                                      Container(
-                                                        height: 59.5,
-                                                        width: 360,
-                                                        child: Row(
-                                                          children: <Widget>[
-                                                            Container(
-                                                              width: 260,
-                                                              child: CupertinoTextField(
-                                                                controller: accountController,
-                                                                placeholder: "验证码",
-                                                                placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
-                                                                prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
-                                                                  child: Image(image: AssetImage("lib/resources/images/login_idcode.png",),width: 24,height: 24,),
-                                                                ),
-                                                                clearButtonMode: OverlayVisibilityMode.editing,
-                                                                style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
-                                                                decoration: BoxDecoration(
-
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            OutlineButton(
-                                                              borderSide: BorderSide(color: ETTColor.c1_color,width: 1.0),
-                                                              child: Text("获取验证码",style: TextStyle(fontSize: 12,color: ETTColor.c1_color),),
-                                                              onPressed: (){
-
-                                                              },
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(padding: EdgeInsets.only(left: 20,top: 30),
-                                              child: Container(
-                                                height: 60,
-                                                width: 360,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.transparent,
-                                                    borderRadius: BorderRadius.circular(8.0),
-                                                    boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),offset: Offset(2,2),blurRadius: 5)]
-                                                ),
-                                                child: CupertinoButton(
-                                                  color: ETTColor.c1_color,
-                                                  pressedOpacity: 0.5,
-                                                  child: Text("下一步",style: TextStyle(fontSize: 18,color: Colors.white,decoration: TextDecoration.none),),
-                                                  onPressed: (){
-
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          );
-                        });
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return DialogContent();
+                        }));
                       }),
                     ],
                   ),
@@ -422,6 +300,210 @@ class LoginState extends State<LoginPage> {
         ],
       ),
 
+    );
+  }
+}
+
+class DialogContent extends StatefulWidget {
+  DialogContent({Key key,}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => DialogContentState();
+}
+
+class DialogContentState extends State<DialogContent> {
+
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController codeController = TextEditingController();
+
+
+  Timer _timer;
+  int _seconds = 60;
+  String _countdownTitle = "获取验证码";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+
+  @override
+  void dispose() {
+
+    if (_timer == null) {
+      _timer.cancel();
+    }
+    super.dispose();
+  }
+
+
+  _startTimer() {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer){
+      if (_seconds == 0) {
+        _timer.cancel();
+        _countdownTitle = "获取验证码";
+        _seconds = 60;
+        setState(() {
+        });
+        return;
+      }
+      _seconds --;
+      _countdownTitle = "$_seconds" + "s";
+      print("验证码倒计时:$_countdownTitle");
+
+      setState(() {
+      });
+
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        image: DecorationImage(
+          image: AssetImage("lib/resources/images/login_bg.png"),
+        ),
+      ),
+      child: Container(
+        color: Color.fromRGBO(0, 0, 0, 0.3),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 400,
+              height: 430,
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      CupertinoButton(child: Icon(Icons.cancel,size: 24,color: Colors.grey,), onPressed: (){
+                        Navigator.of(context).pop();
+                      },),
+                    ],
+                  ),
+
+                  Padding(padding: EdgeInsets.only(top: 8,),
+                    child: Container(
+                      width: 400,
+                      height: 340,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.white
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(padding: EdgeInsets.only(left: 20,top: 20),
+                            child: Text("输入注册时的手机号",style: TextStyle(fontSize: 15,color: Colors.grey,decoration: TextDecoration.none),),
+                          ),
+
+                          Padding(padding: EdgeInsets.only(left: 20,top: 40),
+                            child: Container(
+                              height: 120,
+                              width: 360,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                                  boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
+                              ),
+                              child: Container(
+                                width: 360,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                      height: 59.5,
+                                      child: CupertinoTextField(
+                                        controller: phoneController,
+                                        placeholder: "手机号",
+                                        placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
+                                        prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
+                                          child: Image(image: AssetImage("lib/resources/images/login_phone.png",),width: 24,height: 24,),
+                                        ),
+                                        clearButtonMode: OverlayVisibilityMode.editing,
+                                        style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
+                                        decoration: BoxDecoration(
+
+                                        ),
+                                      ),
+                                    ),
+
+                                    Container(
+                                      height: 1,
+                                      color: Colors.grey,
+                                    ),
+
+                                    Container(
+                                      height: 59.5,
+                                      width: 360,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Container(
+                                            width: 260,
+                                            child: CupertinoTextField(
+                                              controller: codeController,
+                                              placeholder: "验证码",
+                                              placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
+                                              prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
+                                                child: Image(image: AssetImage("lib/resources/images/login_idcode.png",),width: 24,height: 24,),
+                                              ),
+                                              clearButtonMode: OverlayVisibilityMode.editing,
+                                              style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
+                                              decoration: BoxDecoration(
+
+                                              ),
+                                            ),
+                                          ),
+                                          OutlineButton(
+                                            borderSide: BorderSide(color: _seconds > 0 ? ETTColor.c1_color : ETTColor.g4_color,width: 1.0),
+                                            child: Text(_countdownTitle,style: TextStyle(fontSize: 12,color: _seconds == 60 ? ETTColor.c1_color : ETTColor.g4_color),),
+                                            onPressed: _seconds != 60 ? null : (){
+                                              _startTimer();
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(padding: EdgeInsets.only(left: 20,top: 30),
+                            child: Container(
+                              height: 60,
+                              width: 360,
+                              decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),offset: Offset(2,2),blurRadius: 5)]
+                              ),
+                              child: CupertinoButton(
+                                color: ETTColor.c1_color,
+                                pressedOpacity: 0.5,
+                                child: Text("下一步",style: TextStyle(fontSize: 18,color: Colors.white,decoration: TextDecoration.none),),
+                                onPressed: (){
+
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
