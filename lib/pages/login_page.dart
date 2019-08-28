@@ -115,7 +115,89 @@ class LoginState extends State<LoginPage> {
                     pressedOpacity: 0.7,
                     child: Text("城域网用户?",style: TextStyle(color: Colors.grey),),
                     onPressed: (){
-                      
+                      showDialog(context: context,builder: (context){
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              width: 400,
+                              height: 400,
+                              child: Column(
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: <Widget>[
+                                      CupertinoButton(child: Icon(Icons.cancel,size: 24,color: Colors.grey,), onPressed: (){
+                                        Navigator.of(context).pop();
+                                      },),
+                                    ],
+                                  ),
+
+                                  Padding(padding: EdgeInsets.only(top: 8,),
+                                    child: Container(
+                                      width: 400,
+                                      height: 300,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Colors.white
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Padding(padding: EdgeInsets.only(left: 20,top: 20),
+                                            child: Text("选择城域网",style: TextStyle(fontSize: 18,color: Colors.grey,decoration: TextDecoration.none),),
+                                          ),
+
+
+                                          Padding(padding: EdgeInsets.only(left: 20,top: 60),
+                                            child: Container(
+                                              height: 60,
+                                              width: 360,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius: BorderRadius.circular(8.0),
+                                                  boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),offset: Offset(2,2),blurRadius: 5)]
+                                              ),
+                                              child: CupertinoButton(
+                                                pressedOpacity: 0.5,
+                                                child: Text("东莞",style: TextStyle(fontSize: 18,color: Colors.black,decoration: TextDecoration.none),),
+                                                onPressed: (){
+
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(padding: EdgeInsets.only(left: 20,top: 30),
+                                            child: Container(
+                                              height: 60,
+                                              width: 360,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.transparent,
+                                                  borderRadius: BorderRadius.circular(8.0),
+                                                  boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),offset: Offset(2,2),blurRadius: 5)]
+                                              ),
+                                              child: CupertinoButton(
+                                                color: ETTColor.c1_color,
+                                                pressedOpacity: 0.5,
+                                                child: Text("我不是",style: TextStyle(fontSize: 18,color: Colors.white,decoration: TextDecoration.none),),
+                                                onPressed: (){
+
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        );
+                      });
                     },
                   ),
                   Row(
