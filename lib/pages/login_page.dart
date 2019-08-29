@@ -4,6 +4,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/theme/theme_manager.dart';
 
 
@@ -107,7 +108,10 @@ class LoginState extends State<LoginPage> {
                   borderRadius: BorderRadius.all(Radius.circular(2)),
                   boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
               ),
-              child: CupertinoButton(pressedOpacity: 0.5,color: ETTColor.c1_color,child: Text("登录爱学",style: TextStyle(fontSize: 20),), onPressed: (){},),
+              child: CupertinoButton(pressedOpacity: 0.5,color: ETTColor.c1_color,child: Text("登录爱学",style: TextStyle(fontSize: 20),), onPressed: () async {
+                 var result = await NetworkManager.post(Const.loginInterface, {"uName":"aixue_teacher","pwd":"A123456a"});
+                 print(result);
+              },),
             ),
           ),
 

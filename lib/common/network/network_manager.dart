@@ -1,4 +1,7 @@
 import 'dart:collection';
+import 'dart:convert';
+import 'package:convert/convert.dart';
+import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
 import 'package:connectivity/connectivity.dart';
 import 'dart:io';
@@ -47,8 +50,8 @@ class NetworkManager {
   /// @author: lca
   /// @Date: 2019-08-01
   ///
-  static post(url,parameters) async{
-    return await fetch(_baseUrl+url, parameters, {"Accept": 'application/vnd.github.VERSION.full+json'}, Options(method: 'POST'));
+  static post(interface,parameters) async{
+    return await fetch(interface, parameters, {"Accept": 'application/vnd.github.VERSION.full+json'}, Options(method: 'POST'));
   }
 
   ///
@@ -84,7 +87,7 @@ class NetworkManager {
   /// @author: lca
   /// @Date: 2019-08-01
   ///
-  static fetch(url, parameters, Map<String, String> header, Options option, {noTip = false}) async {
+  static fetch(interface, parameters, Map<String, String> header, Options option, {noTip = false}) async {
 
     /// 没有网络
     var connectivityResult = await (Connectivity().checkConnectivity());
@@ -97,6 +100,7 @@ class NetworkManager {
       headers.addAll(header);
     }
 
+
     /// 授权码
     if (optionParameters["authorizationCode"] == null) {
       var authorizationCode = await getAuthorization();
@@ -106,6 +110,7 @@ class NetworkManager {
     }
 
     headers["Authorization"] = optionParameters["authorizationCode"];
+    headers["client"] = Platform.isIOS ? "iOS" : "android";
 
     /// 设置请求options
     if (option != null) {
@@ -118,6 +123,13 @@ class NetworkManager {
 
     /// 超时时间
     option.connectTimeout = 15000;
+
+    Map<String,dynamic> tmpParameters = parameters;
+    tmpParameters["time"] = NetworkAssistant.currentTimeMilliseconds().toString();
+    String sign = NetworkAssistant.getSign(tmpParameters, interface);
+    tmpParameters["sign"] = sign;
+    String url = NetworkAssistant.getUrl(interface);
+
 
     Dio dio = Dio();
 
@@ -149,7 +161,7 @@ class NetworkManager {
     /// 处理响应数据
     Response response;
     try {
-      response = await dio.request(url, data: parameters, options: option);
+      response = await dio.request(url, queryParameters: tmpParameters, options: option);
     } on DioError catch (e) {
 
       /// 请求错误处理
@@ -282,4 +294,59 @@ class HttpErrorEvent {
   final String message;
 
   HttpErrorEvent(this.code, this.message);
+}
+
+class Const {
+  static const String loginInterface = "login.do";
+}
+
+class NetworkAssistant {
+
+  static int currentTimeMilliseconds() {
+    return 111222333;//DateTime.now().millisecondsSinceEpoch;
+  }
+
+  static String getSign(Map parameter, String interface) {
+    List<String> allKeys = [];
+    parameter.forEach((key,value){
+      allKeys.add(key);
+    });
+
+    allKeys.sort((obj1,obj2){
+      return obj1.compareTo(obj2);
+    });
+    
+    List<String> pairs = [];
+    
+    allKeys.forEach((key){
+      pairs.add("$key=${parameter[key]}");
+    });
+
+    String pairsString = pairs.join("&");
+    String sign = interface + "&" + pairsString + "*ETT#HONER#2014*";
+    String md5 = generateMd5(sign);
+    Base64Codec base64 = Base64Codec();
+    String signString = base64.encoder.convert(md5.codeUnits);
+    signString = signString.replaceAll("=", "");
+    print("sign:$signString");
+    return signString;
+  }
+
+  static String generateMd5(String string) {
+    var content = Utf8Encoder().convert(string);
+    var digest = md5.convert(content);
+    // 这里其实就是 digest.toString()
+    return hex.encode(digest.bytes);
+  }
+
+  static String getUrl(String interface) {
+    switch (interface) {
+      case Const.loginInterface:
+        return "http://192.168.10.172:8080/user/login.do";
+        break;
+      default:
+        return "";
+        break;
+    }
+  }
 }
