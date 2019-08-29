@@ -109,7 +109,7 @@ class LoginState extends State<LoginPage> {
                   boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
               ),
               child: CupertinoButton(pressedOpacity: 0.5,color: ETTColor.c1_color,child: Text("登录爱学",style: TextStyle(fontSize: 20),), onPressed: () async {
-                 var result = await NetworkManager.post(Const.loginInterface, {"uName":"aixue_teacher","pwd":"A123456a"});
+                 var result = await NetworkManager.post(Const.loginInterface, {"uName":"aixue_01","pwd":"a12345"});
                  print(result);
               },),
             ),

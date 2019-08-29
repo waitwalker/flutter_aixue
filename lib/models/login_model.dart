@@ -1,4 +1,3 @@
-
 class LoginModel {
   int result;
   String msg;
@@ -24,77 +23,125 @@ class LoginModel {
 }
 
 class Data {
+  String onlineTestUrl;
+  int squareFlag;
   int sex;
   String schoolName;
   int gradeId;
   String accessToken;
-  String photo;
+  int isFiveFour;
+  int stuHasClass;
   String city;
-  int hasClass;
   int isHorizontal;
-  String tigasePwd;
-  int uType;
   String expires;
   int shouldComplete;
   String userName;
-  String realName;
   int jid;
+  int hbhxFlag;
+  int classCircleFlag;
+  String ygId;
+  int srcId;
+  int srcUid;
+  String photo;
+  String childCode;
+  int uType;
+  String tigasePwd;
+  int isHasLink;
+  String liveLessonUrl;
+  String vodLessonUrl;
+  String realName;
   int schoolId;
 
   Data(
-      {this.sex,
+      {this.onlineTestUrl,
+        this.squareFlag,
+        this.sex,
         this.schoolName,
         this.gradeId,
         this.accessToken,
-        this.photo,
+        this.isFiveFour,
+        this.stuHasClass,
         this.city,
-        this.hasClass,
         this.isHorizontal,
-        this.tigasePwd,
-        this.uType,
         this.expires,
         this.shouldComplete,
         this.userName,
-        this.realName,
         this.jid,
+        this.hbhxFlag,
+        this.classCircleFlag,
+        this.ygId,
+        this.srcId,
+        this.srcUid,
+        this.photo,
+        this.childCode,
+        this.uType,
+        this.tigasePwd,
+        this.isHasLink,
+        this.liveLessonUrl,
+        this.vodLessonUrl,
+        this.realName,
         this.schoolId});
 
   Data.fromJson(Map<String, dynamic> json) {
+    onlineTestUrl = json['onlineTestUrl'];
+    squareFlag = json['squareFlag'];
     sex = json['sex'];
     schoolName = json['schoolName'];
     gradeId = json['gradeId'];
     accessToken = json['accessToken'];
-    photo = json['photo'];
+    isFiveFour = json['isFiveFour'];
+    stuHasClass = json['stuHasClass'];
     city = json['city'];
-    hasClass = json['hasClass'];
     isHorizontal = json['isHorizontal'];
-    tigasePwd = json['tigasePwd'];
-    uType = json['uType'];
     expires = json['expires'];
     shouldComplete = json['shouldComplete'];
     userName = json['userName'];
-    realName = json['realName'];
     jid = json['jid'];
+    hbhxFlag = json['hbhxFlag'];
+    classCircleFlag = json['classCircleFlag'];
+    ygId = json['ygId'];
+    srcId = json['srcId'];
+    srcUid = json['srcUid'];
+    photo = json['photo'];
+    childCode = json['childCode'];
+    uType = json['uType'];
+    tigasePwd = json['tigasePwd'];
+    isHasLink = json['isHasLink'];
+    liveLessonUrl = json['liveLessonUrl'];
+    vodLessonUrl = json['vodLessonUrl'];
+    realName = json['realName'];
     schoolId = json['schoolId'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['onlineTestUrl'] = this.onlineTestUrl;
+    data['squareFlag'] = this.squareFlag;
     data['sex'] = this.sex;
     data['schoolName'] = this.schoolName;
     data['gradeId'] = this.gradeId;
     data['accessToken'] = this.accessToken;
-    data['photo'] = this.photo;
+    data['isFiveFour'] = this.isFiveFour;
+    data['stuHasClass'] = this.stuHasClass;
     data['city'] = this.city;
-    data['hasClass'] = this.hasClass;
     data['isHorizontal'] = this.isHorizontal;
-    data['tigasePwd'] = this.tigasePwd;
-    data['uType'] = this.uType;
     data['expires'] = this.expires;
     data['shouldComplete'] = this.shouldComplete;
     data['userName'] = this.userName;
-    data['realName'] = this.realName;
     data['jid'] = this.jid;
+    data['hbhxFlag'] = this.hbhxFlag;
+    data['classCircleFlag'] = this.classCircleFlag;
+    data['ygId'] = this.ygId;
+    data['srcId'] = this.srcId;
+    data['srcUid'] = this.srcUid;
+    data['photo'] = this.photo;
+    data['childCode'] = this.childCode;
+    data['uType'] = this.uType;
+    data['tigasePwd'] = this.tigasePwd;
+    data['isHasLink'] = this.isHasLink;
+    data['liveLessonUrl'] = this.liveLessonUrl;
+    data['vodLessonUrl'] = this.vodLessonUrl;
+    data['realName'] = this.realName;
     data['schoolId'] = this.schoolId;
     return data;
   }

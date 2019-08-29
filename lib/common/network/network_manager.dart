@@ -303,7 +303,7 @@ class Const {
 class NetworkAssistant {
 
   static int currentTimeMilliseconds() {
-    return 111222333;//DateTime.now().millisecondsSinceEpoch;
+    return DateTime.now().millisecondsSinceEpoch;
   }
 
   static String getSign(Map parameter, String interface) {
@@ -342,7 +342,7 @@ class NetworkAssistant {
   static String getUrl(String interface) {
     switch (interface) {
       case Const.loginInterface:
-        return "http://192.168.10.172:8080/user/login.do";
+        return "http://i.im.etiantian.net/study-im-service-2.0/user/login.do";
         break;
       default:
         return "";
