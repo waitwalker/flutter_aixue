@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/theme/theme_manager.dart';
+import 'package:flutter_aixue/dao/dao.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -109,8 +110,9 @@ class LoginState extends State<LoginPage> {
                   boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
               ),
               child: CupertinoButton(pressedOpacity: 0.5,color: ETTColor.c1_color,child: Text("登录爱学",style: TextStyle(fontSize: 20),), onPressed: () async {
-                 var result = await NetworkManager.post(Const.loginInterface, {"uName":"aixue_01","pwd":"a12345"});
-                 print(result);
+                Map <String, String> para = {"uName":"aixue_01","pwd":"a12345"};
+                var result = await LoginDAO.fetch(para);
+                print(result);
               },),
             ),
           ),
