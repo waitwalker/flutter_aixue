@@ -3,26 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_aixue/common/locale/localizations_delegate.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/theme/theme_manager.dart';
+import 'package:flutter_aixue/pages/home_page.dart';
 import 'package:flutter_aixue/pages/login_page.dart';
 import 'package:flutter_aixue/pages/splash_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginPage(),
-    );
-  }
-}
+void main() => runApp(App());
 
 
 class App extends StatelessWidget {
@@ -54,7 +42,7 @@ class App extends StatelessWidget {
           locale: store.state.locale,
           supportedLocales: [store.state.locale,Locale('zh', 'Hans'),],
           theme: store.state.theme.themeData,
-          home: MTTLocalizations(child: AnimatedSplashScreen(),),
+          home: MTTLocalizations(child: HomePage(),),
           routes: <String, WidgetBuilder>{
             "login": (BuildContext context) => LoginPage(),
           },

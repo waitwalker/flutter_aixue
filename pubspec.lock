@@ -127,6 +127,13 @@ packages:
       url: "https://github.com/LiuC520/flutter_drag_scale.git"
     source: git
     version: "0.0.1"
+  flutter_inner_drawer:
+    dependency: "direct main"
+    description:
+      name: flutter_inner_drawer
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.4.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter

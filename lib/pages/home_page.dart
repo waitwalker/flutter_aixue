@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/pages/setting_page.dart';
+import 'package:flutter_inner_drawer/inner_drawer.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -14,8 +15,17 @@ class _HomeState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-      color: ETTColor.c1_color,
+    return InnerDrawer(
+      scaffold: Scaffold(
+        appBar: AppBar(
+          title: Text("首页"),
+        ),
+        body: Container(
+          color: Colors.amber,
+        ),
+      ),
+      leftOffset: 0.2,
+      leftChild: Container(color: Colors.lightBlue,),
     );
   }
 }
