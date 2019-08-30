@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:flutter_aixue/common/network/network_manager.dart';
+import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
 import 'package:flutter_aixue/models/login_model.dart';
 
 class LoginDAO {
@@ -17,6 +18,7 @@ class LoginDAO {
       var resultMap = json.decode(jsonString);
       var loginModel = LoginModel.fromJson(resultMap);
         response.model = loginModel;
+        SingletonManager.sharedInstance.loginModel = loginModel;
         return response;
     } else {
       throw Exception("登录接口请求失败");
