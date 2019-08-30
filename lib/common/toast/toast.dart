@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
-Toast(String message){
+ettToast(String message){
   showToast(
     message,
     duration: Duration(seconds: 2),

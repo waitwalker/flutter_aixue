@@ -137,19 +137,19 @@ class NetworkManager {
     if (Config.DEBUG) {
       dio.interceptors.add(InterceptorsWrapper(
           onRequest: (RequestOptions options){
-            print("\n================== 请求数据 ==========================");
+            print("\n================== $interface 请求数据 ==========================");
             print("url = ${options.uri.toString()}");
             print("headers = ${options.headers}");
             print("parameterss = ${options.data}");
           },
           onResponse: (Response response){
-            print("\n================== 响应数据 ==========================");
+            print("\n================== $interface 响应数据 ==========================");
             print("code = ${response.statusCode}");
             print("data = ${response.data}");
             print("\n");
           },
           onError: (DioError e){
-            print("\n================== 错误响应数据 ======================");
+            print("\n================== $interface 错误响应数据 ======================");
             print("type = ${e.type}");
             print("message = ${e.message}");
             print("stackTrace = ${e.stackTrace}");

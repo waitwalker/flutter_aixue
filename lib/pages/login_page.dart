@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
+import 'package:flutter_aixue/common/toast/toast.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 
 
@@ -163,11 +165,27 @@ class LoginState extends State<LoginPage> {
                   borderRadius: BorderRadius.all(Radius.circular(2)),
                   boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
               ),
-              child: CupertinoButton(pressedOpacity: 0.5,color: ETTColor.c1_color,child: Text("登录爱学",style: TextStyle(fontSize: 20),), onPressed: () async {
-                Map <String, String> para = {"uName":"aixue_01","pwd":"a12345"};
-                var result = await LoginDAO.fetch(para);
-                print(result);
-              },),
+              child: CupertinoButton(
+                pressedOpacity: 0.5,
+                color: ETTColor.c1_color,
+                disabledColor: Color.fromRGBO(74, 172, 238, 0.5),
+                child: Text("登录爱学",style: TextStyle(fontSize: 20),),
+                onPressed: (accountValued && passwordValued) ? () async {
+
+
+                  Map <String, String> para = {"uName":accountController.text,"pwd":passwordController.text};
+                  var response = await LoginDAO.fetch(para);
+                  if (response.result && response.model != null && SingletonManager.sharedInstance.loginModel != null) {
+                    if (SingletonManager.sharedInstance.loginModel.result == 1) {
+                      print("登录成功");
+                    } else {
+                      print("登录异常:${SingletonManager.sharedInstance.loginModel.msg}");
+                    }
+                  } else {
+                    print("登录异常,请稍候重试");
+                  }
+                  print(response);
+                } : null,),
             ),
           ),
 
