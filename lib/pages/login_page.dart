@@ -1,18 +1,13 @@
 import 'dart:async';
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
-import 'package:flutter_aixue/common/network/network_manager.dart';
-import 'package:flutter_aixue/common/theme/theme_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 
 
 class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-
     return LoginState();
   }
 }
@@ -20,6 +15,10 @@ class LoginPage extends StatefulWidget {
 class LoginState extends State<LoginPage> {
 
   TextEditingController accountController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  bool accountValued = false;
+  bool passwordValued = false;
 
   @override
   void initState() {
@@ -71,6 +70,33 @@ class LoginState extends State<LoginPage> {
                 decoration: BoxDecoration(
 
                 ),
+
+                onTap: (){
+
+                  /// 1.
+                  print("account onTap:${accountController.text}");
+                  accountValued = accountController.text.length > 0 ? true : false;
+                },
+
+                onChanged: (text){
+
+                  /// 2.
+                  print("account onchanged:$text");
+                  accountValued = text.length > 0 ? true : false;
+                },
+
+                onEditingComplete: (){
+
+                  /// 3.
+                  print("account onEditingComplete:${accountController.text}");
+                  accountValued = accountController.text.length > 0 ? true : false;
+                },
+
+                onSubmitted: (text){
+
+                  /// 4.
+                  accountValued = text.length > 0 ? true : false;
+                },
               ),
             ),
           ),
@@ -85,7 +111,7 @@ class LoginState extends State<LoginPage> {
                   boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.6),blurRadius: 4,offset: Offset(0, 2))]
               ),
               child: CupertinoTextField(
-                controller: accountController,
+                controller: passwordController,
                 placeholder: "密码",
                 placeholderStyle: TextStyle(fontSize: 16,color: ETTColor.g4_color),
                 prefix: Padding(padding: EdgeInsets.only(left: 24,right: 8),
@@ -93,9 +119,37 @@ class LoginState extends State<LoginPage> {
                 ),
                 clearButtonMode: OverlayVisibilityMode.editing,
                 style: TextStyle(fontSize: 18,color: ETTColor.g4_color),
+                obscureText: true,
                 decoration: BoxDecoration(
 
                 ),
+
+                onTap: (){
+
+                  /// 1.
+                  print("password onTap:${passwordController.text}");
+                  passwordValued = passwordController.text.length > 0 ? true : false;
+                },
+
+                onChanged: (text){
+
+                  /// 2.
+                  print("password onchanged:$text");
+                  passwordValued = text.length > 0 ? true : false;
+                },
+
+                onEditingComplete: (){
+
+                  /// 3.
+                  print("password onEditingComplete:${passwordController.text}");
+                  passwordValued = passwordController.text.length > 0 ? true : false;
+                },
+
+                onSubmitted: (text){
+
+                  /// 4.
+                  passwordValued = text.length > 0 ? true : false;
+                },
               ),
             ),
           ),
