@@ -1,11 +1,11 @@
-class TeacherCourseListModel {
+class TeacherSubjectListModel {
   int result;
   String msg;
   Data data;
 
-  TeacherCourseListModel({this.result, this.msg, this.data});
+  TeacherSubjectListModel({this.result, this.msg, this.data});
 
-  TeacherCourseListModel.fromJson(Map<String, dynamic> json) {
+  TeacherSubjectListModel.fromJson(Map<String, dynamic> json) {
     result = json['result'];
     msg = json['msg'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
