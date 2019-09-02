@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_aixue/pages/setting_page.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 
 
@@ -18,6 +17,9 @@ class _HomeState extends State<HomePage> {
     return InnerDrawer(
       scaffold: Scaffold(
         appBar: AppBar(
+          leading: RaisedButton(child: Icon(Icons.menu,size: 35,color: Colors.white,),onPressed: (){
+
+          },),
           title: Text("首页"),
         ),
         body: Container(
