@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
+import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -18,6 +20,20 @@ class HomePage extends StatefulWidget {
 class _HomeState extends State<HomePage> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    recentTaskData();
+    super.initState();
+  }
+
+  recentTaskData() async {
+    ResponseData responseData = await DaoManager.teacherRecentTaskFetch({"jid":"9620132","schoolId":"50043"});
+    
+
+    print(responseData);
+  }
+
 
   @override
   Widget build(BuildContext context) {

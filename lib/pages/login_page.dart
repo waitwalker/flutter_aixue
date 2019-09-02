@@ -173,7 +173,7 @@ class LoginState extends State<LoginPage> {
                 onPressed: (accountValued && passwordValued) ? () async {
 
                   Map <String, String> para = {"uName":accountController.text,"pwd":passwordController.text};
-                  var response = await LoginDAO.fetch(para);
+                  var response = await DaoManager.loginFetch(para);
                   if (response.result && response.model != null && SingletonManager.sharedInstance.loginModel != null) {
                     if (SingletonManager.sharedInstance.loginModel.result == 1) {
                       print("登录成功");

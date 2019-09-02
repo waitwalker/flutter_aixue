@@ -297,7 +297,11 @@ class HttpErrorEvent {
 }
 
 class Const {
+  /// 登录
   static const String loginInterface = "login.do";
+
+  /// 教师最近任务
+  static const String teacherRecentTask = "getTeacherHomePageInfo.do";
 }
 
 class NetworkAssistant {
@@ -343,6 +347,9 @@ class NetworkAssistant {
     switch (interface) {
       case Const.loginInterface:
         return "http://i.im.etiantian.net/study-im-service-2.0/user/login.do";
+        break;
+      case Const.teacherRecentTask:
+        return "https://school.etiantian.com/aixue33/im3.1.2?m=getTeacherHomePageInfo.do";
         break;
       default:
         return "";
