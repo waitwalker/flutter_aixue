@@ -302,6 +302,9 @@ class Const {
 
   /// 教师最近任务
   static const String teacherRecentTask = "getTeacherHomePageInfo.do";
+
+  /// 教师学科列表
+  static const String teacherSubjectList = "getTeacherSubjectList.do";
 }
 
 class NetworkAssistant {
@@ -350,6 +353,10 @@ class NetworkAssistant {
         break;
       case Const.teacherRecentTask:
         return "https://school.etiantian.com/aixue33/im3.1.2?m=getTeacherHomePageInfo.do";
+        break;
+
+      case Const.teacherSubjectList:
+        return "https://school.etiantian.com/aixue33/im2.0.5?m=getTeacherSubjectList.do";
         break;
       default:
         return "";

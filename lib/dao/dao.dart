@@ -60,14 +60,14 @@ class DaoManager {
   }
 
   ///
-  /// @Method: teacherCoursesFetch
+  /// @Method: teacherSubjectsFetch
   /// @Parameter:
   /// @ReturnType:
-  /// @Description: 教师获取课程列表
+  /// @Description: 教师获取学科列表
   /// @author: lca
   /// @Date: 2019-09-02
   ///
-  static Future <ResponseData> teacherCoursesFetch(Map<String,dynamic> parameters) async {
+  static Future <ResponseData> teacherSubjectsFetch(Map<String,dynamic> parameters) async {
     var response = await NetworkManager.post(Const.teacherRecentTask, parameters);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
