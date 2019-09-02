@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/dao/dao.dart';
+import 'package:flutter_aixue/models/teacher_course_list_model.dart';
 import 'package:flutter_aixue/models/teacher_subject_list_model.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -20,16 +21,17 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
 
   String dropdownValue;
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey =  GlobalKey<ScaffoldState>();
 
   List<SubjectList> subjectList = [];
+  List<LessonList> lessonList = [];
 
   /// 刷新
-  RefreshController _refreshController =
-  RefreshController(initialRefresh: true);
+  RefreshController _refreshController = RefreshController(initialRefresh: true);
 
   @override
   void initState() {
+    initData();
     super.initState();
   }
 
@@ -49,8 +51,9 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
       if (responseData.model != null && responseData.model.result == 1) {
         TeacherSubjectListModel subjectListModel = responseData.model;
         if (subjectListModel.data.subjectList.length > 0) {
+          subjectList = subjectListModel.data.subjectList;
+          SubjectList subject = subjectListModel.data.subjectList.first;
 
-          
 
         } else {
 
@@ -113,54 +116,54 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
   }
 
   List<DropdownMenuItem> getListData(){
-    List<DropdownMenuItem> items=new List();
-    DropdownMenuItem dropdownMenuItem1=new DropdownMenuItem(
-      child:new Text('1'),
+    List<DropdownMenuItem> items= List();
+    DropdownMenuItem dropdownMenuItem1= DropdownMenuItem(
+      child: Text('1'),
       value: '1',
     );
     items.add(dropdownMenuItem1);
-    DropdownMenuItem dropdownMenuItem2=new DropdownMenuItem(
-      child:new Text('2'),
+    DropdownMenuItem dropdownMenuItem2= DropdownMenuItem(
+      child: Text('2'),
       value: '2',
     );
     items.add(dropdownMenuItem2);
-    DropdownMenuItem dropdownMenuItem3=new DropdownMenuItem(
-      child:new Text('3'),
+    DropdownMenuItem dropdownMenuItem3= DropdownMenuItem(
+      child: Text('3'),
       value: '3',
     );
     items.add(dropdownMenuItem3);
-    DropdownMenuItem dropdownMenuItem4=new DropdownMenuItem(
-      child:new Text('4'),
+    DropdownMenuItem dropdownMenuItem4= DropdownMenuItem(
+      child: Text('4'),
       value: '4',
     );
     items.add(dropdownMenuItem4);
-    DropdownMenuItem dropdownMenuItem5=new DropdownMenuItem(
-      child:new Text('5'),
+    DropdownMenuItem dropdownMenuItem5= DropdownMenuItem(
+      child: Text('5'),
       value: '5',
     );
     items.add(dropdownMenuItem5);
-    DropdownMenuItem dropdownMenuItem6=new DropdownMenuItem(
-      child:new Text('6'),
+    DropdownMenuItem dropdownMenuItem6= DropdownMenuItem(
+      child: Text('6'),
       value: '6',
     );
     items.add(dropdownMenuItem6);
-    DropdownMenuItem dropdownMenuItem7=new DropdownMenuItem(
-      child:new Text('7'),
+    DropdownMenuItem dropdownMenuItem7= DropdownMenuItem(
+      child: Text('7'),
       value: '7',
     );
     items.add(dropdownMenuItem7);
-    DropdownMenuItem dropdownMenuItem8=new DropdownMenuItem(
-      child:new Text('8'),
+    DropdownMenuItem dropdownMenuItem8= DropdownMenuItem(
+      child: Text('8'),
       value: '8',
     );
     items.add(dropdownMenuItem8);
-    DropdownMenuItem dropdownMenuItem9=new DropdownMenuItem(
-      child:new Text('9'),
+    DropdownMenuItem dropdownMenuItem9= DropdownMenuItem(
+      child: Text('9'),
       value: '9',
     );
     items.add(dropdownMenuItem9);
-    DropdownMenuItem dropdownMenuItem10=new DropdownMenuItem(
-      child:new Text('10'),
+    DropdownMenuItem dropdownMenuItem10= DropdownMenuItem(
+      child: Text('10'),
       value: '10',
     );
     items.add(dropdownMenuItem10);
@@ -233,7 +236,7 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
   }
 
   Widget _taskItemBuilder(BuildContext context, int index) {
-    LastTaskList lastTask = lastTaskList[index];
+    LessonList lesson = lessonList[index];
     return Padding(
       padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 30),
       child:Container(
@@ -244,51 +247,9 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(padding: EdgeInsets.only(left: 20,top: 15),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    height: 40,
-                    width: 40,
-                    child: Icon(Icons.book,color: Colors.white,),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 2,blurRadius: 2,offset: Offset(0, 2))],
-                      color: Colors.lightBlue,
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 20)),
-                  Container(
-                    width: 250,
-                    child: Text(
-                      lastTask.taskName,
-                      style: TextStyle(fontSize: 15),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            Padding(padding: EdgeInsets.only(top: 50,left: 20,bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(lastTask.dateHint,style: TextStyle(fontSize: 13,color: Colors.grey),),
-
-                  Row(
-                    children: <Widget>[
-                      Text(lastTask.scaleHint,style: TextStyle(fontSize: 13,color: Colors.grey),),
-                      Padding(padding: EdgeInsets.only(left: 10,right: 20),
-                        child: Icon(Icons.account_box,size: 20,color: Colors.grey,),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+            Padding(padding: EdgeInsets.only(left: 50,right: 50,top: 30,bottom: 30),
+              child: Text(lesson.lessonName,style: TextStyle(fontSize: 13,color: Colors.grey),),
             ),
           ],
         ),
