@@ -86,7 +86,7 @@ class _HomeState extends State<HomePage> {
                   mainAxisSpacing: 10,
                   childAspectRatio: 0.8
               ),
-              itemBuilder: itemBuilder,
+              itemBuilder: _itemBuilder,
               itemCount: 5,
             ),
           ),
@@ -105,7 +105,7 @@ class _HomeState extends State<HomePage> {
               itemCount: 5,
               mainAxisSpacing: 0,
               crossAxisSpacing: 0,
-              itemBuilder: taskItemBuilder,
+              itemBuilder: _taskItemBuilder,
               staggeredTileBuilder: (int index){
                 return StaggeredTile.fit(2);
               },
@@ -117,7 +117,7 @@ class _HomeState extends State<HomePage> {
     );
   }
 
-  Widget itemBuilder(BuildContext context, int index) {
+  Widget _itemBuilder(BuildContext context, int index) {
     Map map = itemArray[index];
     return Padding(
       padding: EdgeInsets.only(left: 20,right: 20,top: 30,bottom: 30),
@@ -157,7 +157,7 @@ class _HomeState extends State<HomePage> {
     {"title":"校内公告","icon":Icons.library_books,"color":Colors.amberAccent},
   ];
 
-  Widget taskItemBuilder(BuildContext context, int index) {
+  Widget _taskItemBuilder(BuildContext context, int index) {
     Map map = itemArray[index];
     return Padding(
       padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 30),
@@ -198,12 +198,23 @@ class _HomeState extends State<HomePage> {
               ),
             ),
 
+            _descriptionContainer(index),
             
-            Padding(padding: EdgeInsets.only(top: 40,left: 20,bottom: 20),
+            Padding(padding: EdgeInsets.only(top: 50,left: 20,bottom: 20),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("回延安",style: TextStyle(fontSize: 13,color: Colors.grey),)
+                  Text("回延安",style: TextStyle(fontSize: 13,color: Colors.grey),),
 
+                  Row(
+                    children: <Widget>[
+                      Text("回延安",style: TextStyle(fontSize: 13,color: Colors.grey),),
+                      Padding(padding: EdgeInsets.only(left: 30,right: 20),
+                        child: Text("回延安",style: TextStyle(fontSize: 13,color: Colors.grey),),
+
+                      ),
+                    ],
+                  ),
                 ],
               ),
 
@@ -213,4 +224,15 @@ class _HomeState extends State<HomePage> {
       ),
     );
   }
+
+  Widget _descriptionContainer(int index) {
+    if (index % 2 == 0) {
+      return Padding(padding: EdgeInsets.only(left: 20,right: 20,top: 20,),
+        child: Text("阿富汗是开放或多或少妇姑荷箪食规划局地方环境更好看点附近打瞌睡开个肯定会开个会打飞机SDK官方看电视",style: TextStyle(fontSize: 14),),
+      );
+    } else {
+      return Padding(padding: EdgeInsets.only(left: 20,right: 20));
+    }
+  }
+
 }
