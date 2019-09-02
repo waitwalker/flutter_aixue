@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
@@ -6,8 +8,10 @@ import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
+import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -21,17 +25,71 @@ class _HomeState extends State<HomePage> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
+  List<LastTaskList> lastTaskList = [];
+
+  /// 刷新
+  RefreshController _refreshController =
+  RefreshController(initialRefresh: true);
+
   @override
   void initState() {
-    recentTaskData();
     super.initState();
   }
 
   recentTaskData() async {
     ResponseData responseData = await DaoManager.teacherRecentTaskFetch({"jid":"9620132","schoolId":"50043"});
-    
 
     print(responseData);
+  }
+
+  ///
+  /// @Method: initData
+  /// @Parameter:
+  /// @ReturnType:
+  /// @Description: 加载数据
+  /// @author: lca
+  /// @Date: 2019-08-02
+  ///
+  initData() async {
+    ResponseData responseData = await DaoManager.teacherRecentTaskFetch({"jid":"9620132","schoolId":"50043"});
+
+    print(responseData);
+    if (lastTaskList.length > 0) lastTaskList.clear();
+    if (responseData.result) {
+      if (responseData.model != null && responseData.model.result == 1) {
+        TeacherTaskModel taskModel = responseData.model;
+        if (taskModel.data.lastTaskList.length > 0) {
+          setState(() {
+            lastTaskList = taskModel.data.lastTaskList;
+          });
+        } else {
+
+        }
+      } else {
+
+      }
+    } else {
+
+    }
+  }
+
+  /// 刷新
+  void _onRefresh(RefreshController controller, List<String> data) async {
+    if (mounted) {
+      initData();
+    }
+    controller.refreshCompleted();
+  }
+
+  /// 上拉加载更多
+  void _onLoading(RefreshController controller, List<String> data) async {
+    await Future.delayed(Duration(milliseconds: 2000));
+    for (int i = 0; i < 10; i++) {
+      data.add("Item $i");
+    }
+    if (mounted) setState(() {});
+    controller.loadComplete();
+    controller.loadNoData();
   }
 
 
@@ -116,17 +174,51 @@ class _HomeState extends State<HomePage> {
           ),
 
           Expanded(
-            child: StaggeredGridView.countBuilder(
-              crossAxisCount: 6,
-              itemCount: 5,
-              mainAxisSpacing: 0,
-              crossAxisSpacing: 0,
-              itemBuilder: _taskItemBuilder,
-              staggeredTileBuilder: (int index){
-                return StaggeredTile.fit(2);
+            child:SmartRefresher(
+              enablePullDown: true,
+              enablePullUp: true,
+              header: WaterDropHeader(
+                waterDropColor: Colors.lightGreen,
+              ),
+              footer: CustomFooter(
+                builder: (BuildContext context,LoadStatus mode){
+                  Widget body ;
+                  if(mode==LoadStatus.idle){
+                    body =  Text("pull up load");
+                  }
+                  else if(mode==LoadStatus.loading){
+                    body =  CupertinoActivityIndicator();
+                  }
+                  else if(mode == LoadStatus.failed){
+                    body = Text("Load Failed!Click retry!");
+                  } else if(mode == LoadStatus.noMore) {
+                    body = Text("没有更多了",style: TextStyle(color: Colors.grey,fontSize: 13),);
+                  }
+                  else{
+                    body = Text("No more Data");
+                  }
+                  return Container(
+                    height: 55.0,
+                    child: Center(child:body),
+                  );
+                },
+              ),
+              controller: _refreshController,
+              onRefresh: (){
+                _onRefresh(_refreshController, []);
               },
+              child: StaggeredGridView.countBuilder(
+                crossAxisCount: 6,
+                itemCount: lastTaskList.length,
+                mainAxisSpacing: 0,
+                crossAxisSpacing: 0,
+                itemBuilder: _taskItemBuilder,
+                staggeredTileBuilder: (int index){
+                  return StaggeredTile.fit(2);
+                },
+              ),
             ),
-          )
+          ),
           
         ],
       ),
@@ -174,7 +266,7 @@ class _HomeState extends State<HomePage> {
   ];
 
   Widget _taskItemBuilder(BuildContext context, int index) {
-    Map map = itemArray[index];
+    LastTaskList lastTask = lastTaskList[index];
     return Padding(
       padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 30),
       child:Container(
@@ -193,18 +285,18 @@ class _HomeState extends State<HomePage> {
                   Container(
                     height: 40,
                     width: 40,
-                    child: Icon(map["icon"],color: Colors.white,),
+                    child: Icon(Icons.book,color: Colors.white,),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 2,blurRadius: 2,offset: Offset(0, 2))],
-                      color: map["color"],
+                      color: Colors.lightBlue,
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(left: 20)),
                   Container(
                     width: 250,
                     child: Text(
-                      "学习 说说信天游sfhhafh发货时看电视分公司是广发换手机号费劲死数据库福建省的讲究的是数据库法国红酒的数据",
+                      lastTask.taskName,
                       style: TextStyle(fontSize: 15),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -213,27 +305,23 @@ class _HomeState extends State<HomePage> {
                 ],
               ),
             ),
-
-            _descriptionContainer(index),
             
             Padding(padding: EdgeInsets.only(top: 50,left: 20,bottom: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("回延安",style: TextStyle(fontSize: 13,color: Colors.grey),),
+                  Text(lastTask.dateHint,style: TextStyle(fontSize: 13,color: Colors.grey),),
 
                   Row(
                     children: <Widget>[
-                      Text("回延安",style: TextStyle(fontSize: 13,color: Colors.grey),),
-                      Padding(padding: EdgeInsets.only(left: 30,right: 20),
-                        child: Text("回延安",style: TextStyle(fontSize: 13,color: Colors.grey),),
-
+                      Text(lastTask.scaleHint,style: TextStyle(fontSize: 13,color: Colors.grey),),
+                      Padding(padding: EdgeInsets.only(left: 10,right: 20),
+                        child: Icon(Icons.account_box,size: 20,color: Colors.grey,),
                       ),
                     ],
                   ),
                 ],
               ),
-
             ),
           ],
         ),
