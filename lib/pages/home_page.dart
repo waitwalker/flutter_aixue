@@ -9,6 +9,7 @@ import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
+import 'package:flutter_aixue/pages/teacher_course_list.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -34,12 +35,6 @@ class _HomeState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-  }
-
-  recentTaskData() async {
-    ResponseData responseData = await DaoManager.teacherRecentTaskFetch({"jid":"9620132","schoolId":"50043"});
-
-    print(responseData);
   }
 
   ///
@@ -227,33 +222,40 @@ class _HomeState extends State<HomePage> {
 
   Widget _itemBuilder(BuildContext context, int index) {
     Map map = itemArray[index];
-    return Padding(
-      padding: EdgeInsets.only(left: 20,right: 20,top: 30,bottom: 30),
-      child:Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5.0),
-          boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              height: 40,
-              width: 40,
-              child: Icon(map["icon"],color: Colors.white,),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 2,blurRadius: 2,offset: Offset(0, 2))],
-                color: map["color"],
+    return GestureDetector(
+      child: Padding(
+        padding: EdgeInsets.only(left: 20,right: 20,top: 30,bottom: 30),
+        child:Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5.0),
+            boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                height: 40,
+                width: 40,
+                child: Icon(map["icon"],color: Colors.white,),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 2,blurRadius: 2,offset: Offset(0, 2))],
+                  color: map["color"],
+                ),
               ),
-            ),
-            Padding(padding: EdgeInsets.only(top: 20),
-              child: Text(map["title"],style: TextStyle(fontSize: 16),),
-            ),
-          ],
+              Padding(padding: EdgeInsets.only(top: 20),
+                child: Text(map["title"],style: TextStyle(fontSize: 16),),
+              ),
+            ],
+          ),
         ),
       ),
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+          return TeacherCourseList();
+        }));
+      },
     );
   }
 
