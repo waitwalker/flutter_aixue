@@ -269,65 +269,70 @@ class _HomeState extends State<HomePage> {
 
   Widget _taskItemBuilder(BuildContext context, int index) {
     LastTaskList lastTask = lastTaskList[index];
-    return Padding(
-      padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 30),
-      child:Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5.0),
-          boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(padding: EdgeInsets.only(left: 20,top: 15),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    height: 40,
-                    width: 40,
-                    child: Icon(Icons.book,color: Colors.white,),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 2,blurRadius: 2,offset: Offset(0, 2))],
-                      color: Colors.lightBlue,
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 20)),
-                  Container(
-                    width: 250,
-                    child: Text(
-                      lastTask.taskName,
-                      style: TextStyle(fontSize: 15),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            
-            Padding(padding: EdgeInsets.only(top: 50,left: 20,bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(lastTask.dateHint,style: TextStyle(fontSize: 13,color: Colors.grey),),
-
-                  Row(
-                    children: <Widget>[
-                      Text(lastTask.scaleHint,style: TextStyle(fontSize: 13,color: Colors.grey),),
-                      Padding(padding: EdgeInsets.only(left: 10,right: 20),
-                        child: Icon(Icons.account_box,size: 20,color: Colors.grey,),
+    return GestureDetector(
+      child: Padding(
+        padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 30),
+        child:Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5.0),
+            boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(padding: EdgeInsets.only(left: 20,top: 15),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      height: 40,
+                      width: 40,
+                      child: Icon(Icons.book,color: Colors.white,),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 2,blurRadius: 2,offset: Offset(0, 2))],
+                        color: Colors.lightBlue,
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    Padding(padding: EdgeInsets.only(left: 20)),
+                    Container(
+                      width: 250,
+                      child: Text(
+                        lastTask.taskName,
+                        style: TextStyle(fontSize: 15),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+
+              Padding(padding: EdgeInsets.only(top: 50,left: 20,bottom: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(lastTask.dateHint,style: TextStyle(fontSize: 13,color: Colors.grey),),
+
+                    Row(
+                      children: <Widget>[
+                        Text(lastTask.scaleHint,style: TextStyle(fontSize: 13,color: Colors.grey),),
+                        Padding(padding: EdgeInsets.only(left: 10,right: 20),
+                          child: Icon(Icons.account_box,size: 20,color: Colors.grey,),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
+      onTap: (){
+
+      },
     );
   }
 

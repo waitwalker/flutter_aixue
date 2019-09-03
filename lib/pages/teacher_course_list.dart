@@ -77,13 +77,22 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
     }
   }
 
+  ///
+  /// @Method: _fetchCourse
+  /// @Parameter:
+  /// @ReturnType:
+  /// @Description: 根据学科获取课程列表
+  /// @author: lca
+  /// @Date: 2019-09-03
+  ///
   void _fetchCourse(SubjectList subject) async{
     ResponseData responseData = await DaoManager.teacherCourseFetch({"jid":"9620132","schoolId":"50043","subjectId":subject.subjectId,"gradeId":subject.gradeId,"pageNum":"1"});
 
     print(responseData);
     if (responseData.result) {
-      if (responseData.model != null && (responseData.model.result == 1 || responseData.model.result == 2) ) {
+      if (responseData.model != null && (responseData.model.result == 1 || responseData.model.result == 2 || responseData.model.result == 3) ) {
         TeacherCourseListModel courseListModel = responseData.model;
+        lessonList.clear();
         if (courseListModel.data.lessonList.length > 0) {
           setState(() {
             lessonList = courseListModel.data.lessonList;
@@ -93,7 +102,11 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
           });
 
         } else {
-
+          setState(() {
+            String gradeName = gradeMap[currentSubject.gradeId].toString();
+            String subjectName = subjectMap[currentSubject.subjectId].toString();
+            dropdownTitle = gradeName + subjectName;
+          });
         }
       } else {
 
@@ -251,7 +264,7 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
               },
               child: StaggeredGridView.countBuilder(
                 crossAxisCount: 6,
-                itemCount: lessonList.length,
+                itemCount: lessonList.length > 0 ? lessonList.length : 1,
                 mainAxisSpacing: 0,
                 crossAxisSpacing: 0,
                 itemBuilder: _taskItemBuilder,
@@ -269,7 +282,12 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
 
   Widget _taskItemBuilder(BuildContext context, int index) {
     if (lessonList.length == 0) {
-      return Container();
+      return Padding(padding: EdgeInsets.only(top: 30,left: 180),
+        child: Container(
+          alignment: Alignment.center,
+          child: Text("暂无课程"),
+        ),
+      );
     }
     LessonList lesson = lessonList[index];
     return Padding(
@@ -283,7 +301,7 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(padding: EdgeInsets.only(left: 50,right: 50,top: 30,bottom: 30),
+            Padding(padding: EdgeInsets.only(left: 50,right: 50,top: 60,bottom: 60),
               child: Text(lesson.lessonName,style: TextStyle(fontSize: 13,color: Colors.grey),),
             ),
           ],
