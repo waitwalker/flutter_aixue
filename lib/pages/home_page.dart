@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
@@ -10,6 +8,7 @@ import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_aixue/pages/teacher_course_list.dart';
+import 'package:flutter_aixue/pages/teacher_resource_task_detail.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -85,6 +84,24 @@ class _HomeState extends State<HomePage> {
     if (mounted) setState(() {});
     controller.loadComplete();
     controller.loadNoData();
+  }
+
+  @override
+  void didChangeDependencies() {
+    print("依赖发生变化,initState之后调用");
+    super.didChangeDependencies();
+  }
+
+  @override
+  void deactivate() {
+    print("页面不可交互");
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    print("销毁了");
+    super.dispose();
   }
 
 
@@ -331,7 +348,9 @@ class _HomeState extends State<HomePage> {
         ),
       ),
       onTap: (){
-
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+          return TeacherResourceTaskDetailPage();
+        }));
       },
     );
   }
