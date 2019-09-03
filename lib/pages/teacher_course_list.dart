@@ -19,12 +19,13 @@ class TeacherCourseList extends StatefulWidget {
 
 class _TeacherCourseListState extends State<TeacherCourseList> {
 
-  String dropdownValue;
+  int dropdownValue;
 
   final GlobalKey<ScaffoldState> _scaffoldKey =  GlobalKey<ScaffoldState>();
 
   List<SubjectList> subjectList = [];
   List<LessonList> lessonList = [];
+  SubjectList currentSubject;
 
   /// 刷新
   RefreshController _refreshController = RefreshController(initialRefresh: true);
@@ -44,7 +45,7 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
   /// @Date: 2019-08-02
   ///
   initData() async {
-    ResponseData responseData = await DaoManager.teacherRecentTaskFetch({"jid":"9620132","schoolId":"50043"});
+    ResponseData responseData = await DaoManager.teacherSubjectsFetch({"jid":"9620132","schoolId":"50043"});
 
     print(responseData);
     if (responseData.result) {
@@ -52,8 +53,30 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
         TeacherSubjectListModel subjectListModel = responseData.model;
         if (subjectListModel.data.subjectList.length > 0) {
           subjectList = subjectListModel.data.subjectList;
-          SubjectList subject = subjectListModel.data.subjectList.first;
+          currentSubject = subjectListModel.data.subjectList.first;
+          _fetchCourse(currentSubject);
+        } else {
 
+        }
+      } else {
+
+      }
+    } else {
+
+    }
+  }
+
+  void _fetchCourse(SubjectList subject) async{
+    ResponseData responseData = await DaoManager.teacherCourseFetch({"jid":"9620132","schoolId":"50043","subjectId":"1","gradeId":"5","pageNum":"1"});
+
+    print(responseData);
+    if (responseData.result) {
+      if (responseData.model != null && (responseData.model.result == 1 || responseData.model.result == 2) ) {
+        TeacherCourseListModel courseListModel = responseData.model;
+        if (courseListModel.data.lessonList.length > 0) {
+          setState(() {
+            lessonList = courseListModel.data.lessonList;
+          });
 
         } else {
 
@@ -67,9 +90,9 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
   }
 
   /// 刷新
-  void _onRefresh(RefreshController controller, List<String> data) async {
+  void _onRefresh(RefreshController controller) async {
     if (mounted) {
-      initData();
+      _fetchCourse(currentSubject);
     }
     controller.refreshCompleted();
   }
@@ -101,7 +124,7 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
             ),
             title: DropdownButton(
               underline: Container(),
-              items: getListData(), 
+              items: _dropdownItems(),
               hint: Text("更多学科"),
               value: dropdownValue,
               onChanged: (value){
@@ -115,58 +138,52 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
     );
   }
 
-  List<DropdownMenuItem> getListData(){
+  var gradeMap = {
+    1: '高三',
+    2: '高二',
+    3: '高一',
+    4: '初三',
+    5: '初二',
+    6: '初一',
+    7: '小六',
+    8: '小五',
+    9: '小四',
+    10: '小三',
+    11: '小二',
+    12: '小一'
+  };
+
+  /// 学科
+  var subjectMap = {
+    0: '全科',
+    1: '语文',
+    2: '数学',
+    3: '英语',
+    4: '物理',
+    5: '化学',
+    6: '历史',
+    7: '生物',
+    8: '地理',
+    9: '政治',
+    10: '科学',
+    11: '其他'
+  };
+
+  List<DropdownMenuItem> _dropdownItems(){
     List<DropdownMenuItem> items= List();
-    DropdownMenuItem dropdownMenuItem1= DropdownMenuItem(
-      child: Text('1'),
-      value: '1',
-    );
-    items.add(dropdownMenuItem1);
-    DropdownMenuItem dropdownMenuItem2= DropdownMenuItem(
-      child: Text('2'),
-      value: '2',
-    );
-    items.add(dropdownMenuItem2);
-    DropdownMenuItem dropdownMenuItem3= DropdownMenuItem(
-      child: Text('3'),
-      value: '3',
-    );
-    items.add(dropdownMenuItem3);
-    DropdownMenuItem dropdownMenuItem4= DropdownMenuItem(
-      child: Text('4'),
-      value: '4',
-    );
-    items.add(dropdownMenuItem4);
-    DropdownMenuItem dropdownMenuItem5= DropdownMenuItem(
-      child: Text('5'),
-      value: '5',
-    );
-    items.add(dropdownMenuItem5);
-    DropdownMenuItem dropdownMenuItem6= DropdownMenuItem(
-      child: Text('6'),
-      value: '6',
-    );
-    items.add(dropdownMenuItem6);
-    DropdownMenuItem dropdownMenuItem7= DropdownMenuItem(
-      child: Text('7'),
-      value: '7',
-    );
-    items.add(dropdownMenuItem7);
-    DropdownMenuItem dropdownMenuItem8= DropdownMenuItem(
-      child: Text('8'),
-      value: '8',
-    );
-    items.add(dropdownMenuItem8);
-    DropdownMenuItem dropdownMenuItem9= DropdownMenuItem(
-      child: Text('9'),
-      value: '9',
-    );
-    items.add(dropdownMenuItem9);
-    DropdownMenuItem dropdownMenuItem10= DropdownMenuItem(
-      child: Text('10'),
-      value: '10',
-    );
-    items.add(dropdownMenuItem10);
+
+    for (int i = 0; i < subjectList.length; i++) {
+      String gradeName = gradeMap[subjectList[i].gradeId].toString();
+      String subjectName = subjectMap[subjectList[i].subjectId].toString();
+      DropdownMenuItem dropdownMenuItem = DropdownMenuItem(
+        child: Text(
+          gradeName + subjectName,
+          style: TextStyle(fontSize: 17),
+        ),
+        value: i,
+      );
+      items.add(dropdownMenuItem);
+    }
     return items;
   }
 
@@ -215,7 +232,7 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
               ),
               controller: _refreshController,
               onRefresh: (){
-                _onRefresh(_refreshController, []);
+                _onRefresh(_refreshController);
               },
               child: StaggeredGridView.countBuilder(
                 crossAxisCount: 6,
