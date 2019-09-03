@@ -87,14 +87,18 @@ class ResourceList {
   ResourceList({this.resourceSuffix, this.resourceUrl, this.resourceType});
 
   ResourceList.fromJson(Map<String, dynamic> json) {
-    resourceSuffix = json['resourceSuffix'];
+    if (json.containsKey("resourceSuffix")) {
+      resourceSuffix = json['resourceSuffix'];
+    }
     resourceUrl = json['resourceUrl'];
     resourceType = json['resourceType'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['resourceSuffix'] = this.resourceSuffix;
+    if (data.containsKey("resourceSuffix")) {
+      data['resourceSuffix'] = this.resourceSuffix;
+    }
     data['resourceUrl'] = this.resourceUrl;
     data['resourceType'] = this.resourceType;
     return data;
