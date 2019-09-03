@@ -307,7 +307,7 @@ class Const {
   static const String teacherSubjectList = "getTeacherSubjectList.do";
 
   /// 教师课程列表
-  static const String teacherCourseList = "getTeacherSubjectList.do";
+  static const String teacherCourseList = "getLessonList.do";
 }
 
 class NetworkAssistant {

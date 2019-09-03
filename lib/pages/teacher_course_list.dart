@@ -59,8 +59,13 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
             String gradeName = gradeMap[currentSubject.gradeId].toString();
             String subjectName = subjectMap[currentSubject.subjectId].toString();
             dropdownTitle = gradeName + subjectName;
-            return;
           });
+
+          Future.delayed(Duration(milliseconds: 500),(){
+            _fetchCourse(currentSubject);
+          });
+
+          return;
         } else {
 
         }
@@ -137,13 +142,11 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
                 String gradeName = gradeMap[subjectList[value].gradeId].toString();
                 String subjectName = subjectMap[subjectList[value].subjectId].toString();
                 dropdownTitle = gradeName + subjectName;
-                setState(() {
-
-                });
-                //_fetchCourse(subjectList[value]);
+                _fetchCourse(subjectList[value]);
               },
             ),
           ),
+          body: homeBodyContainer(),
         );
       },
     );
