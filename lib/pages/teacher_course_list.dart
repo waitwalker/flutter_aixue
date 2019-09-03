@@ -19,7 +19,8 @@ class TeacherCourseList extends StatefulWidget {
 
 class _TeacherCourseListState extends State<TeacherCourseList> {
 
-  int dropdownValue;
+  String dropdownTitle = "更多学科";
+  String dropdownValue;
 
   final GlobalKey<ScaffoldState> _scaffoldKey =  GlobalKey<ScaffoldState>();
 
@@ -53,8 +54,13 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
         TeacherSubjectListModel subjectListModel = responseData.model;
         if (subjectListModel.data.subjectList.length > 0) {
           subjectList = subjectListModel.data.subjectList;
-          currentSubject = subjectListModel.data.subjectList.first;
-          _fetchCourse(currentSubject);
+          setState(() {
+            currentSubject = subjectListModel.data.subjectList.first;
+            String gradeName = gradeMap[currentSubject.gradeId].toString();
+            String subjectName = subjectMap[currentSubject.subjectId].toString();
+            dropdownTitle = gradeName + subjectName;
+            return;
+          });
         } else {
 
         }
@@ -125,13 +131,18 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
             title: DropdownButton(
               underline: Container(),
               items: _dropdownItems(),
-              hint: Text("更多学科"),
+              hint: Text(dropdownTitle,style: TextStyle(fontSize: 16),),
               value: dropdownValue,
               onChanged: (value){
+                String gradeName = gradeMap[subjectList[value].gradeId].toString();
+                String subjectName = subjectMap[subjectList[value].subjectId].toString();
+                dropdownTitle = gradeName + subjectName;
                 setState(() {
-                  dropdownValue = value;
+
                 });
-              },),
+                //_fetchCourse(subjectList[value]);
+              },
+            ),
           ),
         );
       },
@@ -171,6 +182,8 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
 
   List<DropdownMenuItem> _dropdownItems(){
     List<DropdownMenuItem> items= List();
+
+    if (subjectList.length ==0 ) return items;
 
     for (int i = 0; i < subjectList.length; i++) {
       String gradeName = gradeMap[subjectList[i].gradeId].toString();
