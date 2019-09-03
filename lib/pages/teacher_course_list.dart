@@ -78,7 +78,7 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
   }
 
   void _fetchCourse(SubjectList subject) async{
-    ResponseData responseData = await DaoManager.teacherCourseFetch({"jid":"9620132","schoolId":"50043","subjectId":"1","gradeId":"5","pageNum":"1"});
+    ResponseData responseData = await DaoManager.teacherCourseFetch({"jid":"9620132","schoolId":"50043","subjectId":subject.subjectId,"gradeId":subject.gradeId,"pageNum":"1"});
 
     print(responseData);
     if (responseData.result) {
@@ -87,6 +87,9 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
         if (courseListModel.data.lessonList.length > 0) {
           setState(() {
             lessonList = courseListModel.data.lessonList;
+            String gradeName = gradeMap[currentSubject.gradeId].toString();
+            String subjectName = subjectMap[currentSubject.subjectId].toString();
+            dropdownTitle = gradeName + subjectName;
           });
 
         } else {
@@ -102,9 +105,7 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
 
   /// 刷新
   void _onRefresh(RefreshController controller) async {
-    if (mounted) {
-      _fetchCourse(currentSubject);
-    }
+    _fetchCourse(currentSubject);
     controller.refreshCompleted();
   }
 
@@ -139,10 +140,8 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
               hint: Text(dropdownTitle,style: TextStyle(fontSize: 16),),
               value: dropdownValue,
               onChanged: (value){
-                String gradeName = gradeMap[subjectList[value].gradeId].toString();
-                String subjectName = subjectMap[subjectList[value].subjectId].toString();
-                dropdownTitle = gradeName + subjectName;
-                _fetchCourse(subjectList[value]);
+                currentSubject = subjectList[value];
+                _fetchCourse(currentSubject);
               },
             ),
           ),
@@ -252,7 +251,7 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
               },
               child: StaggeredGridView.countBuilder(
                 crossAxisCount: 6,
-                itemCount: subjectList.length,
+                itemCount: lessonList.length,
                 mainAxisSpacing: 0,
                 crossAxisSpacing: 0,
                 itemBuilder: _taskItemBuilder,
@@ -269,6 +268,9 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
   }
 
   Widget _taskItemBuilder(BuildContext context, int index) {
+    if (lessonList.length == 0) {
+      return Container();
+    }
     LessonList lesson = lessonList[index];
     return Padding(
       padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 30),
