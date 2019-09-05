@@ -5,6 +5,7 @@ import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
 import 'package:flutter_aixue/models/login_model.dart';
 import 'package:flutter_aixue/models/teacher_course_list_model.dart';
+import 'package:flutter_aixue/models/teacher_resource_document_model.dart';
 import 'package:flutter_aixue/models/teacher_subject_list_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 
@@ -120,7 +121,7 @@ class DaoManager {
   /// @Date: 2019-09-02
   ///
   static Future <ResponseData> teacherResourceDocumentFetch(Map<String,dynamic> parameters) async {
-    var response = await NetworkManager.post(Const.teacherCourseList, parameters);
+    var response = await NetworkManager.post(Const.teacherResourceDocument, parameters);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
       print("response.data:${response.data}");
@@ -128,7 +129,7 @@ class DaoManager {
       String jsonString = response.data;
 
       var resultMap = json.decode(jsonString);
-      var model = TeacherCourseListModel.fromJson(resultMap);
+      var model = TeacherResourceDocumentModel.fromJson(resultMap);
       response.model = model;
       return response;
     } else {

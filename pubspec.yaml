@@ -92,6 +92,8 @@ dependencies:
 
   flutter_plugin_pdf_viewer: ^1.0.7
 
+  cached_network_image: ^1.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
