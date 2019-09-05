@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_resource_document_model.dart';
@@ -209,8 +210,58 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
             ),
 
             _imagesContainer(index, userReply.resourceList),
-
             Padding(padding: EdgeInsets.only(top: 30)),
+
+            Padding(padding: EdgeInsets.only(left: 10,right: 10),
+              child: Container(
+                height: 1.0,
+                color: Colors.grey,
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(top: 15)),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Padding(padding: EdgeInsets.only(left: 80,),
+                  child: GestureDetector(
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.sentiment_satisfied,size: 24,color: userReply.isPrised == 1 ? ETTColor.c1_color : Colors.grey,),
+
+                        Padding(padding: EdgeInsets.only(left: 5),
+                          child: Text("${userReply.priseNum}",style: TextStyle(fontSize: 16,color: Colors.grey),),
+                        ),
+
+                      ],
+                    ),
+                    onTap: (){
+
+                    },
+                  ),
+                ),
+
+                Padding(padding: EdgeInsets.only(right: 80,),
+                  child: GestureDetector(
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.comment,size: 24,color: ETTColor.c1_color,),
+
+                        Padding(padding: EdgeInsets.only(left: 5),
+                          child: Text("${userReply.replyNum}",style: TextStyle(fontSize: 16,color: Colors.grey),),
+                        ),
+
+                      ],
+                    ),
+                    onTap: (){
+
+                    },
+                  ),
+                ),
+              ],
+            ),
+
+            Padding(padding: EdgeInsets.only(top: 15)),
 
 //          Expanded(child: StaggeredGridView.countBuilder(
 //            physics: NeverScrollableScrollPhysics(),
@@ -239,15 +290,19 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
             child: Column(
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[0].resourceUrl),fit: BoxFit.fill,),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[0]}张图片");
+                        print("当前图片被点击:第$currentSection item,第1张图片");
                       },
                     ),
                   ],
@@ -262,25 +317,33 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
             child: Column(
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[0].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[0]}张图片");
+                        print("当前图片被点击:第$currentSection item,第1张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[1].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[1]}张图片");
+                        print("当前图片被点击:第$currentSection item,第2张图片");
                       },
                     ),
                   ],
@@ -295,7 +358,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
             child: Column(
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
@@ -307,53 +370,35 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                         ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[0]}张图片");
+                        print("当前图片被点击:第$currentSection item,第1张图片");
                       },
                     ),
 
                     GestureDetector(
-                      child: Container(
-                        height: 120,
-                        child: CachedNetworkImage(
-                          imageUrl: resourceList[1].resourceUrl,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
-                                  colorFilter:
-                                  ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
-                            ),
-                          ),
-                          placeholder: (context, url) => CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
                         ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[1]}张图片");
+                        print("当前图片被点击:第$currentSection item,第2张图片");
                       },
                     ),
 
                     GestureDetector(
-                      child: Container(
-                        height: 120,
-                        child: CachedNetworkImage(
-                          imageUrl: resourceList[2].resourceUrl,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
-                                  colorFilter:
-                                  ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
-                            ),
-                          ),
-                          placeholder: (context, url) => CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
                         ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[2]}张图片");
+                        print("当前图片被点击:第$currentSection item,第3张图片");
                       },
                     ),
                   ],
@@ -368,35 +413,47 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
             child: Column(
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[0].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[0]}张图片");
+                        print("当前图片被点击:第$currentSection item,第1张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[1].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[1]}张图片");
+                        print("当前图片被点击:第$currentSection item,第2张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,right: 15),
-                        child: Image(image: NetworkImage(resourceList[2].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[2]}张图片");
+                        print("当前图片被点击:第$currentSection item,第3张图片");
                       },
                     ),
                   ],
@@ -405,20 +462,23 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                 Padding(padding: EdgeInsets.only(top: 10)),
 
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[3].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[4]}张图片");
+                        print("当前图片被点击:第$currentSection item,第4张图片");
                       },
                     ),
                   ],
                 ),
-
               ],
             ),
           );
@@ -429,35 +489,47 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
             child: Column(
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[0].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[0]}张图片");
+                        print("当前图片被点击:第$currentSection item,第1张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[1].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[1]}张图片");
+                        print("当前图片被点击:第$currentSection item,第2张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,right: 15),
-                        child: Image(image: NetworkImage(resourceList[2].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[2]}张图片");
+                        print("当前图片被点击:第$currentSection item,第3张图片");
                       },
                     ),
                   ],
@@ -466,25 +538,33 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                 Padding(padding: EdgeInsets.only(top: 10)),
 
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[3].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[3]}张图片");
+                        print("当前图片被点击:第$currentSection item,第4张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[4].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[4].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[4]}张图片");
+                        print("当前图片被点击:第$currentSection item,第5张图片");
                       },
                     ),
                   ],
@@ -500,35 +580,47 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
             child: Column(
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[0].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[0]}张图片");
+                        print("当前图片被点击:第$currentSection item,第1张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[1].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[1]}张图片");
+                        print("当前图片被点击:第$currentSection item,第2张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,right: 15),
-                        child: Image(image: NetworkImage(resourceList[2].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[2]}张图片");
+                        print("当前图片被点击:第$currentSection item,第3张图片");
                       },
                     ),
                   ],
@@ -537,35 +629,47 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                 Padding(padding: EdgeInsets.only(top: 10)),
 
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[3].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[3]}张图片");
+                        print("当前图片被点击:第$currentSection item,第4张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[4].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[4].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[4]}张图片");
+                        print("当前图片被点击:第$currentSection item,第5张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,right: 15),
-                        child: Image(image: NetworkImage(resourceList[5].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[5].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[5]}张图片");
+                        print("当前图片被点击:第$currentSection item,第6张图片");
                       },
                     ),
                   ],
@@ -581,35 +685,96 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
             child: Column(
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[0].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[0]}张图片");
+                        print("当前图片被点击:第$currentSection item,第1张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[1].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[1]}张图片");
+                        print("当前图片被点击:第$currentSection item,第2张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,right: 15),
-                        child: Image(image: NetworkImage(resourceList[2].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[2]}张图片");
+                        print("当前图片被点击:第$currentSection item,第3张图片");
+                      },
+                    ),
+                  ],
+                ),
+
+                Padding(padding: EdgeInsets.only(top: 10)),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    GestureDetector(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
+                        ),
+                      ),
+                      onTap: (){
+                        print("当前图片被点击:第$currentSection item,第4张图片");
+                      },
+                    ),
+
+                    GestureDetector(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[4].resourceUrl),),
+                        ),
+                      ),
+                      onTap: (){
+                        print("当前图片被点击:第$currentSection item,第5张图片");
+                      },
+                    ),
+
+                    GestureDetector(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[5].resourceUrl),),
+                        ),
+                      ),
+                      onTap: (){
+                        print("当前图片被点击:第$currentSection item,第6张图片");
                       },
                     ),
                   ],
@@ -622,48 +787,15 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[3].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[6].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[3]}张图片");
-                      },
-                    ),
-
-                    GestureDetector(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[4].resourceUrl)),
-                      ),
-                      onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[4]}张图片");
-                      },
-                    ),
-
-                    GestureDetector(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,right: 15),
-                        child: Image(image: NetworkImage(resourceList[5].resourceUrl)),
-                      ),
-                      onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[5]}张图片");
-                      },
-                    ),
-                  ],
-                ),
-
-                Padding(padding: EdgeInsets.only(top: 10)),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    GestureDetector(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[6].resourceUrl)),
-                      ),
-                      onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[6]}张图片");
+                        print("当前图片被点击:第$currentSection item,第7张图片");
                       },
                     ),
                   ],
@@ -679,35 +811,96 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
             child: Column(
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[0].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[0]}张图片");
+                        print("当前图片被点击:第$currentSection item,第1张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[1].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[1]}张图片");
+                        print("当前图片被点击:第$currentSection item,第2张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,right: 15),
-                        child: Image(image: NetworkImage(resourceList[2].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[2]}张图片");
+                        print("当前图片被点击:第$currentSection item,第3张图片");
+                      },
+                    ),
+                  ],
+                ),
+
+                Padding(padding: EdgeInsets.only(top: 10)),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    GestureDetector(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
+                        ),
+                      ),
+                      onTap: (){
+                        print("当前图片被点击:第$currentSection item,第4张图片");
+                      },
+                    ),
+
+                    GestureDetector(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[4].resourceUrl),),
+                        ),
+                      ),
+                      onTap: (){
+                        print("当前图片被点击:第$currentSection item,第5张图片");
+                      },
+                    ),
+
+                    GestureDetector(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[5].resourceUrl),),
+                        ),
+                      ),
+                      onTap: (){
+                        print("当前图片被点击:第$currentSection item,第6张图片");
                       },
                     ),
                   ],
@@ -720,58 +913,29 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[3].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[6].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[3]}张图片");
+                        print("当前图片被点击:第$currentSection item,第7张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[4].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[7].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[4]}张图片");
-                      },
-                    ),
-
-                    GestureDetector(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,right: 15),
-                        child: Image(image: NetworkImage(resourceList[5].resourceUrl)),
-                      ),
-                      onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[5]}张图片");
-                      },
-                    ),
-                  ],
-                ),
-
-                Padding(padding: EdgeInsets.only(top: 10)),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    GestureDetector(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[6].resourceUrl)),
-                      ),
-                      onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[6]}张图片");
-                      },
-                    ),
-
-                    GestureDetector(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[7].resourceUrl)),
-                      ),
-                      onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[7]}张图片");
+                        print("当前图片被点击:第$currentSection item,第8张图片");
                       },
                     ),
                   ],
@@ -787,35 +951,96 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
             child: Column(
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[0].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[0]}张图片");
+                        print("当前图片被点击:第$currentSection item,第1张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[1].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[1]}张图片");
+                        print("当前图片被点击:第$currentSection item,第2张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,right: 15),
-                        child: Image(image: NetworkImage(resourceList[2].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[2]}张图片");
+                        print("当前图片被点击:第$currentSection item,第3张图片");
+                      },
+                    ),
+                  ],
+                ),
+
+                Padding(padding: EdgeInsets.only(top: 10)),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    GestureDetector(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
+                        ),
+                      ),
+                      onTap: (){
+                        print("当前图片被点击:第$currentSection item,第4张图片");
+                      },
+                    ),
+
+                    GestureDetector(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[4].resourceUrl),),
+                        ),
+                      ),
+                      onTap: (){
+                        print("当前图片被点击:第$currentSection item,第5张图片");
+                      },
+                    ),
+
+                    GestureDetector(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[5].resourceUrl),),
+                        ),
+                      ),
+                      onTap: (){
+                        print("当前图片被点击:第$currentSection item,第6张图片");
                       },
                     ),
                   ],
@@ -828,68 +1053,43 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                   children: <Widget>[
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[3].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[6].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[3]}张图片");
+                        print("当前图片被点击:第$currentSection item,第7张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[4].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[7].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[4]}张图片");
+                        print("当前图片被点击:第$currentSection item,第8张图片");
                       },
                     ),
 
                     GestureDetector(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,right: 15),
-                        child: Image(image: NetworkImage(resourceList[5].resourceUrl)),
+                        padding: EdgeInsets.only(left: 15,top: 15),
+                        child: Container(
+                          height: 120,
+                          width: 120,
+                          child: Image(image: NetworkImage(resourceList[9].resourceUrl),),
+                        ),
                       ),
                       onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[5]}张图片");
-                      },
-                    ),
-                  ],
-                ),
-
-                Padding(padding: EdgeInsets.only(top: 10)),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    GestureDetector(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[6].resourceUrl)),
-                      ),
-                      onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[6]}张图片");
-                      },
-                    ),
-
-                    GestureDetector(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,),
-                        child: Image(image: NetworkImage(resourceList[7].resourceUrl)),
-                      ),
-                      onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[7]}张图片");
-                      },
-                    ),
-
-                    GestureDetector(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 15,top: 15,right: 15),
-                        child: Image(image: NetworkImage(resourceList[8].resourceUrl)),
-                      ),
-                      onTap: (){
-                        print("当前图片被点击:第$currentSection item,第${resourceList[8]}张图片");
+                        print("当前图片被点击:第$currentSection item,第9张图片");
                       },
                     ),
                   ],
@@ -904,8 +1104,6 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
           break;
 
       }
-
-
     }
   }
 
