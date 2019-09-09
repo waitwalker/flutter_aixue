@@ -9,7 +9,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-
+/// 教师课程列表
 class TeacherCourseList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

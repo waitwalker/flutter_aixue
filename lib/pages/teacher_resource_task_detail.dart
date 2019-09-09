@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +13,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 
-
+/// 教师学资源任务详情
 class TeacherResourceTaskDetailPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -263,17 +265,6 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
 
             Padding(padding: EdgeInsets.only(top: 15)),
 
-//          Expanded(child: StaggeredGridView.countBuilder(
-//            physics: NeverScrollableScrollPhysics(),
-//            crossAxisCount: 6,
-//            itemCount: 9,
-//            mainAxisSpacing: 10,
-//            crossAxisSpacing: 10,
-//            itemBuilder: _imagesItemBuilder,
-//            staggeredTileBuilder: (int index){
-//              return StaggeredTile.fit(2);
-//            },),),
-
           ],
         ),
       ),
@@ -296,8 +287,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
                         ),
                       ),
@@ -323,8 +314,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
                         ),
                       ),
@@ -337,8 +328,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
                         ),
                       ),
@@ -364,8 +355,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
                         ),
                       ),
@@ -378,8 +369,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
                         ),
                       ),
@@ -392,8 +383,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
                         ),
                       ),
@@ -419,8 +410,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
                         ),
                       ),
@@ -433,8 +424,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
                         ),
                       ),
@@ -447,8 +438,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
                         ),
                       ),
@@ -468,8 +459,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
                         ),
                       ),
@@ -495,8 +486,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
                         ),
                       ),
@@ -509,8 +500,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
                         ),
                       ),
@@ -523,8 +514,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
                         ),
                       ),
@@ -544,8 +535,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
                         ),
                       ),
@@ -558,8 +549,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[4].resourceUrl),),
                         ),
                       ),
@@ -586,8 +577,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
                         ),
                       ),
@@ -600,8 +591,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
                         ),
                       ),
@@ -614,8 +605,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
                         ),
                       ),
@@ -635,8 +626,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
                         ),
                       ),
@@ -649,8 +640,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[4].resourceUrl),),
                         ),
                       ),
@@ -663,8 +654,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[5].resourceUrl),),
                         ),
                       ),
@@ -691,8 +682,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
                         ),
                       ),
@@ -705,8 +696,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
                         ),
                       ),
@@ -719,8 +710,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
                         ),
                       ),
@@ -740,8 +731,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
                         ),
                       ),
@@ -754,8 +745,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[4].resourceUrl),),
                         ),
                       ),
@@ -768,8 +759,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[5].resourceUrl),),
                         ),
                       ),
@@ -789,8 +780,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[6].resourceUrl),),
                         ),
                       ),
@@ -817,8 +808,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
                         ),
                       ),
@@ -831,8 +822,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
                         ),
                       ),
@@ -845,8 +836,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
                         ),
                       ),
@@ -866,8 +857,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
                         ),
                       ),
@@ -880,8 +871,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[4].resourceUrl),),
                         ),
                       ),
@@ -894,8 +885,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[5].resourceUrl),),
                         ),
                       ),
@@ -915,8 +906,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[6].resourceUrl),),
                         ),
                       ),
@@ -929,8 +920,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[7].resourceUrl),),
                         ),
                       ),
@@ -957,8 +948,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[0].resourceUrl),),
                         ),
                       ),
@@ -971,8 +962,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[1].resourceUrl),),
                         ),
                       ),
@@ -985,8 +976,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[2].resourceUrl),),
                         ),
                       ),
@@ -1006,8 +997,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[3].resourceUrl),),
                         ),
                       ),
@@ -1020,8 +1011,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[4].resourceUrl),),
                         ),
                       ),
@@ -1034,8 +1025,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[5].resourceUrl),),
                         ),
                       ),
@@ -1055,8 +1046,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[6].resourceUrl),),
                         ),
                       ),
@@ -1069,8 +1060,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[7].resourceUrl),),
                         ),
                       ),
@@ -1083,8 +1074,8 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       child: Padding(
                         padding: EdgeInsets.only(left: 15,top: 15),
                         child: Container(
-                          height: 120,
-                          width: 120,
+                          height: Platform.isIOS ? 100 : 120,
+                          width: Platform.isIOS ? 100 : 120,
                           child: Image(image: NetworkImage(resourceList[9].resourceUrl),),
                         ),
                       ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -318,7 +320,7 @@ class _HomeState extends State<HomePage> {
                     ),
                     Padding(padding: EdgeInsets.only(left: 20)),
                     Container(
-                      width: 250,
+                      width: Platform.isIOS ? 220 : 250,
                       child: Text(
                         lastTask.taskName,
                         style: TextStyle(fontSize: 15),
