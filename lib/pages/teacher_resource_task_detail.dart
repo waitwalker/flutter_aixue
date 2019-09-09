@@ -256,7 +256,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ],
                     ),
                     onTap: (){
-                      showDialog(context: context,builder: (BuildContext context){
+                      showDialog(barrierDismissible: false,context: context,builder: (BuildContext context){
                         return GestureDetector(
                           onTap: (){
                             Navigator.pop(context);
@@ -278,6 +278,12 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                                           autofocus: true,
                                           maxLines: 5,
                                           maxLength: 300,
+                                        ),
+                                      ),
+                                      Padding(padding: EdgeInsets.only(left: 5),
+                                        child: RaisedButton(
+                                          child: Icon(Icons.send,size: 30,color: ETTColor.c1_color,),
+                                          onPressed: (){},
                                         ),
                                       ),
                                     ],
