@@ -4,6 +4,8 @@ class ETTColor {
   static Color c1_color = ColorConvert.convert("4aacee");
 
   static Color g4_color = ColorConvert.convert("cccccc");
+
+  static Color background_color = ColorConvert.convert("F2F7FF");
 }
 
 class ColorConvert {

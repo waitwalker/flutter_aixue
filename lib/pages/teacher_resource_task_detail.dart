@@ -256,7 +256,38 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ],
                     ),
                     onTap: (){
-
+                      showDialog(context: context,builder: (BuildContext context){
+                        return GestureDetector(
+                          onTap: (){
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            child: Padding(padding: EdgeInsets.only(left: 0.6 * MediaQuery.of(context).size.width,bottom: 0.85 * MediaQuery.of(context).size.height),
+                              child: Container(
+                                height: 200,
+                                width: 0.4 * MediaQuery.of(context).size.width,
+                                color: ETTColor.background_color,
+                                child: Padding(padding: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Container(
+                                        width: 0.4 * MediaQuery.of(context).size.width - 120,
+                                        child: CupertinoTextField(
+                                          placeholder: "输入内容",
+                                          autofocus: true,
+                                          maxLines: 5,
+                                          maxLength: 300,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      });
                     },
                   ),
                 ),
@@ -264,7 +295,6 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
             ),
 
             Padding(padding: EdgeInsets.only(top: 15)),
-
           ],
         ),
       ),
