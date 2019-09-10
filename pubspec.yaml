@@ -80,19 +80,27 @@ dependencies:
 
   flutter_downloader: ^1.1.9
 
+  # 加密
   crypto: ^2.1.2
 
+  # 转换
   convert: ^2.1.1
 
+  # 用户偏好
   shared_preferences: ^0.5.3+4
 
+  # 抽屉
   flutter_inner_drawer: ^0.4.0
 
   webview_flutter: ^0.3.13
 
+  # pdf
   flutter_plugin_pdf_viewer: ^1.0.7
 
   cached_network_image: ^1.1.1
+
+  # 大图浏览
+  photo_view: ^0.5.0
 
 dev_dependencies:
   flutter_test:

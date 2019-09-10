@@ -98,7 +98,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源"),
+        title: Text("学资源-文档"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
