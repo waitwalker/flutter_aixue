@@ -27,6 +27,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
 
   /// 刷新
   RefreshController _refreshController = RefreshController(initialRefresh: true);
+  TextEditingController commentController = TextEditingController();
 
   List<UserReplyList> userReplyList;
 
@@ -274,6 +275,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                                       Container(
                                         width: 0.4 * MediaQuery.of(context).size.width - 120,
                                         child: CupertinoTextField(
+                                          controller: commentController,
                                           placeholder: "输入内容",
                                           autofocus: true,
                                           maxLines: 5,
@@ -283,7 +285,10 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                                       Padding(padding: EdgeInsets.only(left: 5),
                                         child: RaisedButton(
                                           child: Icon(Icons.send,size: 30,color: ETTColor.c1_color,),
-                                          onPressed: (){},
+                                          onPressed: (){
+                                            print("评论的内容:${commentController.text}");
+                                            Navigator.pop(context);
+                                          },
                                         ),
                                       ),
                                     ],
