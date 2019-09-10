@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
+import 'package:flutter_aixue/common/widgets/photo_view.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_resource_document_model.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -335,6 +337,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第1张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 0,)));
                       },
                     ),
                   ],
@@ -362,6 +365,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第1张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 0,)));
                       },
                     ),
 
@@ -376,6 +380,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第2张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 1,)));
                       },
                     ),
                   ],
@@ -403,6 +408,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第1张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 0,)));
                       },
                     ),
 
@@ -417,6 +423,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第2张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 1,)));
                       },
                     ),
 
@@ -431,6 +438,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第3张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 2,)));
                       },
                     ),
                   ],
@@ -458,6 +466,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第1张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 0,)));
                       },
                     ),
 
@@ -472,6 +481,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第2张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 1,)));
                       },
                     ),
 
@@ -486,6 +496,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第3张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 2,)));
                       },
                     ),
                   ],
@@ -507,6 +518,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第4张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 3,)));
                       },
                     ),
                   ],
@@ -534,6 +546,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第1张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 0,)));
                       },
                     ),
 
@@ -548,6 +561,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第2张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 1,)));
                       },
                     ),
 
@@ -562,6 +576,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第3张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 2,)));
                       },
                     ),
                   ],
@@ -583,6 +598,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第4张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 3,)));
                       },
                     ),
 
@@ -597,6 +613,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第5张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 4,)));
                       },
                     ),
                   ],
@@ -625,6 +642,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第1张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 0,)));
                       },
                     ),
 
@@ -639,6 +657,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第2张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 1,)));
                       },
                     ),
 
@@ -653,6 +672,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第3张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 2,)));
                       },
                     ),
                   ],
@@ -674,6 +694,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第4张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 3,)));
                       },
                     ),
 
@@ -688,6 +709,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第5张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 4,)));
                       },
                     ),
 
@@ -702,6 +724,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第6张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 5,)));
                       },
                     ),
                   ],
@@ -730,6 +753,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第1张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 0,)));
                       },
                     ),
 
@@ -744,6 +768,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第2张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 1,)));
                       },
                     ),
 
@@ -758,6 +783,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第3张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 2,)));
                       },
                     ),
                   ],
@@ -779,6 +805,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第4张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 3,)));
                       },
                     ),
 
@@ -793,6 +820,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第5张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 4,)));
                       },
                     ),
 
@@ -807,6 +835,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第6张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 5,)));
                       },
                     ),
                   ],
@@ -828,6 +857,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第7张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 6,)));
                       },
                     ),
                   ],
@@ -856,6 +886,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第1张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 0,)));
                       },
                     ),
 
@@ -870,6 +901,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第2张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 1,)));
                       },
                     ),
 
@@ -884,6 +916,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第3张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 2,)));
                       },
                     ),
                   ],
@@ -905,6 +938,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第4张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 3,)));
                       },
                     ),
 
@@ -919,6 +953,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第5张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 4,)));
                       },
                     ),
 
@@ -933,6 +968,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第6张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 5,)));
                       },
                     ),
                   ],
@@ -954,6 +990,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第7张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 6,)));
                       },
                     ),
 
@@ -968,6 +1005,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第8张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 7,)));
                       },
                     ),
                   ],
@@ -996,6 +1034,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第1张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 0,)));
                       },
                     ),
 
@@ -1010,6 +1049,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第2张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 1,)));
                       },
                     ),
 
@@ -1024,6 +1064,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第3张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 2,)));
                       },
                     ),
                   ],
@@ -1045,6 +1086,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第4张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 3,)));
                       },
                     ),
 
@@ -1059,6 +1101,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第5张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 4,)));
                       },
                     ),
 
@@ -1073,6 +1116,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第6张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 5,)));
                       },
                     ),
                   ],
@@ -1094,6 +1138,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第7张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 6,)));
                       },
                     ),
 
@@ -1108,6 +1153,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第8张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 7,)));
                       },
                     ),
 
@@ -1122,6 +1168,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
                       ),
                       onTap: (){
                         print("当前图片被点击:第$currentSection item,第9张图片");
+                        Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: PhotoView(resourceList: resourceList,initialIndex: 8,)));
                       },
                     ),
                   ],
