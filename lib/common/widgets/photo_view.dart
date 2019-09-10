@@ -87,9 +87,7 @@ class _PhotoViewState extends State<PhotoView> {
       heroAttributes: PhotoViewHeroAttributes(tag: item.resourceUrl),
       onTapUp: (BuildContext context,TapUpDetails details, PhotoViewControllerValue controllerValue){
         print("点击 tap up${controllerValue.scale}");
-        if (controllerValue == null || controllerValue.scale == 1.0) {
-          Navigator.pop(context);
-        }
+        Navigator.pop(context);
       },
     );
   }
