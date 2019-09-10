@@ -3,7 +3,7 @@ import 'package:flutter_aixue/models/teacher_resource_document_model.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:photo_view/photo_view.dart';
 
-
+/// 大图浏览
 class PhotoView extends StatefulWidget {
 
   PhotoView(
@@ -80,14 +80,36 @@ class _PhotoViewState extends State<PhotoView> {
   PhotoViewGalleryPageOptions _buildItem(BuildContext context, int index) {
     final ResourceList item = widget.resourceList[index];
     return PhotoViewGalleryPageOptions(
-      imageProvider: NetworkImage(item.resourceUrl),
+      imageProvider: NetworkImage(imageURL(item.resourceUrl)),
       initialScale: PhotoViewComputedScale.contained,
       minScale: PhotoViewComputedScale.contained * (0.5 + index / 10),
       maxScale: PhotoViewComputedScale.covered * 1.1,
       heroAttributes: PhotoViewHeroAttributes(tag: item.resourceUrl),
       onTapUp: (BuildContext context,TapUpDetails details, PhotoViewControllerValue controllerValue){
         print("点击 tap up${controllerValue.scale}");
+        if (controllerValue == null || controllerValue.scale == 1.0) {
+          Navigator.pop(context);
+        }
       },
     );
+  }
+
+  String imageURL(String originalString) {
+    if (originalString == null || originalString.length == 0) return "";
+    if (originalString.contains(".jpg")) {
+      return originalString.replaceAll(".jpg", "_1.jpg");
+    } else if (originalString.contains(".JPG")) {
+      return originalString.replaceAll(".JPG", "_1.JPG");
+    } else if (originalString.contains(".jpeg")) {
+      return originalString.replaceAll(".jpeg", "_1.jpeg");
+    } else if (originalString.contains(".JPEG")) {
+      return originalString.replaceAll(".JPEG", "_1.JPEG");
+    } else if (originalString.contains(".png")) {
+      return originalString.replaceAll(".png", "_1.png");
+    } else if (originalString.contains(".PNG")) {
+      return originalString.replaceAll(".PNG", "_1.PNG");
+    } else {
+      return originalString;
+    }
   }
 }
