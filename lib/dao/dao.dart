@@ -5,7 +5,7 @@ import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
 import 'package:flutter_aixue/models/login_model.dart';
 import 'package:flutter_aixue/models/teacher_course_list_model.dart';
-import 'package:flutter_aixue/models/teacher_resource_document_model.dart';
+import 'package:flutter_aixue/models/teacher_resource_model.dart';
 import 'package:flutter_aixue/models/teacher_subject_list_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 
@@ -129,7 +129,7 @@ class DaoManager {
       String jsonString = response.data;
 
       var resultMap = json.decode(jsonString);
-      var model = TeacherResourceDocumentModel.fromJson(resultMap);
+      var model = TeacherResourceModel.fromJson(resultMap);
       response.model = model;
       return response;
     } else {

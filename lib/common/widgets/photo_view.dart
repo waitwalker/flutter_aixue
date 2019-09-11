@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_aixue/models/teacher_resource_document_model.dart';
+import 'package:flutter_aixue/models/teacher_resource_model.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:photo_view/photo_view.dart';
 

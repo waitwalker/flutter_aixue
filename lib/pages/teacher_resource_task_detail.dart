@@ -8,7 +8,7 @@ import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/widgets/photo_view.dart';
 import 'package:flutter_aixue/dao/dao.dart';
-import 'package:flutter_aixue/models/teacher_resource_document_model.dart';
+import 'package:flutter_aixue/models/teacher_resource_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -85,7 +85,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
 
         if (snapshot.data.result) {
           if (snapshot.data.model != null && snapshot.data.model.result == 1) {
-            TeacherResourceDocumentModel resourceDocumentModel = snapshot.data.model;
+            TeacherResourceModel resourceDocumentModel = snapshot.data.model;
             if (resourceDocumentModel != null) {
               print("$resourceDocumentModel");
               userReplyList = resourceDocumentModel.data.userReplyList;
@@ -143,7 +143,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
     print(responseData);
     if (responseData.result) {
       if (responseData.model != null && responseData.model.result == 1) {
-        TeacherResourceDocumentModel resourceDocumentModel = responseData.model;
+        TeacherResourceModel resourceDocumentModel = responseData.model;
         if (resourceDocumentModel != null) {
           print("$resourceDocumentModel");
           userReplyList = resourceDocumentModel.data.userReplyList;

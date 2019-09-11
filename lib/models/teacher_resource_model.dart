@@ -1,10 +1,10 @@
-class TeacherResourceDocumentModel {
+class TeacherResourceModel {
   int result;
   Data data;
 
-  TeacherResourceDocumentModel({this.result, this.data});
+  TeacherResourceModel({this.result, this.data});
 
-  TeacherResourceDocumentModel.fromJson(Map<String, dynamic> json) {
+  TeacherResourceModel.fromJson(Map<String, dynamic> json) {
     result = int.parse(json['result']);
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
