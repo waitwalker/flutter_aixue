@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_aixue/assistant/enum_assistant.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
@@ -359,9 +360,63 @@ class _HomeState extends State<HomePage> {
         ),
       ),
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context){
-          return TeacherResourceTaskDetailPage();
-        }));
+        switch (lastTask.kTaskSubtype) {
+          case ETTTaskSubtype.ETTTaskSubtypeResourceStudy:
+            print("学资源任务");
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return TeacherResourceTaskDetailPage(lastTask);
+            }));
+            break;
+          case ETTTaskSubtype.ETTTaskSubtypeInteractionCommunication:
+            print("互动交流任务");
+            break;
+          case ETTTaskSubtype.ETTTaskSubtypeWebviewObjectiveItem:
+            print("单选多选等任务");
+            break;
+          case ETTTaskSubtype.ETTTaskSubtypePaperTest:
+            print("成卷测试任务");
+            break;
+          case ETTTaskSubtype.ETTTaskSubtypeAutonomyTest:
+            print("自主测试任务");
+            break;
+          case ETTTaskSubtype.ETTTaskSubtypeMicroCourse:
+            print("微课程任务");
+            break;
+          case ETTTaskSubtype.ETTTaskSubtypeRegularTaskVoice:
+            print("一般任务语音");
+            break;
+          case ETTTaskSubtype.ETTTaskSubtypeRegularTaskPicture:
+            print("一般任务图片");
+            break;
+          case ETTTaskSubtype.ETTTaskSubtypeRegularTaskText:
+            print("一般任务文本");
+            break;
+          case ETTTaskSubtype.ETTTaskSubtypeLiveCourse:
+            print("直播任务");
+            break;
+          case ETTTaskSubtype.ETTTaskSubtypeWebviewSubjectiveItem:
+            print("主观题任务");
+            break;
+          case ETTTaskSubtype.ETTTaskSubtypeKnowledgeGuidance:
+            print("知识导学任务");
+            break;
+          case ETTTaskSubtype.ETTTaskAnswerSheet:
+            print("答题卡任务");
+            break;
+          case ETTTaskSubtype.ETTTaskAISingle:
+            print("AI单项任务");
+            break;
+          case ETTTaskSubtype.ETTTaskAIStudyPlan:
+            print("AI学习计划任务");
+            break;
+          case ETTTaskSubtype.ETTTaskHoneycomb:
+            print("蜂巢任务");
+            break;
+          case ETTTaskSubtype.ETTTaskSingSound:
+            print("先声任务");
+            break;
+
+        }
       },
     );
   }
