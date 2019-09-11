@@ -345,6 +345,38 @@ class NetworkAssistant {
     return signString;
   }
 
+//  static String getSign(Map parameter) {
+//
+//    /// 存储所有key
+//    List<String> allKeys = [];
+//    parameter.forEach((key,value){
+//      allKeys.add(key);
+//    });
+//
+//    /// key排序
+//    allKeys.sort((obj1,obj2){
+//      return obj1.compareTo(obj2);
+//    });
+//
+//    /// 存储所有键值对
+//    List<String> pairs = [];
+//
+//    /// 添加键值对
+//    allKeys.forEach((key){
+//      pairs.add("$key${parameter[key]}");
+//    });
+//
+//    /// 数组转string
+//    String pairsString = pairs.join("");
+//
+//    /// 拼接 ABC 是你的秘钥
+//    String sign = "ABC" + pairsString + "ABC";
+//
+//    /// hash
+//    String signString = generateMd5(sign).toUpperCase();
+//    return signString;
+//  }
+
   static String generateMd5(String string) {
     var content = Utf8Encoder().convert(string);
     var digest = md5.convert(content);
