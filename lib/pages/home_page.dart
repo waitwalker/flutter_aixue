@@ -16,7 +16,12 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-
+///
+/// @name 首页
+/// @description 
+/// @author lca
+/// @date 2019-09-11
+///
 class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
