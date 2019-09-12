@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_aixue/common/color/color.dart';
 
 enum PlayerState { stopped, playing, paused }
 
@@ -65,60 +66,52 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Row(
-          mainAxisSize: MainAxisSize.min,
           children: [
+            Padding(padding: EdgeInsets.only(left: 20)),
             IconButton(
                 onPressed: _isPlaying ? null : () => _play(),
-                iconSize: 64.0,
+                iconSize: 30.0,
                 icon: Icon(Icons.play_arrow),
                 color: Colors.cyan),
             IconButton(
                 onPressed: _isPlaying ? () => _pause() : null,
-                iconSize: 64.0,
+                iconSize: 30.0,
                 icon: Icon(Icons.pause),
                 color: Colors.cyan),
             IconButton(
                 onPressed: _isPlaying || _isPaused ? () => _stop() : null,
-                iconSize: 64.0,
+                iconSize: 30.0,
                 icon: Icon(Icons.stop),
                 color: Colors.cyan),
-          ],
-        ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
+
             Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Stack(
-                children: [
-                  Slider(
-                    onChanged: (v) {
-                      final Position = v * _duration.inMilliseconds;
-                      _audioPlayer
-                          .seek(Duration(milliseconds: Position.round()));
-                    },
-                    value: (_position != null &&
-                        _duration != null &&
-                        _position.inMilliseconds > 0 &&
-                        _position.inMilliseconds < _duration.inMilliseconds)
-                        ? _position.inMilliseconds / _duration.inMilliseconds
-                        : 0.0,
-                  ),
-                ],
+              padding: EdgeInsets.only(right: 5,),
+              child: Text(
+                _position != null
+                    ? '${_positionText ?? '00:00'} / ${_durationText ?? '00:00'}'
+                    : _duration != null ? _durationText : '00:00/00:00',
+                style: TextStyle(fontSize: 14.0,color: ETTColor.g4_color),
               ),
             ),
-            Text(
-              _position != null
-                  ? '${_positionText ?? ''} / ${_durationText ?? ''}'
-                  : _duration != null ? _durationText : '',
-              style: TextStyle(fontSize: 24.0),
-            ),
           ],
         ),
-        Text("State: $_audioPlayerState")
+
+        Slider(
+          onChanged: (v) {
+            final position_ = v * _duration.inMilliseconds;
+            _audioPlayer
+                .seek(Duration(milliseconds: position_.round()));
+          },
+          value: (_position != null &&
+              _duration != null &&
+              _position.inMilliseconds > 0 &&
+              _position.inMilliseconds < _duration.inMilliseconds)
+              ? _position.inMilliseconds / _duration.inMilliseconds
+              : 0.0,
+        ),
+
       ],
     );
   }

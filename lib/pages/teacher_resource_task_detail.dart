@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
+import 'package:flutter_aixue/common/widgets/audio_player_widget.dart';
 import 'package:flutter_aixue/common/widgets/photo_view.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_resource_model.dart';
@@ -398,21 +399,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
 
               Padding(padding: EdgeInsets.only(top: 50)),
 
-              Container(
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Colors.amber
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Padding(padding: EdgeInsets.only(left: 30),),
-
-                    RaisedButton(child: Icon(Icons.play_arrow,size: 25,),onPressed: (){
-
-                    },),
-                  ],
-                ),
-              ),
+              AudioPlayerWidget(url: resource.resourceUrl),
 
             ],
           );
