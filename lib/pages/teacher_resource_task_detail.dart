@@ -47,7 +47,6 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
   void initState() {
     super.initState();
     task = widget.task;
-    loadDocument();
     //initData();
 
     future = DaoManager.teacherResourceDocumentFetch({
@@ -55,7 +54,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
       "schoolId":"50043",
       "taskId":task.taskId,
       "classId":"1343842",
-      "isBoxExists":"1"
+      "isBoxExists":"0"
     });
   }
   
@@ -85,11 +84,17 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
 
         if (snapshot.data.result) {
           if (snapshot.data.model != null && snapshot.data.model.result == 1) {
-            TeacherResourceModel resourceDocumentModel = snapshot.data.model;
-            if (resourceDocumentModel != null) {
-              print("$resourceDocumentModel");
-              userReplyList = resourceDocumentModel.data.userReplyList;
-              return futureDoneChild();
+            TeacherResourceModel resourceModel = snapshot.data.model;
+            if (resourceModel != null) {
+              print("$resourceModel");
+
+              userReplyList = resourceModel.data.userReplyList;
+              ResourceList resource;
+              if (resourceModel.data.resourceList != null && resourceModel.data.resourceList.length > 0) {
+                resource = resourceModel.data.resourceList.first;
+              }
+
+              return futureDoneChild(resource);
             } else {
               return futureWaitingChild();
             }
@@ -257,7 +262,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
   /// @author lca
   /// @date 2019-09-11
   ///
-  Widget futureDoneChild() {
+  Widget futureDoneChild(ResourceList resource) {
     return Scaffold(
       appBar: AppBar(
         title: Text("学资源-文档"),
@@ -270,16 +275,17 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
       ),
       body: Row(
         children: <Widget>[
+
+          /// 左边
           Container(
             width: 0.6 * MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 border: Border(right: BorderSide(color: Colors.lightBlue,width: 2.0))
             ),
-            child: _isLoading
-                ? Center(child: CircularProgressIndicator())
-                : PDFViewer(document: document),
+            child: leftChild(resource),
           ),
 
+          /// 右边
           Container(
             width: 0.4 * MediaQuery.of(context).size.width,
             child: Column(
@@ -326,7 +332,6 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
               ],
             ),
           ),
-
         ],
       ),
     );
@@ -351,11 +356,37 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
           },
         ),
       ),
-      body: Container(
-        child: Text("错误"),
+      body: Center(
+        child: Container(
+          child: Text("错误"),
+        ),
       ),
     );
   }
+
+  Widget leftChild(ResourceList resource) {
+    switch (resource.resourceType) {
+      case 1:
+        loadDocument();
+        return Column(
+          children: <Widget>[
+            Padding(padding: EdgeInsets.only(top: 100)),
+          ],
+        );
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+        _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : PDFViewer(document: document);
+        break;
+
+    }
+  }
+
 
   /// 刷新
   void _onRefresh(RefreshController controller) async {
@@ -366,7 +397,6 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
   Widget _itemBuilder(BuildContext context, int index) {
 
     UserReplyList userReply = userReplyList[index];
-
     return Padding(
       padding: EdgeInsets.all(15),
       child: Container(
@@ -1371,54 +1401,4 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
     }
   }
 
-  Widget _imagesItemBuilder(BuildContext context, int index) {
-    return Container(
-      color: Colors.amberAccent,
-      child: Text("$index"),
-    );
-  }
-
-
-
-
-
-//  @override
-//  Widget build(BuildContext context) {
-//    return MaterialApp(
-//      home: Scaffold(
-//        drawer: Drawer(
-//          child: Column(
-//            children: <Widget>[
-//              SizedBox(height: 36),
-//              ListTile(
-//                title: Text('Load from Assets'),
-//                onTap: () {
-//                  changePDF(1);
-//                },
-//              ),
-//              ListTile(
-//                title: Text('Load from URL'),
-//                onTap: () {
-//                  changePDF(2);
-//                },
-//              ),
-//              ListTile(
-//                title: Text('Restore default'),
-//                onTap: () {
-//                  changePDF(3);
-//                },
-//              ),
-//            ],
-//          ),
-//        ),
-//        appBar: AppBar(
-//          title: const Text('FlutterPluginPDFViewer'),
-//        ),
-//        body: Center(
-//            child: _isLoading
-//                ? Center(child: CircularProgressIndicator())
-//                : PDFViewer(document: document)),
-//      ),
-//    );
-//  }
 }
