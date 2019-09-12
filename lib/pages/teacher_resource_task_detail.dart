@@ -379,13 +379,23 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
         return Column(
           children: <Widget>[
             Padding(padding: EdgeInsets.only(top: 100)),
-            
-            Icon(Icons.mic,size: 100,)
+
+            Icon(Icons.mic,size: 100,color: ETTColor.c1_color,),
+
+            Padding(padding: EdgeInsets.only(top: 50)),
+
+            AudioPlayerWidget(url: resource.resourceUrl),
 
           ],
         );
         break;
       case 2:
+        return Padding(
+          padding: EdgeInsets.all(10),
+          child: Image(
+            image: NetworkImage("https://github.com/waitwalker/Resources/blob/master/Flutter/group/flutter_development_0916.JPG?raw=true"),
+          ),
+        );
         break;
       case 3:
         break;
