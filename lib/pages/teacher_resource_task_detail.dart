@@ -364,13 +364,23 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
     );
   }
 
+  ///
+  /// @name leftChild
+  /// @description 根据资源类型返回特定组件
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-12
+  ///
   Widget leftChild(ResourceList resource) {
     switch (resource.resourceType) {
       case 1:
-        loadDocument();
         return Column(
           children: <Widget>[
             Padding(padding: EdgeInsets.only(top: 100)),
+            
+            Icon(Icons.mic,size: 100,)
+
           ],
         );
         break;
@@ -379,9 +389,39 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
       case 3:
         break;
       case 4:
-        _isLoading
-            ? Center(child: CircularProgressIndicator())
-            : PDFViewer(document: document);
+        if (resource.resourceSuffix == ".mp3") {
+          return Column(
+            children: <Widget>[
+              Padding(padding: EdgeInsets.only(top: 100)),
+
+              Icon(Icons.mic,size: 100,color: ETTColor.c1_color,),
+
+              Padding(padding: EdgeInsets.only(top: 50)),
+
+              Container(
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Colors.amber
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Padding(padding: EdgeInsets.only(left: 30),),
+
+                    RaisedButton(child: Icon(Icons.play_arrow,size: 25,),onPressed: (){
+
+                    },),
+                  ],
+                ),
+              ),
+
+            ],
+          );
+        } else {
+          loadDocument();
+          return _isLoading
+              ? Center(child: CircularProgressIndicator())
+              : PDFViewer(document: document);
+        }
         break;
 
     }

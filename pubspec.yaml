@@ -105,6 +105,8 @@ dependencies:
   # 转场动画
   page_transition: ^1.1.4
 
+  audioplayers: ^0.13.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
