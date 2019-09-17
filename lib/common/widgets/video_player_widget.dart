@@ -30,7 +30,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController1,
       aspectRatio: 3 / 2,
-      autoPlay: true,
+      autoPlay: false,
       looping: false,
       // Try playing around with some of these other options:
 
@@ -59,6 +59,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      showSemanticsDebugger: false,
       title: widget.title,
       theme: ThemeData.light().copyWith(
         platform: _platform ?? Theme.of(context).platform,
