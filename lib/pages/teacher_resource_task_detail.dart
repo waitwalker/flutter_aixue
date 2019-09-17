@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/widgets/audio_player_widget.dart';
+import 'package:flutter_aixue/common/widgets/ijkplayer.dart';
 import 'package:flutter_aixue/common/widgets/photo_view.dart';
 import 'package:flutter_aixue/common/widgets/video_player_widget.dart';
 import 'package:flutter_aixue/dao/dao.dart';
@@ -403,6 +404,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
         break;
       case 4:
         if (resource.resourceSuffix == ".mp3") {
+          return ijkplayer();
           return VideoPlayerWidget();
           return Column(
             children: <Widget>[

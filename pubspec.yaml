@@ -111,6 +111,8 @@ dependencies:
 
   video_player: ^0.10.2+1
 
+  flutter_ijkplayer: ^0.3.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
