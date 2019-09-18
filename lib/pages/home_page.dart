@@ -1,8 +1,10 @@
 import 'dart:collection';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart' as prefix1;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_aixue/assistant/enum_assistant.dart';
@@ -12,6 +14,8 @@ import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
+import 'package:flutter_aixue/pages/message_page.dart';
+import 'package:flutter_aixue/pages/setting_page.dart';
 import 'package:flutter_aixue/pages/teacher_course_list.dart';
 import 'package:flutter_aixue/pages/teacher_resource_task_detail.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -228,7 +232,10 @@ class _HomeState extends State<HomePage> {
           ),
         ),
         onPressed: (){
-
+          Navigator.pop(context);
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+            return index == 0 ? MessagePage() : SettingPage();
+          }));
         },
       ),
     );

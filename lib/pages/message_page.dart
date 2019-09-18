@@ -14,8 +14,13 @@ class _MessageState extends State<MessagePage> {
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-      color: ETTColor.c1_color,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("消息"),
+      ),
+      body: Container(
+        color: ETTColor.c1_color,
+      ),
     );
   }
 }
