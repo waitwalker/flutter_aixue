@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -155,10 +156,81 @@ class _HomeState extends State<HomePage> {
     return Column(
       children: <Widget>[
         Container(
-          height: 300,
-          color: Colors.amberAccent,
+          height: 0.3 * MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(padding: EdgeInsets.only(top: 40)),
+              Container(
+                decoration: BoxDecoration(
+                  color: ETTColor.c1_color,
+                  borderRadius: BorderRadius.circular(40),
+                  boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
+                ),
+                height: 80,
+                width: 80,
+              ),
+
+              Padding(padding: EdgeInsets.only(top: 20)),
+              Text("张三",style: TextStyle(fontSize: 20),),
+            ],
+          ),
         ),
+
+        Expanded(child: ListView.builder(itemBuilder: drawerItemBuilder,itemCount: itemList.length,)),
       ],
+    );
+  }
+
+  List itemList = [
+    {
+      "title":"消息",
+      "color":Colors.amber
+    },
+    {
+      "title":"设置",
+      "color":ETTColor.c1_color
+    },
+  ];
+
+  ///
+  /// @name drawerItemBuilder
+  /// @description 抽屉页面item
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-18
+  ///
+  Widget drawerItemBuilder(BuildContext context, int index) {
+    Map map = itemList[index];
+    return Padding(
+      padding: EdgeInsets.only(top: 10),
+      child: RaisedButton(
+        child: Container(
+          height: 60,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Padding(padding: EdgeInsets.only(left: 20),),
+                  Icon(Icons.settings,size: 30,color: map["color"],),
+                  Padding(padding: EdgeInsets.only(left: 10),),
+                  Text(map["title"],style: TextStyle(fontSize: 18),),
+                ],
+              ),
+            ],
+          ),
+        ),
+        onPressed: (){
+
+        },
+      ),
     );
   }
 
