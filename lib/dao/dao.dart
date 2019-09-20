@@ -164,6 +164,24 @@ class DaoManager {
   }
 
 
+  static Future<ResponseData> uploadFormDataFetch(Map<String,dynamic> parameters) async {
+    var response = await NetworkManager.post(Const.personalInformation, parameters);
+    if (response.result) {
+      Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
+      print("response.data:${response.data}");
+
+      String jsonString = response.data;
+
+      var resultMap = json.decode(jsonString);
+      var model = PersonalInformationModel.fromJson(resultMap);
+      response.model = model;
+      return response;
+    } else {
+      throw Exception("个人信息接口请求失败");
+    }
+  }
+
+
 
 }
 

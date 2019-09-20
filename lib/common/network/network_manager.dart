@@ -317,6 +317,9 @@ class Const {
 
   /// 获取个人信息
   static const String personalInformation = "userInfo.do";
+
+  /// 上传文件
+  static const String uploadAvatar = "uploadUserPhoto.do";
 }
 
 ///
@@ -419,6 +422,10 @@ class NetworkAssistant {
 
       case Const.personalInformation:
         return "http://i.im.etiantian.net/study-im-service-2.0/user/userInfo.do";
+        break;
+
+      case Const.uploadAvatar:
+        return "http://i.m.etiantian.com/app-common-service/uploadUserPhoto.do";
         break;
       default:
         return "";

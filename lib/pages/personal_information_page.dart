@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,6 +8,7 @@ import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/personal_information_model.dart';
+import 'package:image_picker/image_picker.dart';
 
 ///
 /// @name PersonalInformationPage
@@ -21,9 +25,17 @@ class PersonalInformationPage extends StatefulWidget {
 
 class _PersonState extends State<PersonalInformationPage> {
 
+  /// 个人信息model
   PersonalInformationModel personalInformationModel;
 
+  /// 是否正在加载
   bool isLoading = true;
+
+  /// 记录选择的照片
+  File _image;
+
+  /// 当图片上传成功后，记录当前上传的图片在服务器中的位置
+  String _imgServerPath;
 
   ///
   /// @Method: initData
@@ -56,6 +68,35 @@ class _PersonState extends State<PersonalInformationPage> {
       }
     } else {
 
+    }
+  }
+
+  /// 拍照
+  Future _getImageFromCamera() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera, maxWidth: 400);
+
+  }
+
+  /// 相册选择
+  Future _getImageFromGallery() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+  }
+
+  //上传图片到服务器
+  _uploadImage() async {
+    FormData formData = FormData.from({
+      //"": "", //这里写其他需要传递的参数
+      "file": UploadFileInfo(_image, "imageName.png",contentType: ContentType.parse("image/jpeg")),
+    });
+    var response =
+    await Dio().post("http://jd.itying.com/imgupload", data: formData);
+    print(response);
+    if (response.statusCode == 200) {
+      Map responseMap = response.data;
+      print("http://jd.itying.com${responseMap["path"]}");
+      setState(() {
+        _imgServerPath = "http://jd.itying.com${responseMap["path"]}";
+      });
     }
   }
 
@@ -118,8 +159,9 @@ class _PersonState extends State<PersonalInformationPage> {
                                     textColor: Colors.lightBlue,
                                     onPressed: () {
                                       Navigator.of(context).pop();
+                                      _getImageFromCamera();
                                     },
-                                    child: new Text("相机",),
+                                    child: Text("相机",),
                                   ),
                                 ),
                                 Padding(padding: EdgeInsets.only(top: 20)),
@@ -135,8 +177,9 @@ class _PersonState extends State<PersonalInformationPage> {
                                     textColor: Colors.lightBlue,
                                     onPressed: () {
                                       Navigator.of(context).pop();
+                                      _getImageFromGallery();
                                     },
-                                    child: new Text("相册",),
+                                    child: Text("相册",),
                                   ),
                                 ),
                               ],
