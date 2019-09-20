@@ -343,7 +343,7 @@ class NetworkAssistant {
   /// @date 2019-09-20
   ///
   static int currentTimeMilliseconds() {
-    return 1568968685400;DateTime.now().millisecondsSinceEpoch;
+    return DateTime.now().millisecondsSinceEpoch;
   }
 
   ///

@@ -86,17 +86,29 @@ class _PersonState extends State<PersonalInformationPage> {
   /// 上传图片到服务器
   _uploadImage(File image) async {
 
-    
+    Map<String,dynamic> tmpParameters = {"jid":"9620132",
+      "userType":"1",};
+    tmpParameters["time"] = NetworkAssistant.currentTimeMilliseconds().toString();
+    String sign = NetworkAssistant.getSign(tmpParameters, Const.uploadAvatar);
+    tmpParameters["sign"] = sign;
 
     FormData formData = FormData.from({
-      "jid":"9620132",
-      "userType":"1",
-      "sign":"ODY3NjRkMDVmYmFhZTBmOTNmM2I3ODYzMDZjYzBiOTk",
-      "time": "1568968685400", //这里写其他需要传递的参数
+      "jid":tmpParameters["jid"],
+      "userType":tmpParameters["userType"],
+      "sign":tmpParameters["sign"],
+      "time": tmpParameters["time"], //这里写其他需要传递的参数
       "photo": UploadFileInfo(image, "imageName.png"),
     });
-    var response = DaoManager.uploadAvatarFetch({"jid":"9620132","userType":"1"},data: formData);
-    print(response);
+    ResponseData responseData = await DaoManager.uploadAvatarFetch({"jid":"9620132","userType":"1"},data: formData);
+    if (responseData.result) {
+      if (responseData.model.result == 1) {
+        setState(() {
+          isLoading = true;
+          initData();
+        });
+      }
+    }
+    print(responseData);
   }
 
   @override
