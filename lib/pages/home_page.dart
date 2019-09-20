@@ -1,10 +1,6 @@
-import 'dart:collection';
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart' as prefix1;
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_aixue/assistant/enum_assistant.dart';
@@ -64,7 +60,6 @@ class _HomeState extends State<HomePage> {
   ///
   initData() async {
     ResponseData responseData = await DaoManager.teacherRecentTaskFetch({"jid":"9620132","schoolId":"50043"});
-
     print(responseData);
     if (lastTaskList.length > 0) lastTaskList.clear();
     if (responseData.result) {
@@ -512,7 +507,6 @@ class _HomeState extends State<HomePage> {
           case ETTTaskSubtype.ETTTaskSingSound:
             print("先声任务");
             break;
-
         }
       },
     );

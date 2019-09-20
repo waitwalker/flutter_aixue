@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
 import 'package:flutter_aixue/models/login_model.dart';
+import 'package:flutter_aixue/models/personal_information_model.dart';
 import 'package:flutter_aixue/models/teacher_course_list_model.dart';
 import 'package:flutter_aixue/models/teacher_resource_model.dart';
 import 'package:flutter_aixue/models/teacher_subject_list_model.dart';
@@ -136,6 +137,32 @@ class DaoManager {
       throw Exception("登录接口请求失败");
     }
   }
+
+  ///
+  /// @name personalInformationFetch
+  /// @description 获取个人信息
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-20
+  ///
+  static Future <ResponseData> personalInformationFetch(Map<String,dynamic> parameters) async {
+    var response = await NetworkManager.post(Const.teacherResourceDocument, parameters);
+    if (response.result) {
+      Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
+      print("response.data:${response.data}");
+
+      String jsonString = response.data;
+
+      var resultMap = json.decode(jsonString);
+      var model = PersonalInformationModel.fromJson(resultMap);
+      response.model = model;
+      return response;
+    } else {
+      throw Exception("个人信息接口请求失败");
+    }
+  }
+
 
 
 }
