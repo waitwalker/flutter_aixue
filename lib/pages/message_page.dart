@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_aixue/common/color/color.dart';
 
 
 class MessagePage extends StatefulWidget {

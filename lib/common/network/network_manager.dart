@@ -25,7 +25,6 @@ class NetworkManager {
     "authorizationCode": null,
   };
 
-
   static setBaseUrl(String baseUrl){
     _baseUrl = baseUrl;
   }
@@ -251,7 +250,6 @@ class ResponseData {
   int code;
   var headers;
   var model;
-  
   ResponseData(this.data, this.result, this.code, {this.headers,this.model});
 }
 
@@ -292,10 +290,15 @@ class StatusCode {
 class HttpErrorEvent {
   final int code;
   final String message;
-
   HttpErrorEvent(this.code, this.message);
 }
 
+///
+/// @name Const
+/// @description 常量类
+/// @author lca
+/// @date 2019-09-20
+///
 class Const {
   /// 登录
   static const String loginInterface = "login.do";
@@ -313,7 +316,7 @@ class Const {
   static const String teacherResourceDocument = "getTeacherStudyTaskInfo2.do";
 
   /// 获取个人信息
-  static const String personalInformation = "getTeacherStudyTaskInfo2.do";
+  static const String personalInformation = "userInfo.do";
 }
 
 ///
@@ -413,7 +416,7 @@ class NetworkAssistant {
       case Const.teacherResourceDocument:
         return "https://school.etiantian.com/aixue33/im2.0.1?m=getTeacherStudyTaskInfo2.do";
         break;
-        
+
       case Const.personalInformation:
         return "http://i.im.etiantian.net/study-im-service-2.0/user/userInfo.do";
         break;

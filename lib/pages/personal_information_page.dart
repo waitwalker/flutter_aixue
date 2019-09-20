@@ -28,7 +28,7 @@ class _PersonState extends State<PersonalInformationPage> {
   initData() async {
     ResponseData responseData = await DaoManager.personalInformationFetch({
       "userJid":"9620132",
-      "friendJid":"50043",
+      "friendJid":"9620132",
       "flag":"1"
     });
     print(responseData);
@@ -95,6 +95,7 @@ class _PersonState extends State<PersonalInformationPage> {
                                         borderRadius: BorderRadius.circular(20),
                                         boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
                                       ),
+                                      child: Image(image: personalInformationModel.data.uPhoto == null ?  AssetImage("lib/resources/images/1024.png") : NetworkImage(personalInformationModel.data.uPhoto)),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(left: 10),
@@ -128,7 +129,7 @@ class _PersonState extends State<PersonalInformationPage> {
                               Padding(padding: EdgeInsets.only(left: 20),child: Text("用户名"),),
                               Padding(
                                 padding: EdgeInsets.only(right: 15),
-                                child: Text("aixue"),
+                                child: Text(personalInformationModel.data.nickName == null ? "爱学" : personalInformationModel.data.nickName),
                               ),
                             ],
                           ),
@@ -155,7 +156,7 @@ class _PersonState extends State<PersonalInformationPage> {
                               Padding(padding: EdgeInsets.only(left: 20),child: Text("用户id"),),
                               Padding(
                                 padding: EdgeInsets.only(right: 15),
-                                child: Text("9620132"),
+                                child: Text(personalInformationModel.data.jid == null ? "10000" : "${personalInformationModel.data.jid}"),
                               ),
                             ],
                           ),
@@ -171,41 +172,8 @@ class _PersonState extends State<PersonalInformationPage> {
                         ],
                       ),
                     ),
-                    GestureDetector(
-                      onTap: (){},
-                      child: Column(
-                        children: <Widget>[
-                          Padding(padding: EdgeInsets.only(top: 10)),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Padding(padding: EdgeInsets.only(left: 20),child: Text("手机号"),),
-                              Padding(
-                                padding: EdgeInsets.only(right: 15),
-                                child: Row(
-                                  children: <Widget>[
-                                    Text("绑定"),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Icon(Icons.keyboard_arrow_right,size: 24,color: ETTColor.c1_color,),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Divider(
-                              indent: 15,
-                              endIndent: 15,
-                              color: ETTColor.c1_color,
-                              height: 0.5,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    _phoneNumWidget(),
+
                     GestureDetector(
                       onTap: (){},
                       child: Column(
@@ -244,7 +212,7 @@ class _PersonState extends State<PersonalInformationPage> {
                               Padding(padding: EdgeInsets.only(left: 20),child: Text("真实姓名"),),
                               Padding(
                                 padding: EdgeInsets.only(right: 15),
-                                child: Text("爱学"),
+                                child: Text(personalInformationModel.data.uName == null ? "爱学" : personalInformationModel.data.uName),
                               ),
                             ],
                           ),
@@ -271,7 +239,7 @@ class _PersonState extends State<PersonalInformationPage> {
                               Padding(padding: EdgeInsets.only(left: 20),child: Text("所在学校"),),
                               Padding(
                                 padding: EdgeInsets.only(right: 15),
-                                child: Text("大连910分校"),
+                                child: Text(personalInformationModel.data.schoolName == null ? "爱学总校" : personalInformationModel.data.schoolName),
                               ),
                             ],
                           ),
@@ -296,4 +264,81 @@ class _PersonState extends State<PersonalInformationPage> {
       ),
     );
   }
+
+  ///
+  /// @name _phoneNumWidget
+  /// @description 手机号控件
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-20
+  ///
+  Widget _phoneNumWidget() {
+    if (personalInformationModel.data.phone != null && personalInformationModel.data.phone.length > 0) {
+      return GestureDetector(
+        onTap: (){},
+        child: Column(
+          children: <Widget>[
+            Padding(padding: EdgeInsets.only(top: 10)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Padding(padding: EdgeInsets.only(left: 20),child: Text("手机号"),),
+                Padding(
+                  padding: EdgeInsets.only(right: 15),
+                  child: Text("${personalInformationModel.data.phone}"),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Divider(
+                indent: 15,
+                endIndent: 15,
+                color: ETTColor.c1_color,
+                height: 0.5,
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return GestureDetector(
+        onTap: (){},
+        child: Column(
+          children: <Widget>[
+            Padding(padding: EdgeInsets.only(top: 10)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Padding(padding: EdgeInsets.only(left: 20),child: Text("手机号"),),
+                Padding(
+                  padding: EdgeInsets.only(right: 15),
+                  child: Row(
+                    children: <Widget>[
+                      Text("绑定"),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Icon(Icons.keyboard_arrow_right,size: 24,color: ETTColor.c1_color,),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Divider(
+                indent: 15,
+                endIndent: 15,
+                color: ETTColor.c1_color,
+                height: 0.5,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
 }
