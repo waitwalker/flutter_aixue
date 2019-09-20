@@ -199,7 +199,10 @@ class _PersonState extends State<PersonalInformationPage> {
                                       borderRadius: BorderRadius.circular(20),
                                       boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
                                     ),
-                                    child: Image(image: personalInformationModel.data.uPhoto == null ?  AssetImage("lib/resources/images/1024.png") : NetworkImage(personalInformationModel.data.uPhoto)),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(26.0),
+                                      child: Image(image: personalInformationModel.data.uPhoto == null ?  AssetImage("lib/resources/images/1024.png") : NetworkImage(personalInformationModel.data.uPhoto),fit: BoxFit.cover,),
+                                    ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(left: 10),
