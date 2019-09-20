@@ -16,10 +16,21 @@ class _PersonState extends State<PersonalInformationPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("设置"),
+        title: Text("个人信息"),
       ),
-      body: Container(
-        color: ETTColor.c1_color,
+      body: Row(
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
+            ),
+            width: 0.4 * MediaQuery.of(context).size.width,
+            child: Column(
+
+            ),
+          ),
+        ],
       ),
     );
   }
