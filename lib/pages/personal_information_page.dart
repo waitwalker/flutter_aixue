@@ -27,7 +27,13 @@ class _PersonState extends State<PersonalInformationPage> {
             ),
             width: 0.4 * MediaQuery.of(context).size.width,
             child: Column(
+              children: <Widget>[
+                Expanded(child: ListView(
+                  children: <Widget>[
 
+                  ],
+                ),),
+              ],
             ),
           ),
         ],
