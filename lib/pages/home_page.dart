@@ -15,6 +15,7 @@ import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_aixue/pages/message_page.dart';
+import 'package:flutter_aixue/pages/personal_information_page.dart';
 import 'package:flutter_aixue/pages/setting_page.dart';
 import 'package:flutter_aixue/pages/teacher_course_list.dart';
 import 'package:flutter_aixue/pages/teacher_resource_task_detail.dart';
@@ -197,6 +198,10 @@ class _HomeState extends State<HomePage> {
       "color":Colors.amber
     },
     {
+      "title":"我的",
+      "color":Colors.amber
+    },
+    {
       "title":"设置",
       "color":ETTColor.c1_color
     },
@@ -234,7 +239,20 @@ class _HomeState extends State<HomePage> {
         onPressed: (){
           Navigator.pop(context);
           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-            return index == 0 ? MessagePage() : SettingPage();
+            switch (index) {
+              case 0:
+                return MessagePage();
+                break;
+              case 1:
+                return PersonalInformationPage();
+                break;
+              case 2:
+                return SettingPage();
+                break;
+              default:
+                return PersonalInformationPage();
+                break;
+            }
           }));
         },
       ),
