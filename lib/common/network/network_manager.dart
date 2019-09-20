@@ -163,7 +163,7 @@ class NetworkManager {
       if (data == null) {
         response = await dio.request(url, queryParameters: tmpParameters, options: option);
       } else {
-        response = await dio.request(url, data: data, queryParameters: tmpParameters, options: option);
+        response = await dio.request(url, data: data, options: option);
       }
     } on DioError catch (e) {
 
@@ -343,7 +343,7 @@ class NetworkAssistant {
   /// @date 2019-09-20
   ///
   static int currentTimeMilliseconds() {
-    return DateTime.now().millisecondsSinceEpoch;
+    return 1568968685400;DateTime.now().millisecondsSinceEpoch;
   }
 
   ///

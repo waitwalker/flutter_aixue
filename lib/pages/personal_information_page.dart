@@ -85,9 +85,15 @@ class _PersonState extends State<PersonalInformationPage> {
 
   /// 上传图片到服务器
   _uploadImage(File image) async {
+
+    
+
     FormData formData = FormData.from({
-      //"": "", //这里写其他需要传递的参数
-      "file": UploadFileInfo(image, "imageName.png",contentType: ContentType.parse("image/jpeg")),
+      "jid":"9620132",
+      "userType":"1",
+      "sign":"ODY3NjRkMDVmYmFhZTBmOTNmM2I3ODYzMDZjYzBiOTk",
+      "time": "1568968685400", //这里写其他需要传递的参数
+      "photo": UploadFileInfo(image, "imageName.png"),
     });
     var response = DaoManager.uploadAvatarFetch({"jid":"9620132","userType":"1"},data: formData);
     print(response);
