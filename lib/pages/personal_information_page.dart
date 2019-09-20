@@ -26,7 +26,11 @@ class _PersonState extends State<PersonalInformationPage> {
   /// @Date: 2019-08-02
   ///
   initData() async {
-    ResponseData responseData = await DaoManager.teacherRecentTaskFetch({"jid":"9620132","schoolId":"50043"});
+    ResponseData responseData = await DaoManager.personalInformationFetch({
+      "userJid":"9620132",
+      "friendJid":"50043",
+      "flag":"1"
+    });
     print(responseData);
     if (responseData.result) {
       if (responseData.model != null && responseData.model.result == 1) {

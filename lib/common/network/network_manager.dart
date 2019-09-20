@@ -311,14 +311,39 @@ class Const {
 
   /// 教师学资源文档
   static const String teacherResourceDocument = "getTeacherStudyTaskInfo2.do";
+
+  /// 获取个人信息
+  static const String personalInformation = "getTeacherStudyTaskInfo2.do";
 }
 
+///
+/// @name NetworkAssistant
+/// @description 网络请求辅助类,生成签名,拼接参数等
+/// @author lca
+/// @date 2019-09-20
+///
 class NetworkAssistant {
 
+  ///
+  /// @name currentTimeMilliseconds
+  /// @description 获取当前时间戳 毫秒级
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-20
+  ///
   static int currentTimeMilliseconds() {
     return DateTime.now().millisecondsSinceEpoch;
   }
 
+  ///
+  /// @name getSign
+  /// @description 获取签名
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-20
+  ///
   static String getSign(Map parameter, String interface) {
     List<String> allKeys = [];
     parameter.forEach((key,value){
@@ -345,38 +370,14 @@ class NetworkAssistant {
     return signString;
   }
 
-//  static String getSign(Map parameter) {
-//
-//    /// 存储所有key
-//    List<String> allKeys = [];
-//    parameter.forEach((key,value){
-//      allKeys.add(key);
-//    });
-//
-//    /// key排序
-//    allKeys.sort((obj1,obj2){
-//      return obj1.compareTo(obj2);
-//    });
-//
-//    /// 存储所有键值对
-//    List<String> pairs = [];
-//
-//    /// 添加键值对
-//    allKeys.forEach((key){
-//      pairs.add("$key${parameter[key]}");
-//    });
-//
-//    /// 数组转string
-//    String pairsString = pairs.join("");
-//
-//    /// 拼接 ABC 是你的秘钥
-//    String sign = "ABC" + pairsString + "ABC";
-//
-//    /// hash
-//    String signString = generateMd5(sign).toUpperCase();
-//    return signString;
-//  }
-
+  ///
+  /// @name generateMd5
+  /// @description MD5 哈希
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-20
+  ///
   static String generateMd5(String string) {
     var content = Utf8Encoder().convert(string);
     var digest = md5.convert(content);
@@ -384,6 +385,14 @@ class NetworkAssistant {
     return hex.encode(digest.bytes);
   }
 
+  ///
+  /// @name getUrl
+  /// @description 获取请求url
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-20
+  ///
   static String getUrl(String interface) {
     switch (interface) {
       case Const.loginInterface:
@@ -403,6 +412,10 @@ class NetworkAssistant {
 
       case Const.teacherResourceDocument:
         return "https://school.etiantian.com/aixue33/im2.0.1?m=getTeacherStudyTaskInfo2.do";
+        break;
+        
+      case Const.personalInformation:
+        return "http://i.im.etiantian.net/study-im-service-2.0/user/userInfo.do";
         break;
       default:
         return "";
