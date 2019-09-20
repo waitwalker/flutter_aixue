@@ -74,30 +74,23 @@ class _PersonState extends State<PersonalInformationPage> {
   /// 拍照
   Future _getImageFromCamera() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera, maxWidth: 400);
-
+    _uploadImage(image);
   }
 
   /// 相册选择
   Future _getImageFromGallery() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    _uploadImage(image);
   }
 
-  //上传图片到服务器
-  _uploadImage() async {
+  /// 上传图片到服务器
+  _uploadImage(File image) async {
     FormData formData = FormData.from({
       //"": "", //这里写其他需要传递的参数
-      "file": UploadFileInfo(_image, "imageName.png",contentType: ContentType.parse("image/jpeg")),
+      "file": UploadFileInfo(image, "imageName.png",contentType: ContentType.parse("image/jpeg")),
     });
-    var response =
-    await Dio().post("http://jd.itying.com/imgupload", data: formData);
+    var response = DaoManager.uploadAvatarFetch({"jid":"9620132","userType":"1"},data: formData);
     print(response);
-    if (response.statusCode == 200) {
-      Map responseMap = response.data;
-      print("http://jd.itying.com${responseMap["path"]}");
-      setState(() {
-        _imgServerPath = "http://jd.itying.com${responseMap["path"]}";
-      });
-    }
   }
 
   @override

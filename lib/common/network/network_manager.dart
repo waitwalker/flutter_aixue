@@ -49,8 +49,8 @@ class NetworkManager {
   /// @author: lca
   /// @Date: 2019-08-01
   ///
-  static post(interface,parameters) async{
-    return await fetch(interface, parameters, {"Accept": 'application/vnd.github.VERSION.full+json'}, Options(method: 'POST'));
+  static post(interface,parameters,{FormData data}) async{
+    return await fetch(interface, parameters, {"Accept": 'application/vnd.github.VERSION.full+json'}, Options(method: 'POST'),data: data);
   }
 
   ///
@@ -86,7 +86,7 @@ class NetworkManager {
   /// @author: lca
   /// @Date: 2019-08-01
   ///
-  static fetch(interface, parameters, Map<String, String> header, Options option, {noTip = false}) async {
+  static fetch(interface, parameters, Map<String, String> header, Options option, {noTip = false, FormData data}) async {
 
     /// 没有网络
     var connectivityResult = await (Connectivity().checkConnectivity());
@@ -160,7 +160,11 @@ class NetworkManager {
     /// 处理响应数据
     Response response;
     try {
-      response = await dio.request(url, queryParameters: tmpParameters, options: option);
+      if (data == null) {
+        response = await dio.request(url, queryParameters: tmpParameters, options: option);
+      } else {
+        response = await dio.request(url, data: data, queryParameters: tmpParameters, options: option);
+      }
     } on DioError catch (e) {
 
       /// 请求错误处理

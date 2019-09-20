@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
 import 'package:flutter_aixue/models/login_model.dart';
@@ -163,9 +164,16 @@ class DaoManager {
     }
   }
 
-
-  static Future<ResponseData> uploadFormDataFetch(Map<String,dynamic> parameters) async {
-    var response = await NetworkManager.post(Const.personalInformation, parameters);
+  ///
+  /// @name uploadAvatarFetch
+  /// @description 
+  /// @parameters 
+  /// @return 
+  /// @author lca
+  /// @date 2019-09-20
+  ///
+  static Future<ResponseData> uploadAvatarFetch(Map<String,dynamic> parameters,{FormData data}) async {
+    var response = await NetworkManager.post(Const.uploadAvatar, parameters,data: data);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
       print("response.data:${response.data}");
