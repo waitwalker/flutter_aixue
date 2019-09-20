@@ -1,3 +1,4 @@
+import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
@@ -98,7 +99,51 @@ class _PersonState extends State<PersonalInformationPage> {
               Expanded(child: ListView(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: (){},
+                    onTap: (){
+                      EasyDialog(
+                        title: Text("修改头像"),
+                        height: 200,
+                          contentList: [
+                            Column(
+                              children: <Widget>[
+                                Container(
+                                  width: 300,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(2),
+                                    boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
+                                  ),
+                                  child: FlatButton(
+                                    padding: EdgeInsets.only(top: 8.0),
+                                    textColor: Colors.lightBlue,
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: new Text("相机",),
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.only(top: 20)),
+                                Container(
+                                  width: 300,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(2),
+                                    boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
+                                  ),
+                                  child: FlatButton(
+                                    padding: EdgeInsets.only(top: 8.0),
+                                    textColor: Colors.lightBlue,
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: new Text("相册",),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                      ).show(context);
+                    },
                     child: Column(
                       children: <Widget>[
                         Padding(padding: EdgeInsets.only(top: 20)),

@@ -80,6 +80,8 @@ dependencies:
 
   flutter_downloader: ^1.1.9
 
+  easy_dialog: ^1.0.5
+
   # 加密
   crypto: ^2.1.2
 
@@ -112,6 +114,8 @@ dependencies:
   video_player: ^0.10.2+1
 
   flutter_ijkplayer: ^0.3.3
+
+  image_picker: ^0.6.1+4
 
 dev_dependencies:
   flutter_test:
