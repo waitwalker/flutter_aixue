@@ -556,7 +556,7 @@ class _PersonState extends State<PersonalInformationPage> {
                     placeholder: "请输入原密码",
                     clearButtonMode: OverlayVisibilityMode.editing,
                     obscureText: isFirstSecurity,
-                    prefix: Text("原密码"),
+                    prefix: Padding(padding: EdgeInsets.only(left: 10),child: Text("原密码"),),
 
                     suffix: IconButton(
                       onPressed: (){
@@ -591,7 +591,7 @@ class _PersonState extends State<PersonalInformationPage> {
                     placeholder: "请输入新密码",
                     clearButtonMode: OverlayVisibilityMode.editing,
                     obscureText: isSecondSecurity,
-                    prefix: Text("新密码"),
+                    prefix: Padding(padding: EdgeInsets.only(left: 10),child: Text("新密码"),),
 
                     suffix: IconButton(
                       onPressed: (){
@@ -622,9 +622,12 @@ class _PersonState extends State<PersonalInformationPage> {
 
               Padding(
                 padding: EdgeInsets.only(left: 20,right: 20),
-                child: RaisedButton(
-                  onPressed: (){},
-                  child: Text("确认"),
+                child: Container(
+                  width: 0.6 * MediaQuery.of(context).size.width - 40,
+                  child: RaisedButton(
+                    onPressed: (){},
+                    child: Text("确认"),
+                  ),
                 ),
               ),
 
