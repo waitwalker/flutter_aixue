@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 
-
+///
+/// @name SettingPage
+/// @description 设置页面
+/// @author lca
+/// @date 2019-09-23
+///
 class SettingPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -11,6 +16,22 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingState extends State<SettingPage> {
+
+  /// 是否点击播放源
+  bool isTappedVideoSourceSetting = false;
+
+  /// 是否点击消息设置
+  bool isTappedMessageSetting = false;
+
+  /// 是否点击夜间模式
+  bool isTappedNightModeSetting = false;
+
+  /// 是否点击关于
+  bool isTappedAbout = false;
+
+  /// 是都点击清空缓存
+  bool isTappedClearCache = false;
+
   @override
   Widget build(BuildContext context) {
 
@@ -211,114 +232,38 @@ class _SettingState extends State<SettingPage> {
   /// @date 2019-09-23
   ///
   Widget rightContainer() {
-    if (isTappedBindPhone) {
-      if (isCanBind) {
-        return Container(
-          width: 0.6 * MediaQuery.of(context).size.width,
-        );
-      } else {
-        return Container(
-          width: 0.6 * MediaQuery.of(context).size.width,
-        );
-      }
-    } else {
-      if (isTappedChangePassword) {
-        return Container(
-          width: 0.6 * MediaQuery.of(context).size.width,
-          child: Column(
-            children: <Widget>[
-              Padding(padding: EdgeInsets.only(top: 20),),
-              Padding(
-                padding: EdgeInsets.only(left: 20,right: 20,),
-                child: Container(
-                  child: CupertinoTextField(
-                    controller: firstController,
-                    placeholder: "请输入原密码",
-                    clearButtonMode: OverlayVisibilityMode.editing,
-                    obscureText: isFirstSecurity,
-                    prefix: Padding(padding: EdgeInsets.only(left: 10),child: Text("原密码"),),
 
-                    suffix: IconButton(
-                      onPressed: (){
-                        setState(() {
-                          isFirstSecurity = !isFirstSecurity;
-                        });
-                      },
-                      icon: Icon(Icons.security),
-                    ),
-                    onTap: (){
-
-                    },
-                    onChanged: (text){
-
-                    },
-                    onSubmitted: (text){
-
-                    },
-                    onEditingComplete: (){
-
-                    },
-
-                  ),
-                ),
-              ),
-              Padding(padding: EdgeInsets.only(top: 20),),
-              Padding(
-                padding: EdgeInsets.only(left: 20,right: 20,),
-                child: Container(
-                  child: CupertinoTextField(
-                    controller: secondController,
-                    placeholder: "请输入新密码",
-                    clearButtonMode: OverlayVisibilityMode.editing,
-                    obscureText: isSecondSecurity,
-                    prefix: Padding(padding: EdgeInsets.only(left: 10),child: Text("新密码"),),
-
-                    suffix: IconButton(
-                      onPressed: (){
-                        setState(() {
-                          isSecondSecurity = !isSecondSecurity;
-                        });
-                      },
-                      icon: Icon(Icons.security),
-                    ),
-                    onTap: (){
-
-                    },
-                    onChanged: (text){
-
-                    },
-                    onSubmitted: (text){
-
-                    },
-                    onEditingComplete: (){
-
-                    },
-
-                  ),
-                ),
-              ),
-
-              Padding(padding: EdgeInsets.only(top: 20),),
-
-              Padding(
-                padding: EdgeInsets.only(left: 20,right: 20),
-                child: Container(
-                  width: 0.6 * MediaQuery.of(context).size.width - 40,
-                  child: RaisedButton(
-                    onPressed: (){},
-                    child: Text("确认"),
-                  ),
-                ),
-              ),
-
-            ],
-          ),
-        );
-      } else {
-        return Container(
-          width: 0.6 * MediaQuery.of(context).size.width,
-        );
-      }
+    if (isTappedVideoSourceSetting) {
+      return Container(
+        child: Text("视频播放源"),
+      );
     }
+
+    if (isTappedMessageSetting) {
+      return Container(
+        child: Text("消息设置"),
+      );
+    }
+
+    if (isTappedNightModeSetting) {
+      return Container(
+        child: Text("夜间模式"),
+      );
+    }
+
+    if (isTappedAbout) {
+      return Container(
+        child: Text("关于"),
+      );
+    }
+
+    if (isTappedClearCache) {
+      return Container(
+        child: Text("清空缓存"),
+      );
+    }
+
+    return Container(
+    );
   }
 }
