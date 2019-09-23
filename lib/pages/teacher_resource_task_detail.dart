@@ -424,7 +424,9 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
               : PDFViewer(document: document);
         }
         break;
-
+      default:
+        return Container();
+        break;
     }
   }
 
@@ -570,6 +572,14 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
     );
   }
 
+  ///
+  /// @name _imagesContainer
+  /// @description 右边图片容器
+  /// @parameters 
+  /// @return 
+  /// @author lca
+  /// @date 2019-09-23
+  ///
   Widget _imagesContainer(int currentSection, List<ResourceList> resourceList) {
     if (resourceList == null || resourceList.length == 0) {
       return Container();
