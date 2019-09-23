@@ -41,6 +41,9 @@ class _PersonState extends State<PersonalInformationPage> {
   /// 是否点击修改密码
   bool isTappedChangePassword = false;
 
+  TextEditingController firstController;
+  TextEditingController secondController;
+
   ///
   /// @Method: initData
   /// @Parameter:
@@ -117,6 +120,14 @@ class _PersonState extends State<PersonalInformationPage> {
 
   @override
   void initState() {
+    firstController.addListener((){
+
+    });
+
+    secondController.addListener((){
+
+    });
+
     initData();
     super.initState();
   }
@@ -131,6 +142,14 @@ class _PersonState extends State<PersonalInformationPage> {
     );
   }
 
+  ///
+  /// @name _body
+  /// @description body 容器
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-23
+  ///
   Widget _body() {
     if (isLoading) {
       return Center(
@@ -141,6 +160,14 @@ class _PersonState extends State<PersonalInformationPage> {
     }
   }
 
+  ///
+  /// @name _bodyNormal
+  /// @description 正常normal
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-23
+  ///
   Widget _bodyNormal() {
     return Row(
       children: <Widget>[
