@@ -118,12 +118,37 @@ class DaoManager {
   /// @Method: teacherTaskDetailFetch
   /// @Parameter:
   /// @ReturnType:
-  /// @Description: 教师获取任务详情
+  /// @Description: 教师获取任务详情-学资源
   /// @author: lca
   /// @Date: 2019-09-02
   ///
-  static Future <ResponseData> teacherTaskDetailFetch(Map<String,dynamic> parameters) async {
+  static Future <ResponseData> teacherTaskDetailResourceFetch(Map<String,dynamic> parameters) async {
     var response = await NetworkManager.post(Const.teacherResourceDocument, parameters);
+    if (response.result) {
+      Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
+      print("response.data:${response.data}");
+
+      String jsonString = response.data;
+
+      var resultMap = json.decode(jsonString);
+      var model = TeacherTaskDetailModel.fromJson(resultMap);
+      response.model = model;
+      return response;
+    } else {
+      throw Exception("登录接口请求失败");
+    }
+  }
+
+  ///
+  /// @Method: teacherTaskDetailFetch
+  /// @Parameter:
+  /// @ReturnType:
+  /// @Description: 教师获取任务详情-微课程
+  /// @author: lca
+  /// @Date: 2019-09-23
+  ///
+  static Future <ResponseData> teacherTaskDetailMicroCourseFetch(Map<String,dynamic> parameters) async {
+    var response = await NetworkManager.post(Const.teacherMicroCourse, parameters);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
       print("response.data:${response.data}");

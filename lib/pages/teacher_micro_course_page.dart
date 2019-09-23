@@ -43,7 +43,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
     super.initState();
     task = widget.task;
 
-    future = DaoManager.teacherTaskDetailFetch({
+    future = DaoManager.teacherTaskDetailMicroCourseFetch({
       "jid":"9620132",
       "schoolId":"50043",
       "taskId":task.taskId,

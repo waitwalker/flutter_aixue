@@ -47,7 +47,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
     task = widget.task;
     //initData();
 
-    future = DaoManager.teacherTaskDetailFetch({
+    future = DaoManager.teacherTaskDetailResourceFetch({
       "jid":"9620132",
       "schoolId":"50043",
       "taskId":task.taskId,
@@ -135,7 +135,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
   /// @Date: 2019-08-02
   ///
   initData() async {
-    ResponseData responseData = await DaoManager.teacherTaskDetailFetch({
+    ResponseData responseData = await DaoManager.teacherTaskDetailResourceFetch({
       "jid":"9620132",
       "schoolId":"50043",
       "taskId":"-9357086564067",
