@@ -14,6 +14,7 @@ import 'package:flutter_aixue/pages/message_page.dart';
 import 'package:flutter_aixue/pages/personal_information_page.dart';
 import 'package:flutter_aixue/pages/setting_page.dart';
 import 'package:flutter_aixue/pages/teacher_course_list.dart';
+import 'package:flutter_aixue/pages/teacher_micro_course_page.dart';
 import 'package:flutter_aixue/pages/teacher_resource_task_detail.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -473,6 +474,9 @@ class _HomeState extends State<HomePage> {
             break;
           case ETTTaskSubtype.ETTTaskSubtypeMicroCourse:
             print("微课程任务");
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return TeacherMicroCoursePage(lastTask);
+            }));
             break;
           case ETTTaskSubtype.ETTTaskSubtypeRegularTaskVoice:
             print("一般任务语音");

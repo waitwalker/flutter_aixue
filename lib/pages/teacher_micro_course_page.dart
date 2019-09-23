@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_aixue/models/teacher_task_model.dart';
 
 ///
 /// @name TeacherMicroCoursePage
@@ -8,6 +9,10 @@ import 'package:flutter/cupertino.dart';
 /// @date 2019-09-23
 ///
 class TeacherMicroCoursePage extends StatefulWidget {
+
+  final LastTaskList task;
+
+  TeacherMicroCoursePage(this.task);
   @override
   State<StatefulWidget> createState() {
     return _TeacherMicroCourseState();
@@ -31,7 +36,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
         ),
       ),
       body: Container(
-        
+
       ),
     );
   }
