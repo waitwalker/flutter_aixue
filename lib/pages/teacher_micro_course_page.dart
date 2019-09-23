@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/widgets/photo_view.dart';
+import 'package:flutter_aixue/common/widgets/video_player_widget.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_detail_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
@@ -27,8 +28,6 @@ class TeacherMicroCoursePage extends StatefulWidget {
 }
 
 class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
-
-  bool _isLoading = true;
   LastTaskList task;
 
   /// 刷新
@@ -36,6 +35,9 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   TextEditingController commentController = TextEditingController();
 
   List<UserReplyList> userReplyList;
+
+  TeacherTaskDetailModel detailModel;
+
   Future future;
 
   @override
@@ -81,8 +83,8 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
             TeacherTaskDetailModel microCourseModel = snapshot.data.model;
             if (microCourseModel != null) {
               print("$microCourseModel");
-
-              return futureDoneChild(resource);
+              detailModel = microCourseModel;
+              return futureDoneChild();
             } else {
               return futureWaitingChild();
             }
@@ -194,7 +196,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   /// @author lca
   /// @date 2019-09-11
   ///
-  Widget futureDoneChild(ResourceList resource) {
+  Widget futureDoneChild() {
     return Scaffold(
       appBar: AppBar(
         title: Text("学资源-文档"),
@@ -207,14 +209,13 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
       ),
       body: Row(
         children: <Widget>[
-
           /// 左边
           Container(
             width: 0.6 * MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 border: Border(right: BorderSide(color: Colors.lightBlue,width: 2.0))
             ),
-            child: leftChild(resource),
+            child: leftChild(),
           ),
 
           /// 右边
@@ -304,8 +305,12 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   /// @author lca
   /// @date 2019-09-12
   ///
-  Widget leftChild(ResourceList resource) {
-    return Container();
+  Widget leftChild() {
+    if (detailModel.data.videoUrl != null && detailModel.data.videoUrl.length > 0) {
+      return VideoPlayerWidget();
+    } else {
+      return Container();
+    }
   }
 
 
