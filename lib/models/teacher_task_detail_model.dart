@@ -1,11 +1,19 @@
-class TeacherResourceModel {
-  int result;
+
+
+///
+/// @name TeacherMicroSourceModel
+/// @description 教师微课程model
+/// @author lca
+/// @date 2019-09-23
+///
+class TeacherTaskDetailModel {
+  String result;
   Data data;
 
-  TeacherResourceModel({this.result, this.data});
+  TeacherTaskDetailModel({this.result, this.data});
 
-  TeacherResourceModel.fromJson(Map<String, dynamic> json) {
-    result = int.parse(json['result']);
+  TeacherTaskDetailModel.fromJson(Map<String, dynamic> json) {
+    result = json['result'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
@@ -21,60 +29,80 @@ class TeacherResourceModel {
 
 class Data {
   int taskId;
-  String statisticsUrl;
   String taskTitle;
+  String videoPlayTime;
+  String jspUrl;
+  List<UserReplyList> userReplyList;
+  String videoUrl;
+  int resId;
+  String videoPicUrl;
+  int isLastPage;
+
+  String statisticsUrl;
   int taskInfoType;
   List<ResourceList> resourceList;
-  List<UserReplyList> userReplyList;
-  int isLastPage;
-  String jspUrl;
 
   Data(
       {this.taskId,
-        this.statisticsUrl,
         this.taskTitle,
-        this.taskInfoType,
-        this.resourceList,
+        this.videoPlayTime,
+        this.jspUrl,
         this.userReplyList,
+        this.videoUrl,
+        this.resId,
+        this.videoPicUrl,
         this.isLastPage,
-        this.jspUrl});
+        this.statisticsUrl,
+        this.resourceList,
+        this.taskInfoType,
+      });
 
   Data.fromJson(Map<String, dynamic> json) {
     taskId = json['taskId'];
-    statisticsUrl = json['statisticsUrl'];
     taskTitle = json['taskTitle'];
+    videoPlayTime = json['videoPlayTime'];
+    jspUrl = json['jspUrl'];
+    statisticsUrl = json['statisticsUrl'];
     taskInfoType = json['taskInfoType'];
-    if (json['resourceList'] != null) {
-      resourceList = new List<ResourceList>();
-      json['resourceList'].forEach((v) {
-        resourceList.add(new ResourceList.fromJson(v));
-      });
-    }
     if (json['userReplyList'] != null) {
       userReplyList = new List<UserReplyList>();
       json['userReplyList'].forEach((v) {
         userReplyList.add(new UserReplyList.fromJson(v));
       });
     }
+    if (json['resourceList'] != null) {
+      resourceList = new List<ResourceList>();
+      json['resourceList'].forEach((v) {
+        resourceList.add(new ResourceList.fromJson(v));
+      });
+    }
+    videoUrl = json['videoUrl'];
+    resId = json['resId'];
+    videoPicUrl = json['videoPicUrl'];
     isLastPage = json['isLastPage'];
-    jspUrl = json['jspUrl'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['taskId'] = this.taskId;
-    data['statisticsUrl'] = this.statisticsUrl;
     data['taskTitle'] = this.taskTitle;
+    data['videoPlayTime'] = this.videoPlayTime;
+    data['jspUrl'] = this.jspUrl;
+
+    data['statisticsUrl'] = this.statisticsUrl;
     data['taskInfoType'] = this.taskInfoType;
-    if (this.resourceList != null) {
-      data['resourceList'] = this.resourceList.map((v) => v.toJson()).toList();
-    }
+
     if (this.userReplyList != null) {
       data['userReplyList'] =
           this.userReplyList.map((v) => v.toJson()).toList();
     }
+    if (this.resourceList != null) {
+      data['resourceList'] = this.resourceList.map((v) => v.toJson()).toList();
+    }
+    data['videoUrl'] = this.videoUrl;
+    data['resId'] = this.resId;
+    data['videoPicUrl'] = this.videoPicUrl;
     data['isLastPage'] = this.isLastPage;
-    data['jspUrl'] = this.jspUrl;
     return data;
   }
 }
@@ -177,13 +205,12 @@ class UserInfo {
   String isBlocked;
   String userType;
 
-  UserInfo(
-      {this.userId,
-        this.userPhoto,
-        this.block,
-        this.userName,
-        this.isBlocked,
-        this.userType});
+  UserInfo({this.userId,
+    this.userPhoto,
+    this.block,
+    this.userName,
+    this.isBlocked,
+    this.userType});
 
   UserInfo.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];

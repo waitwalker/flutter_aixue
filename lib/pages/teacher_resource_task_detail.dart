@@ -1,23 +1,18 @@
 import 'dart:io';
 import 'package:async/async.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/widgets/audio_player_widget.dart';
-import 'package:flutter_aixue/common/widgets/ijkplayer.dart';
 import 'package:flutter_aixue/common/widgets/photo_view.dart';
 import 'package:flutter_aixue/common/widgets/video_player_widget.dart';
 import 'package:flutter_aixue/dao/dao.dart';
-import 'package:flutter_aixue/models/teacher_resource_model.dart';
+import 'package:flutter_aixue/models/teacher_task_detail_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 
 /// 教师学资源任务详情
@@ -52,7 +47,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
     task = widget.task;
     //initData();
 
-    future = DaoManager.teacherResourceDocumentFetch({
+    future = DaoManager.teacherTaskDetailFetch({
       "jid":"9620132",
       "schoolId":"50043",
       "taskId":task.taskId,
@@ -87,7 +82,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
 
         if (snapshot.data.result) {
           if (snapshot.data.model != null && snapshot.data.model.result == 1) {
-            TeacherResourceModel resourceModel = snapshot.data.model;
+            TeacherTaskDetailModel resourceModel = snapshot.data.model;
             if (resourceModel != null) {
               print("$resourceModel");
 
@@ -140,7 +135,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
   /// @Date: 2019-08-02
   ///
   initData() async {
-    ResponseData responseData = await DaoManager.teacherResourceDocumentFetch({
+    ResponseData responseData = await DaoManager.teacherTaskDetailFetch({
       "jid":"9620132",
       "schoolId":"50043",
       "taskId":"-9357086564067",
@@ -151,7 +146,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
     print(responseData);
     if (responseData.result) {
       if (responseData.model != null && responseData.model.result == 1) {
-        TeacherResourceModel resourceDocumentModel = responseData.model;
+        TeacherTaskDetailModel resourceDocumentModel = responseData.model;
         if (resourceDocumentModel != null) {
           print("$resourceDocumentModel");
           userReplyList = resourceDocumentModel.data.userReplyList;

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/widgets/photo_view.dart';
-import 'package:flutter_aixue/models/teacher_resource_model.dart';
+import 'package:flutter_aixue/dao/dao.dart';
+import 'package:flutter_aixue/models/teacher_task_detail_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -27,6 +28,7 @@ class TeacherMicroCoursePage extends StatefulWidget {
 
 class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
 
+  bool _isLoading = true;
   LastTaskList task;
 
   /// 刷新
@@ -39,82 +41,258 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   @override
   void initState() {
     super.initState();
-    this.task = widget.task;
+    task = widget.task;
+
+    future = DaoManager.teacherTaskDetailFetch({
+      "jid":"9620132",
+      "schoolId":"50043",
+      "taskId":task.taskId,
+      "classId":"1343842",
+      "isBoxExists":"0"
+    });
+  }
+
+  loadFutureBuilder() {
+    return FutureBuilder(
+      builder: _futureBuilder,
+      future: future,
+    );
+  }
+
+  Widget _futureBuilder(BuildContext context, AsyncSnapshot snapshot) {
+    switch (snapshot.connectionState) {
+      case ConnectionState.none:
+        return futureNoneChild();
+      case ConnectionState.active:
+        return futureActiveChild();
+      case ConnectionState.waiting:
+        return futureWaitingChild();
+      case ConnectionState.done:
+        if (snapshot.hasError) {
+          return futureErrorChild();
+        }
+
+        if (!snapshot.hasData || snapshot.data.model == null) {
+          return Text('没有数据');
+        }
+
+        if (snapshot.data.result) {
+          if (snapshot.data.model != null && snapshot.data.model.result == 1) {
+            TeacherTaskDetailModel microCourseModel = snapshot.data.model;
+            if (microCourseModel != null) {
+              print("$microCourseModel");
+
+              return futureDoneChild(resource);
+            } else {
+              return futureWaitingChild();
+            }
+          } else {
+            return futureWaitingChild();
+          }
+        } else {
+          return futureWaitingChild();
+        }
+        break;
+      default:
+        return futureWaitingChild();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return _body();
+    return loadFutureBuilder();
   }
 
   ///
-  /// @name _body
+  /// @name futureNoneChild
+  /// @description 准备请求的Widget
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-11
+  ///
+  Widget futureNoneChild() {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("学资源"),
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back_ios),
+          onTap: (){
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Center(
+        child: Container(
+          child: Text("准备加载..."),
+        ),
+      ),
+    );
+  }
+
+  ///
+  /// @name futureNoneChild
+  /// @description 准备请求的Widget
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-11
+  ///
+  Widget futureActiveChild() {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("学资源"),
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back_ios),
+          onTap: (){
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Center(
+        child: Center(
+          child: Container(
+            child: Text("加载..."),
+          ),
+        ),
+      ),
+    );
+  }
+
+  ///
+  /// @name futureNoneChild
+  /// @description 请求中的Widget
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-11
+  ///
+  Widget futureWaitingChild() {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("学资源"),
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back_ios),
+          onTap: (){
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Center(
+        child: Container(
+          child: CircularProgressIndicator(),
+        ),
+      ),
+    );
+  }
+
+  ///
+  /// @name futureDoneChild
   /// @description 请求完成的Widget
   /// @parameters
   /// @return
   /// @author lca
   /// @date 2019-09-11
   ///
-  Widget _body() {
-    return Row(
-      children: <Widget>[
-        /// 左边
-        Container(
-          width: 0.6 * MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              border: Border(right: BorderSide(color: Colors.lightBlue,width: 2.0))
-          ),
-          child: leftChild(),
+  Widget futureDoneChild(ResourceList resource) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("学资源-文档"),
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back_ios),
+          onTap: (){
+            Navigator.pop(context);
+          },
         ),
+      ),
+      body: Row(
+        children: <Widget>[
 
-        /// 右边
-        Container(
-          width: 0.4 * MediaQuery.of(context).size.width,
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child:SmartRefresher(
-                  enablePullDown: true,
-                  enablePullUp: true,
-                  header: WaterDropHeader(
-                    waterDropColor: Colors.lightGreen,
-                  ),
-                  footer: CustomFooter(
-                    builder: (BuildContext context,LoadStatus mode){
-                      Widget body ;
-                      if(mode==LoadStatus.idle){
-                        body =  Text("pull up load");
-                      }
-                      else if(mode==LoadStatus.loading){
-                        body =  CupertinoActivityIndicator();
-                      }
-                      else if(mode == LoadStatus.failed){
-                        body = Text("Load Failed!Click retry!");
-                      } else if(mode == LoadStatus.noMore) {
-                        body = Text("没有更多了",style: TextStyle(color: Colors.grey,fontSize: 13),);
-                      }
-                      else{
-                        body = Text("No more Data");
-                      }
-                      return Container(
-                        height: 55.0,
-                        child: Center(child:body),
-                      );
-                    },
-                  ),
-                  controller: _refreshController,
-                  onRefresh: (){
-                    _onRefresh(_refreshController);
-                  },
-                  child: ListView.builder(
-                    itemCount: userReplyList.length,
-                    itemBuilder: _itemBuilder,),
-                ),
-              ),
-            ],
+          /// 左边
+          Container(
+            width: 0.6 * MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                border: Border(right: BorderSide(color: Colors.lightBlue,width: 2.0))
+            ),
+            child: leftChild(resource),
           ),
+
+          /// 右边
+          Container(
+            width: 0.4 * MediaQuery.of(context).size.width,
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child:SmartRefresher(
+                    enablePullDown: true,
+                    enablePullUp: true,
+                    header: WaterDropHeader(
+                      waterDropColor: Colors.lightGreen,
+                    ),
+                    footer: CustomFooter(
+                      builder: (BuildContext context,LoadStatus mode){
+                        Widget body ;
+                        if(mode==LoadStatus.idle){
+                          body =  Text("pull up load");
+                        }
+                        else if(mode==LoadStatus.loading){
+                          body =  CupertinoActivityIndicator();
+                        }
+                        else if(mode == LoadStatus.failed){
+                          body = Text("Load Failed!Click retry!");
+                        } else if(mode == LoadStatus.noMore) {
+                          body = Text("没有更多了",style: TextStyle(color: Colors.grey,fontSize: 13),);
+                        }
+                        else{
+                          body = Text("No more Data");
+                        }
+                        return Container(
+                          height: 55.0,
+                          child: Center(child:body),
+                        );
+                      },
+                    ),
+                    controller: _refreshController,
+                    onRefresh: (){
+                      _onRefresh(_refreshController);
+                    },
+                    child: ListView.builder(
+                      itemCount: userReplyList.length,
+                      itemBuilder: _itemBuilder,),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  ///
+  /// @name futureErrorChild
+  /// @description 准备请求的Widget
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-11
+  ///
+  Widget futureErrorChild() {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("学资源"),
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back_ios),
+          onTap: (){
+            Navigator.pop(context);
+          },
         ),
-      ],
+      ),
+      body: Center(
+        child: Container(
+          child: Text("错误"),
+        ),
+      ),
     );
   }
 
@@ -126,7 +304,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   /// @author lca
   /// @date 2019-09-12
   ///
-  Widget leftChild() {
+  Widget leftChild(ResourceList resource) {
     return Container();
   }
 

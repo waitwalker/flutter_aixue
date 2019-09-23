@@ -7,7 +7,7 @@ import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
 import 'package:flutter_aixue/models/login_model.dart';
 import 'package:flutter_aixue/models/personal_information_model.dart';
 import 'package:flutter_aixue/models/teacher_course_list_model.dart';
-import 'package:flutter_aixue/models/teacher_resource_model.dart';
+import 'package:flutter_aixue/models/teacher_task_detail_model.dart';
 import 'package:flutter_aixue/models/teacher_subject_list_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 
@@ -115,14 +115,14 @@ class DaoManager {
   }
 
   ///
-  /// @Method: teacherResourceDocumentFetch
+  /// @Method: teacherTaskDetailFetch
   /// @Parameter:
   /// @ReturnType:
-  /// @Description: 教师获取学资源文档
+  /// @Description: 教师获取任务详情
   /// @author: lca
   /// @Date: 2019-09-02
   ///
-  static Future <ResponseData> teacherResourceDocumentFetch(Map<String,dynamic> parameters) async {
+  static Future <ResponseData> teacherTaskDetailFetch(Map<String,dynamic> parameters) async {
     var response = await NetworkManager.post(Const.teacherResourceDocument, parameters);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
@@ -131,7 +131,7 @@ class DaoManager {
       String jsonString = response.data;
 
       var resultMap = json.decode(jsonString);
-      var model = TeacherResourceModel.fromJson(resultMap);
+      var model = TeacherTaskDetailModel.fromJson(resultMap);
       response.model = model;
       return response;
     } else {
