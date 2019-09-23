@@ -555,8 +555,30 @@ class _PersonState extends State<PersonalInformationPage> {
                 padding: EdgeInsets.only(left: 20,right: 20,),
                 child: Container(
                   child: CupertinoTextField(
+                    controller: firstController,
                     placeholder: "请输入源码",
                     clearButtonMode: OverlayVisibilityMode.editing,
+                    prefix: Text("原密码"),
+                    
+                    suffix: IconButton(
+                      onPressed: (){
+
+                      },
+                      icon: Icon(Icons.security),
+                    ),
+                    onTap: (){
+
+                    },
+                    onChanged: (text){
+
+                    },
+                    onSubmitted: (text){
+
+                    },
+                    onEditingComplete: (){
+
+                    },
+                    
                   ),
                 ),
               ),
