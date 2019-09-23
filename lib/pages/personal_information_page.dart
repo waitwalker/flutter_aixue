@@ -41,6 +41,12 @@ class _PersonState extends State<PersonalInformationPage> {
   /// 是否点击修改密码
   bool isTappedChangePassword = false;
 
+  /// 是否安全输入
+  bool isFirstSecurity = true;
+
+  /// 是否安全输入
+  bool isSecondSecurity = true;
+
   TextEditingController firstController;
   TextEditingController secondController;
 
@@ -120,14 +126,6 @@ class _PersonState extends State<PersonalInformationPage> {
 
   @override
   void initState() {
-    firstController.addListener((){
-
-    });
-
-    secondController.addListener((){
-
-    });
-
     initData();
     super.initState();
   }
@@ -533,7 +531,6 @@ class _PersonState extends State<PersonalInformationPage> {
   /// @date 2019-09-23
   ///
   Widget rightContainer() {
-
     if (isTappedBindPhone) {
       if (isCanBind) {
         return Container(
@@ -556,13 +553,16 @@ class _PersonState extends State<PersonalInformationPage> {
                 child: Container(
                   child: CupertinoTextField(
                     controller: firstController,
-                    placeholder: "请输入源码",
+                    placeholder: "请输入原密码",
                     clearButtonMode: OverlayVisibilityMode.editing,
+                    obscureText: isFirstSecurity,
                     prefix: Text("原密码"),
-                    
+
                     suffix: IconButton(
                       onPressed: (){
-
+                        setState(() {
+                          isFirstSecurity = !isFirstSecurity;
+                        });
                       },
                       icon: Icon(Icons.security),
                     ),
@@ -582,6 +582,52 @@ class _PersonState extends State<PersonalInformationPage> {
                   ),
                 ),
               ),
+              Padding(padding: EdgeInsets.only(top: 20),),
+              Padding(
+                padding: EdgeInsets.only(left: 20,right: 20,),
+                child: Container(
+                  child: CupertinoTextField(
+                    controller: secondController,
+                    placeholder: "请输入新密码",
+                    clearButtonMode: OverlayVisibilityMode.editing,
+                    obscureText: isSecondSecurity,
+                    prefix: Text("新密码"),
+
+                    suffix: IconButton(
+                      onPressed: (){
+                        setState(() {
+                          isSecondSecurity = !isSecondSecurity;
+                        });
+                      },
+                      icon: Icon(Icons.security),
+                    ),
+                    onTap: (){
+
+                    },
+                    onChanged: (text){
+
+                    },
+                    onSubmitted: (text){
+
+                    },
+                    onEditingComplete: (){
+
+                    },
+
+                  ),
+                ),
+              ),
+
+              Padding(padding: EdgeInsets.only(top: 20),),
+
+              Padding(
+                padding: EdgeInsets.only(left: 20,right: 20),
+                child: RaisedButton(
+                  onPressed: (){},
+                  child: Text("确认"),
+                ),
+              ),
+
             ],
           ),
         );
