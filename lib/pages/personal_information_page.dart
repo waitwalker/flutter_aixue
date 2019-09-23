@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:easy_dialog/easy_dialog.dart';
@@ -31,11 +32,14 @@ class _PersonState extends State<PersonalInformationPage> {
   /// 是否正在加载
   bool isLoading = true;
 
-  /// 记录选择的照片
-  File _image;
+  /// 是否能够绑定手机号
+  bool isCanBind = false;
 
-  /// 当图片上传成功后，记录当前上传的图片在服务器中的位置
-  String _imgServerPath;
+  /// 是否点击绑定手机号
+  bool isTappedBindPhone = false;
+
+  /// 是否点击修改密码
+  bool isTappedChangePassword = false;
 
   ///
   /// @Method: initData
@@ -300,7 +304,15 @@ class _PersonState extends State<PersonalInformationPage> {
                   _phoneNumWidget(),
 
                   GestureDetector(
-                    onTap: (){},
+                    onTap: (){
+                      setState(() {
+                        isTappedChangePassword = true;
+                      });
+                      Future.delayed(Duration(seconds: 2)).then((value){
+                        isTappedChangePassword = false;
+                        isTappedBindPhone = false;
+                      });
+                    },
                     child: Column(
                       children: <Widget>[
                         Padding(padding: EdgeInsets.only(top: 10)),
@@ -385,6 +397,8 @@ class _PersonState extends State<PersonalInformationPage> {
             ],
           ),
         ),
+
+        rightContainer(),
       ],
     );
   }
@@ -399,8 +413,17 @@ class _PersonState extends State<PersonalInformationPage> {
   ///
   Widget _phoneNumWidget() {
     if (personalInformationModel.data.phone != null && personalInformationModel.data.phone.length > 0) {
+      isCanBind = false;
       return GestureDetector(
-        onTap: (){},
+        onTap: (){
+          setState(() {
+            isTappedBindPhone = false;
+          });
+          Future.delayed(Duration(seconds: 2)).then((value){
+            isTappedChangePassword = false;
+            isTappedBindPhone = false;
+          });
+        },
         child: Column(
           children: <Widget>[
             Padding(padding: EdgeInsets.only(top: 10)),
@@ -427,8 +450,17 @@ class _PersonState extends State<PersonalInformationPage> {
         ),
       );
     } else {
+      isCanBind = true;
       return GestureDetector(
-        onTap: (){},
+        onTap: (){
+          setState(() {
+            isTappedBindPhone = true;
+          });
+          Future.delayed(Duration(seconds: 2)).then((value){
+            isTappedChangePassword = false;
+            isTappedBindPhone = false;
+          });
+        },
         child: Column(
           children: <Widget>[
             Padding(padding: EdgeInsets.only(top: 10)),
@@ -462,6 +494,53 @@ class _PersonState extends State<PersonalInformationPage> {
           ],
         ),
       );
+    }
+  }
+
+  ///
+  /// @name rightContainer
+  /// @description 右边容器布局
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-23
+  ///
+  Widget rightContainer() {
+
+    if (isTappedBindPhone) {
+      if (isCanBind) {
+        return Container(
+          width: 0.6 * MediaQuery.of(context).size.width,
+        );
+      } else {
+        return Container(
+          width: 0.6 * MediaQuery.of(context).size.width,
+        );
+    }
+    } else {
+      if (isTappedChangePassword) {
+        return Container(
+          width: 0.6 * MediaQuery.of(context).size.width,
+          child: Column(
+            children: <Widget>[
+              Padding(padding: EdgeInsets.only(top: 20),),
+              Padding(
+                padding: EdgeInsets.only(left: 20,right: 20,),
+                child: Container(
+                  child: CupertinoTextField(
+                    placeholder: "请输入源码",
+                    clearButtonMode: OverlayVisibilityMode.editing,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      } else {
+        return Container(
+          width: 0.6 * MediaQuery.of(context).size.width,
+        );
+      }
     }
   }
 
