@@ -404,8 +404,7 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
         break;
       case 4:
         if (resource.resourceSuffix == ".mp3") {
-          return ijkplayer();
-          return VideoPlayerWidget();
+          //return ijkplayer();
           return Column(
             children: <Widget>[
               Padding(padding: EdgeInsets.only(top: 100)),
