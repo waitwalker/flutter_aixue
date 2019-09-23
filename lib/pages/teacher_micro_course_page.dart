@@ -116,7 +116,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   Widget futureNoneChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源"),
+        title: Text("微课程"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -143,7 +143,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   Widget futureActiveChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源"),
+        title: Text("微课程"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -172,7 +172,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   Widget futureWaitingChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源"),
+        title: Text("微课程"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -199,7 +199,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   Widget futureDoneChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源-文档"),
+        title: Text("微课程-文档"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -281,7 +281,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   Widget futureErrorChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源"),
+        title: Text("微课程"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
