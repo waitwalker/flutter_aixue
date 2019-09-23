@@ -7,13 +7,13 @@
 /// @date 2019-09-23
 ///
 class TeacherTaskDetailModel {
-  String result;
+  int result;
   Data data;
 
   TeacherTaskDetailModel({this.result, this.data});
 
   TeacherTaskDetailModel.fromJson(Map<String, dynamic> json) {
-    result = json['result'];
+    result = int.parse(json['result']);
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
