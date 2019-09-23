@@ -65,30 +65,44 @@ class _SettingState extends State<SettingPage> {
               Expanded(child: ListView(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: (){},
-                    child: Column(
-                      children: <Widget>[
-                        Padding(padding: EdgeInsets.only(top: 10)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Padding(padding: EdgeInsets.only(left: 20),child: Text("视频播放源设置"),),
-                            Padding(
-                              padding: EdgeInsets.only(right: 15),
-                              child: Icon(Icons.keyboard_arrow_right,size: 24,color: ETTColor.c1_color,),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Divider(
-                            indent: 15,
-                            endIndent: 15,
-                            color: ETTColor.c1_color,
-                            height: 0.5,
+                    onTap: (){
+                      setState(() {
+                        isTappedVideoSourceSetting = true;
+                      });
+                      Future.delayed(Duration(seconds: 1),(){
+                        isTappedVideoSourceSetting = false;
+                        isTappedMessageSetting = false;
+                        isTappedNightModeSetting = false;
+                        isTappedAbout = false;
+                        isTappedClearCache = false;
+                      });
+                    },
+                    child: Container(
+                      color: Colors.amber,
+                      child: Column(
+                        children: <Widget>[
+                          Padding(padding: EdgeInsets.only(top: 10)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Padding(padding: EdgeInsets.only(left: 20),child: Text("视频播放源设置"),),
+                              Padding(
+                                padding: EdgeInsets.only(right: 15),
+                                child: Icon(Icons.keyboard_arrow_right,size: 24,color: ETTColor.c1_color,),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Divider(
+                              indent: 15,
+                              endIndent: 15,
+                              color: ETTColor.c1_color,
+                              height: 0.5,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -221,7 +235,6 @@ class _SettingState extends State<SettingPage> {
       ],
     );
   }
-
 
   ///
   /// @name rightContainer
