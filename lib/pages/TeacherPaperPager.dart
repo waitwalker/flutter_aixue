@@ -204,7 +204,7 @@ class _TeacherPaperState extends State<TeacherPaperPage> {
   Widget futureDoneChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("微课程-文档"),
+        title: Text("测验"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -220,13 +220,7 @@ class _TeacherPaperState extends State<TeacherPaperPage> {
           },),
         ],
       ),
-      body: Container(
-        width: 0.6 * MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            border: Border(right: BorderSide(color: Colors.lightBlue,width: 2.0))
-        ),
-        child: leftChild(),
-      ),
+      body: leftChild(),
     );
   }
 
