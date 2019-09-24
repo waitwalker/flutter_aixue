@@ -355,7 +355,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
             Container(
               height: 632,
               child: WebView(
-                initialUrl: detailModel.data.jspUrl,
+                initialUrl: detailModel.data.jspUrl + "&versionName=V2.0.4",
                 javascriptMode: JavascriptMode.unrestricted,
                 onWebViewCreated: (controller) {
                   webViewController = controller;
