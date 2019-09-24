@@ -327,6 +327,9 @@ class Const {
 
   /// 上传文件
   static const String uploadAvatar = "uploadUserPhoto.do";
+
+  /// 获取试卷中试题数目
+  static const String questionItems = "getGroupTaskInfo.do";
 }
 
 ///
@@ -437,6 +440,10 @@ class NetworkAssistant {
 
       case Const.uploadAvatar:
         return "http://i.m.etiantian.com/app-common-service/uploadUserPhoto.do";
+        break;
+
+      case Const.questionItems:
+        return "http://school.etiantian.com/aixue31/im2.0?m=getGroupTaskInfo.do";
         break;
       default:
         return "";

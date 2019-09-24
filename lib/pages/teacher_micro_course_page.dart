@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/widgets/photo_view.dart';
 import 'package:flutter_aixue/common/widgets/video_player_widget.dart';
 import 'package:flutter_aixue/dao/dao.dart';
@@ -391,6 +392,16 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
 
       return Container();
     }
+  }
+
+  loadQuestionItems() async {
+     ResponseData responseData = await DaoManager.teacherTaskDetailMicroCourseFetch({
+      "jid":"9620132",
+      "schoolId":"50043",
+      "taskId":task.taskId,
+      "classId":"1343842",
+      "isBoxExists":"0"
+    });
   }
 
 

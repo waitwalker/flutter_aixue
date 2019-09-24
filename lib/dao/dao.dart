@@ -214,6 +214,31 @@ class DaoManager {
     }
   }
 
+  ///
+  /// @name uploadAvatarFetch
+  /// @description
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-24
+  ///
+  static Future<ResponseData> teacherQuestionItemsFetch(Map<String,dynamic> parameters,{FormData data}) async {
+    var response = await NetworkManager.post(Const.uploadAvatar, parameters,data: data);
+    if (response.result) {
+      Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
+      print("response.data:${response.data}");
+
+      String jsonString = response.data;
+
+      var resultMap = json.decode(jsonString);
+      var model = PersonalInformationModel.fromJson(resultMap);
+      response.model = model;
+      return response;
+    } else {
+      throw Exception("个人信息接口请求失败");
+    }
+  }
+
 
 
 }
