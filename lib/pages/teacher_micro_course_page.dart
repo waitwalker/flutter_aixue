@@ -220,15 +220,15 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
           Row(
             children: <Widget>[
               IconButton(icon: Icon(Icons.web_asset,size: 30,color: isTappedPaper ? ETTColor.c1_color : Colors.black54,), onPressed: (){
+                isTappedPaper = !isTappedPaper;
+                isTappedStatistics = false;
                 setState(() {
-                  isTappedPaper = !isTappedPaper;
-                  isTappedStatistics = false;
                 });
               },),
               IconButton(icon: Icon(Icons.data_usage,size: 30,color: isTappedStatistics ? ETTColor.c1_color : Colors.black54,), onPressed: (){
+                isTappedStatistics = !isTappedStatistics;
+                isTappedPaper = false;
                 setState(() {
-                  isTappedStatistics = !isTappedStatistics;
-                  isTappedPaper = false;
                 });
               },),
               Padding(padding: EdgeInsets.only(left: 15),),
@@ -344,7 +344,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
     } else {
       if (isTappedPaper) {
         return Padding(
-          padding: EdgeInsets.only(top: 20),
+          padding: EdgeInsets.only(top: 10,bottom: 60),
           child: Container(
             child: WebView(
               initialUrl: detailModel.data.jspUrl,
@@ -353,7 +353,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
                 _controller = controller;
               },
               onPageFinished: (url){
-
+                print("加载完成:$url");
               },
               navigationDelegate: (NavigationRequest request) {
                 //对于需要拦截的操作 做判断
