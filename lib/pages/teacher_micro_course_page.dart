@@ -348,41 +348,62 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
       }
     } else {
       if (isTappedPaper) {
-        return Padding(
-          padding: EdgeInsets.only(top: 10,bottom: 60),
-          child: Container(
-            child: WebView(
-              initialUrl: detailModel.data.jspUrl,
-              javascriptMode: JavascriptMode.unrestricted,
-              onWebViewCreated: (controller) {
-                webViewController = controller;
-              },
-              onPageFinished: (url){
-                print("加载完成:$url");
-              },
-              navigationDelegate: (NavigationRequest request) {
-                //对于需要拦截的操作 做判断
-                if(request.url.startsWith("myapp://")) {
-                  print("即将打开 ${request.url}");
-                  //做拦截处理
-                  //pushto....
-                  return NavigationDecision.prevent;
-                }
+        return Column(
+          children: <Widget>[
+            Container(
+              height: 632,
+              child: WebView(
+                initialUrl: detailModel.data.jspUrl,
+                javascriptMode: JavascriptMode.unrestricted,
+                onWebViewCreated: (controller) {
+                  webViewController = controller;
+                },
+                onPageFinished: (url){
+                  print("加载完成:$url");
+                },
+                navigationDelegate: (NavigationRequest request) {
+                  //对于需要拦截的操作 做判断
+                  if(request.url.startsWith("myapp://")) {
+                    print("即将打开 ${request.url}");
+                    //做拦截处理
+                    //pushto....
+                    return NavigationDecision.prevent;
+                  }
 
-                //不需要拦截的操作
-                return NavigationDecision.navigate;
-              },
-              javascriptChannels: <JavascriptChannel>[
-                JavascriptChannel(
-                    name: "share",
-                    onMessageReceived: (JavascriptMessage message) {
-                      print("参数： ${message.message}");
-                    }
-                ),
-              ].toSet(),
+                  //不需要拦截的操作
+                  return NavigationDecision.navigate;
+                },
+                javascriptChannels: <JavascriptChannel>[
+                  /// js 调用Flutter 只有postMessage或者拦截url
+                  JavascriptChannel(
+                      name: "message",
+                      onMessageReceived: (JavascriptMessage message) {
+                        print("参数： ${message.message}");
+                      }
+                  ),
+                ].toSet(),
 
+              ),
             ),
-          ),
+            Padding(padding: EdgeInsets.only(top: 10)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(left: 20),
+                  child: FlatButton(onPressed: (){
+
+                  }, child: Text("上一题",style: TextStyle(fontSize: 18,color: ETTColor.c1_color),)),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: FlatButton(onPressed: (){
+                    
+                  }, child: Text("下一题",style: TextStyle(fontSize: 18,color: ETTColor.c1_color),)),
+                ),
+              ],
+            ),
+          ],
         );
       }
 
