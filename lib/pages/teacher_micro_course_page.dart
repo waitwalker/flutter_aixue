@@ -51,6 +51,8 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
 
   TeacherQuestionModel questionModel;
 
+  int currentIndex = 0;
+
   Future future;
 
   @override
@@ -392,13 +394,25 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
                 Padding(
                   padding: EdgeInsets.only(left: 20),
                   child: FlatButton(onPressed: (){
-
+                    currentIndex --;
+                    if (currentIndex == -1) {
+                      currentIndex = 0;
+                      webViewController.evaluateJavascript("tqControler.showQuesCard()");
+                    } else {
+                      webViewController.evaluateJavascript("document.getElementById(\"fm_free\").submit()");
+                    }
                   }, child: Text("上一题",style: TextStyle(fontSize: 18,color: ETTColor.c1_color),)),
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 20),
                   child: FlatButton(onPressed: (){
-                    
+                    currentIndex ++;
+                    if (currentIndex == questionModel.data.questionList.length) {
+                      currentIndex = 0;
+                      webViewController.evaluateJavascript("tqControler.showQuesCard()");
+                    } else {
+                      webViewController.evaluateJavascript("document.getElementById(\"fm_next\").submit()");
+                    }
                   }, child: Text("下一题",style: TextStyle(fontSize: 18,color: ETTColor.c1_color),)),
                 ),
               ],
