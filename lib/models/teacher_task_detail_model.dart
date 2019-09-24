@@ -2,7 +2,7 @@
 
 ///
 /// @name TeacherMicroSourceModel
-/// @description 教师微课程model
+/// @description 教师任务详情model - 学资源,微课...
 /// @author lca
 /// @date 2019-09-23
 ///

@@ -84,6 +84,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
             if (microCourseModel != null) {
               print("$microCourseModel");
               detailModel = microCourseModel;
+              userReplyList = detailModel.data.userReplyList;
               return futureDoneChild();
             } else {
               return futureWaitingChild();
