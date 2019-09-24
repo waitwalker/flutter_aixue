@@ -38,6 +38,12 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
 
   TeacherTaskDetailModel detailModel;
 
+  /// 是否点击了试卷按钮
+  bool isTappedPaper = false;
+
+  /// 是否点击了统计按钮
+  bool isTappedStatistics = false;
+
   Future future;
 
   @override
@@ -207,6 +213,25 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
             Navigator.pop(context);
           },
         ),
+        actions: <Widget>[
+          Row(
+            children: <Widget>[
+              IconButton(icon: Icon(Icons.web_asset,size: 30,color: isTappedPaper ? ETTColor.c1_color : Colors.black54,), onPressed: (){
+                setState(() {
+                  isTappedPaper = !isTappedPaper;
+                  isTappedStatistics = false;
+                });
+              },),
+              IconButton(icon: Icon(Icons.data_usage,size: 30,color: isTappedStatistics ? ETTColor.c1_color : Colors.black54,), onPressed: (){
+                setState(() {
+                  isTappedStatistics = !isTappedStatistics;
+                  isTappedPaper = false;
+                });
+              },),
+              Padding(padding: EdgeInsets.only(left: 15),),
+            ],
+          ),
+        ],
       ),
       body: Row(
         children: <Widget>[
@@ -307,9 +332,21 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   /// @date 2019-09-12
   ///
   Widget leftChild() {
-    if (detailModel.data.videoUrl != null && detailModel.data.videoUrl.length > 0) {
-      return VideoPlayerWidget();
+    if (!isTappedPaper && !isTappedStatistics) {
+      if (detailModel.data.videoUrl != null && detailModel.data.videoUrl.length > 0) {
+        return VideoPlayerWidget();
+      } else {
+        return Container();
+      }
     } else {
+      if (isTappedPaper) {
+        return Container();
+      }
+
+      if (isTappedStatistics) {
+        return Container();
+      }
+      
       return Container();
     }
   }
