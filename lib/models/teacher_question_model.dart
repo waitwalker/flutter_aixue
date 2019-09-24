@@ -5,14 +5,14 @@
 /// @date 2019-09-24
 ///
 class TeacherQuestionModel {
-  String result;
+  int result;
   Data data;
   String msg;
 
   TeacherQuestionModel({this.result, this.data, this.msg});
 
   TeacherQuestionModel.fromJson(Map<String, dynamic> json) {
-    result = json['result'];
+    result = int.parse(json['result']);
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
     msg = json['msg'];
   }

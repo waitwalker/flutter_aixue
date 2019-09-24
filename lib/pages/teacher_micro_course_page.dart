@@ -6,6 +6,7 @@ import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/widgets/photo_view.dart';
 import 'package:flutter_aixue/common/widgets/video_player_widget.dart';
 import 'package:flutter_aixue/dao/dao.dart';
+import 'package:flutter_aixue/models/teacher_question_model.dart';
 import 'package:flutter_aixue/models/teacher_task_detail_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:page_transition/page_transition.dart';
@@ -46,7 +47,9 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   /// 是否点击了统计按钮
   bool isTappedStatistics = false;
 
-  WebViewController _controller;
+  WebViewController webViewController;
+
+  TeacherQuestionModel questionModel;
 
   Future future;
 
@@ -225,6 +228,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
                 isTappedStatistics = false;
                 setState(() {
                 });
+                loadQuestionItems();
               },),
               IconButton(icon: Icon(Icons.data_usage,size: 30,color: isTappedStatistics ? ETTColor.c1_color : Colors.black54,), onPressed: (){
                 isTappedStatistics = !isTappedStatistics;
@@ -351,7 +355,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
               initialUrl: detailModel.data.jspUrl,
               javascriptMode: JavascriptMode.unrestricted,
               onWebViewCreated: (controller) {
-                _controller = controller;
+                webViewController = controller;
               },
               onPageFinished: (url){
                 print("加载完成:$url");
@@ -394,14 +398,28 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
     }
   }
 
+  ///
+  /// @name loadQuestionItems
+  /// @description 获取试题
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-24
+  ///
   loadQuestionItems() async {
-     ResponseData responseData = await DaoManager.teacherTaskDetailMicroCourseFetch({
+    ResponseData responseData = await DaoManager.teacherQuestionItemsFetch({
       "jid":"9620132",
       "schoolId":"50043",
       "taskId":task.taskId,
       "classId":"1343842",
       "isBoxExists":"0"
     });
+
+    if (responseData.result) {
+      if (responseData.model.data != null && responseData.model.result == 1) {
+        questionModel = responseData.model;
+      }
+    }
   }
 
 

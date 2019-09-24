@@ -7,6 +7,7 @@ import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
 import 'package:flutter_aixue/models/login_model.dart';
 import 'package:flutter_aixue/models/personal_information_model.dart';
 import 'package:flutter_aixue/models/teacher_course_list_model.dart';
+import 'package:flutter_aixue/models/teacher_question_model.dart';
 import 'package:flutter_aixue/models/teacher_task_detail_model.dart';
 import 'package:flutter_aixue/models/teacher_subject_list_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
@@ -223,7 +224,7 @@ class DaoManager {
   /// @date 2019-09-24
   ///
   static Future<ResponseData> teacherQuestionItemsFetch(Map<String,dynamic> parameters,{FormData data}) async {
-    var response = await NetworkManager.post(Const.uploadAvatar, parameters,data: data);
+    var response = await NetworkManager.post(Const.questionItems, parameters,data: data);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
       print("response.data:${response.data}");
@@ -231,7 +232,7 @@ class DaoManager {
       String jsonString = response.data;
 
       var resultMap = json.decode(jsonString);
-      var model = PersonalInformationModel.fromJson(resultMap);
+      var model = TeacherQuestionModel.fromJson(resultMap);
       response.model = model;
       return response;
     } else {
