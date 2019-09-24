@@ -9,6 +9,7 @@ import 'package:flutter_aixue/models/teacher_task_detail_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 ///
 /// @name TeacherMicroCoursePage
@@ -43,6 +44,8 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
 
   /// 是否点击了统计按钮
   bool isTappedStatistics = false;
+
+  WebViewController _controller;
 
   Future future;
 
@@ -340,13 +343,52 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
       }
     } else {
       if (isTappedPaper) {
-        return Container();
+        return Padding(
+          padding: EdgeInsets.only(top: 20),
+          child: Container(
+            child: WebView(
+              initialUrl: detailModel.data.jspUrl,
+              javascriptMode: JavascriptMode.unrestricted,
+              onWebViewCreated: (controller) {
+                _controller = controller;
+              },
+              onPageFinished: (url){
+
+              },
+              navigationDelegate: (NavigationRequest request) {
+                //对于需要拦截的操作 做判断
+                if(request.url.startsWith("myapp://")) {
+                  print("即将打开 ${request.url}");
+                  //做拦截处理
+                  //pushto....
+                  return NavigationDecision.prevent;
+                }
+
+                //不需要拦截的操作
+                return NavigationDecision.navigate;
+              },
+              javascriptChannels: <JavascriptChannel>[
+                JavascriptChannel(
+                    name: "share",
+                    onMessageReceived: (JavascriptMessage message) {
+                      print("参数： ${message.message}");
+                    }
+                ),
+              ].toSet(),
+
+            ),
+          ),
+        );
       }
 
       if (isTappedStatistics) {
-        return Container();
+        return Container(
+          child: Center(
+            child: Text("统计"),
+          ),
+        );
       }
-      
+
       return Container();
     }
   }
