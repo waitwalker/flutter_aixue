@@ -10,6 +10,7 @@ import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
+import 'package:flutter_aixue/pages/TeacherPaperPager.dart';
 import 'package:flutter_aixue/pages/message_page.dart';
 import 'package:flutter_aixue/pages/personal_information_page.dart';
 import 'package:flutter_aixue/pages/setting_page.dart';
@@ -468,6 +469,9 @@ class _HomeState extends State<HomePage> {
             break;
           case ETTTaskSubtype.ETTTaskSubtypePaperTest:
             print("成卷测试任务");
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return TeacherPaperPage(lastTask);
+            }));
             break;
           case ETTTaskSubtype.ETTTaskSubtypeAutonomyTest:
             print("自主测试任务");
