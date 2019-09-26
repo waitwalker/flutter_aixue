@@ -41,6 +41,14 @@ class _TeacherInteractionCommunicationTaskState extends State<TeacherInteraction
             Navigator.pop(context);
           },
         ),
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: IconButton(icon: Icon(Icons.data_usage),onPressed: (){
+              print("讨论页面 统计按钮");
+            },),
+          ),
+        ],
       ),
       body: _body(),
     );
