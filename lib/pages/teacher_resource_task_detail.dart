@@ -96,7 +96,6 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
               if (resourceModel.data.resourceList != null && resourceModel.data.resourceList.length > 0) {
                 resource = resourceModel.data.resourceList.first;
               }
-
               return futureDoneChild(resource);
             } else {
               return futureWaitingChild();

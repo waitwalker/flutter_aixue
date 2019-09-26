@@ -458,6 +458,7 @@ class _HomeState extends State<HomePage> {
       onTap: (){
         switch (lastTask.kTaskSubtype) {
           case ETTTaskSubtype.ETTTaskSubtypeResourceStudy:
+            /// pad上教师发布的微课任务就是学资源任务中的视频任务
             print("学资源任务");
             Navigator.push(context, MaterialPageRoute(builder: (context){
               return TeacherResourceTaskDetailPage(lastTask);
@@ -476,6 +477,7 @@ class _HomeState extends State<HomePage> {
             }));
             break;
           case ETTTaskSubtype.ETTTaskSubtypePaperTest:
+            /// 这里包括测验任务
             print("成卷测试任务");
             Navigator.push(context, MaterialPageRoute(builder: (context){
               return TeacherPaperPage(lastTask);

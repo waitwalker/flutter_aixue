@@ -13,7 +13,14 @@ class TeacherTaskDetailModel {
   TeacherTaskDetailModel({this.result, this.data});
 
   TeacherTaskDetailModel.fromJson(Map<String, dynamic> json) {
-    result = int.parse(json['result']);
+    var resultType = json["result"];
+    var type = resultType.runtimeType;
+    if (type == "".runtimeType) {
+      print("String 类型");
+      result = json['result'];
+    } else {
+      result = json['result'];
+    }
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
