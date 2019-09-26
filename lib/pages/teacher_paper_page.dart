@@ -59,6 +59,14 @@ class _TeacherPaperState extends State<TeacherPaperPage> {
     });
   }
 
+  ///
+  /// @name loadFutureBuilder
+  /// @description 加载future 控件
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-26
+  ///
   loadFutureBuilder() {
     return FutureBuilder(
       builder: _futureBuilder,
@@ -66,6 +74,14 @@ class _TeacherPaperState extends State<TeacherPaperPage> {
     );
   }
 
+  ///
+  /// @name _futureBuilder
+  /// @description 创建future子控件
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-26
+  ///
   Widget _futureBuilder(BuildContext context, AsyncSnapshot snapshot) {
     switch (snapshot.connectionState) {
       case ConnectionState.none:
@@ -121,7 +137,7 @@ class _TeacherPaperState extends State<TeacherPaperPage> {
   Widget futureNoneChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("微课程"),
+        title: Text("试卷/测验"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -148,7 +164,7 @@ class _TeacherPaperState extends State<TeacherPaperPage> {
   Widget futureActiveChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("微课程"),
+        title: Text("试卷/测验"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -177,7 +193,7 @@ class _TeacherPaperState extends State<TeacherPaperPage> {
   Widget futureWaitingChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("微课程"),
+        title: Text("试卷/测验"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -220,7 +236,7 @@ class _TeacherPaperState extends State<TeacherPaperPage> {
           },),
         ],
       ),
-      body: leftChild(),
+      body: _body(),
     );
   }
 
@@ -235,7 +251,7 @@ class _TeacherPaperState extends State<TeacherPaperPage> {
   Widget futureErrorChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("微课程"),
+        title: Text("试卷/测验"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -252,14 +268,14 @@ class _TeacherPaperState extends State<TeacherPaperPage> {
   }
 
   ///
-  /// @name leftChild
+  /// @name _body
   /// @description 根据资源类型返回特定组件
   /// @parameters
   /// @return
   /// @author lca
   /// @date 2019-09-12
   ///
-  Widget leftChild() {
+  Widget _body() {
     return Column(
       children: <Widget>[
         Container(

@@ -10,7 +10,7 @@ import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
-import 'package:flutter_aixue/pages/TeacherPaperPager.dart';
+import 'package:flutter_aixue/pages/teacher_paper_page.dart';
 import 'package:flutter_aixue/pages/message_page.dart';
 import 'package:flutter_aixue/pages/personal_information_page.dart';
 import 'package:flutter_aixue/pages/setting_page.dart';
