@@ -4,24 +4,23 @@ import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 ///
-/// @name TeacherDiscussionTaskPage
-/// @description 教师讨论任务 h5
+/// @name TeacherInteractionCommunicationTaskPage
+/// @description 教师互动交流(讨论)任务 h5
 /// @author lca
 /// @date 2019-09-26
 ///
-class TeacherDiscussionTaskPage extends StatefulWidget {
+class TeacherInteractionCommunicationTaskPage extends StatefulWidget {
   final LastTaskList task;
-  TeacherDiscussionTaskPage(this.task);
+  TeacherInteractionCommunicationTaskPage(this.task);
   @override
   State<StatefulWidget> createState() {
-    return _TeacherDiscussionTaskState();
+    return _TeacherInteractionCommunicationTaskState();
   }
 }
 
-class _TeacherDiscussionTaskState extends State<TeacherDiscussionTaskPage> {
+class _TeacherInteractionCommunicationTaskState extends State<TeacherInteractionCommunicationTaskPage> {
   LastTaskList task;
   WebViewController webViewController;
-
 
 
   @override
@@ -35,7 +34,7 @@ class _TeacherDiscussionTaskState extends State<TeacherDiscussionTaskPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("试卷/测验"),
+        title: Text("讨论"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -43,6 +42,7 @@ class _TeacherDiscussionTaskState extends State<TeacherDiscussionTaskPage> {
           },
         ),
       ),
+      body: _body(),
     );
   }
 
