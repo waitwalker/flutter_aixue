@@ -15,7 +15,12 @@ import 'package:page_transition/page_transition.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 
-/// 教师学资源任务详情
+///
+/// @name TeacherResourceTaskDetailPage
+/// @description 教师学资源任务 原生:文本,图片,视频,音频
+/// @author lca
+/// @date 2019-09-26
+///
 class TeacherResourceTaskDetailPage extends StatefulWidget {
 
   final LastTaskList task;

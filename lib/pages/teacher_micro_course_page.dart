@@ -15,7 +15,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 ///
 /// @name TeacherMicroCoursePage
-/// @description 教师微课程页面
+/// @description 教师微课程页面 原生  试卷是h5
 /// @author lca
 /// @date 2019-09-23
 ///
