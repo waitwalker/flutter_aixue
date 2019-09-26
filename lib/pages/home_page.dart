@@ -11,6 +11,7 @@ import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_aixue/pages/teacher_discussion_task_page.dart';
+import 'package:flutter_aixue/pages/teacher_paper_item_task.dart';
 import 'package:flutter_aixue/pages/teacher_paper_page.dart';
 import 'package:flutter_aixue/pages/message_page.dart';
 import 'package:flutter_aixue/pages/personal_information_page.dart';
@@ -470,6 +471,9 @@ class _HomeState extends State<HomePage> {
             break;
           case ETTTaskSubtype.ETTTaskSubtypeWebviewObjectiveItem:
             print("单选多选等任务");
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return TeacherPaperItemTaskPage(lastTask);
+            }));
             break;
           case ETTTaskSubtype.ETTTaskSubtypePaperTest:
             print("成卷测试任务");
@@ -478,6 +482,7 @@ class _HomeState extends State<HomePage> {
             }));
             break;
           case ETTTaskSubtype.ETTTaskSubtypeAutonomyTest:
+            /// 这种任务已经取消
             print("自主测试任务");
             break;
           case ETTTaskSubtype.ETTTaskSubtypeMicroCourse:
@@ -500,6 +505,9 @@ class _HomeState extends State<HomePage> {
             break;
           case ETTTaskSubtype.ETTTaskSubtypeWebviewSubjectiveItem:
             print("主观题任务");
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return TeacherPaperItemTaskPage(lastTask);
+            }));
             break;
           case ETTTaskSubtype.ETTTaskSubtypeKnowledgeGuidance:
             print("知识导学任务");
