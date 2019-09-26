@@ -9,16 +9,16 @@ import 'package:webview_flutter/webview_flutter.dart';
 /// @author lca
 /// @date 2019-09-26
 ///
-class TeacherInteractionCommunicationTaskPage extends StatefulWidget {
+class TeacherDiscussionTaskPage extends StatefulWidget {
   final LastTaskList task;
-  TeacherInteractionCommunicationTaskPage(this.task);
+  TeacherDiscussionTaskPage(this.task);
   @override
   State<StatefulWidget> createState() {
-    return _TeacherInteractionCommunicationTaskState();
+    return _TeacherDiscussionTaskState();
   }
 }
 
-class _TeacherInteractionCommunicationTaskState extends State<TeacherInteractionCommunicationTaskPage> {
+class _TeacherDiscussionTaskState extends State<TeacherDiscussionTaskPage> {
   LastTaskList task;
   WebViewController webViewController;
 

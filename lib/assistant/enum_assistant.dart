@@ -13,7 +13,7 @@ enum ETTTaskType {
 // 任务子类型
 enum ETTTaskSubtype {
   ETTTaskSubtypeResourceStudy             ,//资源学习类 包括（文档类任务，声音类任务，图片类，视频类/远程高清类）
-  ETTTaskSubtypeInteractionCommunication  ,//互动交流
+  ETTTaskSubtypeDiscussion                ,//讨论
   ETTTaskSubtypeWebviewObjectiveItem      ,//webview试题（单选题，多选题，填空题）
   ETTTaskSubtypePaperTest                 ,//成卷测试
   ETTTaskSubtypeAutonomyTest              ,//自主测试

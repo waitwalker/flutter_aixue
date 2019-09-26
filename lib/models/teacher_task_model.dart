@@ -119,7 +119,7 @@ class LastTaskList {
         kTaskSubtype = ETTTaskSubtype.ETTTaskSubtypeResourceStudy;
         break;
       case 2:
-        kTaskSubtype = ETTTaskSubtype.ETTTaskSubtypeInteractionCommunication;
+        kTaskSubtype = ETTTaskSubtype.ETTTaskSubtypeDiscussion;
         break;
       case 3:
         kTaskSubtype = ETTTaskSubtype.ETTTaskSubtypeWebviewObjectiveItem;
