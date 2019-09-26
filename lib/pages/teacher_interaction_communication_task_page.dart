@@ -59,7 +59,7 @@ class _TeacherInteractionCommunicationTaskState extends State<TeacherInteraction
       padding: EdgeInsets.all(10),
       child: Container(
         child: WebView(
-          initialUrl: task.jspUrl + "&versionName=V2.0.4",
+          initialUrl: task.jspUrl + "&versionName=V2.1.1",
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (controller) {
             webViewController = controller;
