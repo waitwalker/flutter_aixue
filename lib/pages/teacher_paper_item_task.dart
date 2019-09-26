@@ -4,21 +4,21 @@ import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 ///
-/// @name TeacherInteractionCommunicationTaskPage
-/// @description 教师讨论任务 h5
+/// @name TeacherPaperItemTaskPage
+/// @description 教师互单题任务 h5
 /// @author lca
 /// @date 2019-09-26
 ///
-class TeacherDiscussionTaskPage extends StatefulWidget {
+class TeacherPaperItemTaskPage extends StatefulWidget {
   final LastTaskList task;
-  TeacherDiscussionTaskPage(this.task);
+  TeacherPaperItemTaskPage(this.task);
   @override
   State<StatefulWidget> createState() {
-    return _TeacherDiscussionTaskState();
+    return _TeacherPaperItemTaskState();
   }
 }
 
-class _TeacherDiscussionTaskState extends State<TeacherDiscussionTaskPage> {
+class _TeacherPaperItemTaskState extends State<TeacherPaperItemTaskPage> {
   LastTaskList task;
   WebViewController webViewController;
 
@@ -34,7 +34,7 @@ class _TeacherDiscussionTaskState extends State<TeacherDiscussionTaskPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("讨论"),
+        title: Text("单题任务"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -45,7 +45,7 @@ class _TeacherDiscussionTaskState extends State<TeacherDiscussionTaskPage> {
           Padding(
             padding: EdgeInsets.only(right: 20),
             child: IconButton(icon: Icon(Icons.data_usage),onPressed: (){
-              print("讨论页面 统计按钮");
+              print("单题任务页面 统计按钮");
             },),
           ),
         ],
@@ -67,7 +67,7 @@ class _TeacherDiscussionTaskState extends State<TeacherDiscussionTaskPage> {
       padding: EdgeInsets.all(10),
       child: Container(
         child: WebView(
-          initialUrl: task.jspUrl + "&versionName=V2.1.1",
+          initialUrl: task.jspUrl + "&versionName=V2.0.1",
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (controller) {
             webViewController = controller;
