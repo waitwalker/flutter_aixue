@@ -455,6 +455,8 @@ class _HomeState extends State<HomePage> {
           ),
         ),
       ),
+
+      /// 任务详情路由
       onTap: (){
         switch (lastTask.kTaskSubtype) {
           case ETTTaskSubtype.ETTTaskSubtypeResourceStudy:
