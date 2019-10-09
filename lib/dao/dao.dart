@@ -124,7 +124,7 @@ class DaoManager {
   /// @Date: 2019-09-02
   ///
   static Future <ResponseData> teacherTaskDetailResourceFetch(Map<String,dynamic> parameters) async {
-    var response = await NetworkManager.post(Const.teacherResourceDocument, parameters);
+    var response = await NetworkManager.post(Const.teacherResource, parameters);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
       print("response.data:${response.data}");

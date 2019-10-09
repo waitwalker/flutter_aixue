@@ -317,7 +317,7 @@ class Const {
   static const String teacherCourseList = "getLessonList.do";
 
   /// 教师学资源文档
-  static const String teacherResourceDocument = "getTeacherStudyTaskInfo2.do";
+  static const String teacherResource = "getTeacherStudyTaskInfo2.do";
 
   /// 教师微课程
   static const String teacherMicroCourse = "getTeacherLittleTaskInfo2.do";
@@ -426,7 +426,7 @@ class NetworkAssistant {
         return "https://school.etiantian.com/aixue33/im2.0?m=getLessonList.do";
         break;
 
-      case Const.teacherResourceDocument:
+      case Const.teacherResource:
         return "https://school.etiantian.com/aixue33/im2.0.1?m=getTeacherStudyTaskInfo2.do";
         break;
 
