@@ -7,7 +7,7 @@
 /// @date 2019-09-23
 ///
 class TeacherTaskDetailModel {
-  int result;
+  String result;
   Data data;
 
   TeacherTaskDetailModel({this.result, this.data});

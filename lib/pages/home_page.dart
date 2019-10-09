@@ -498,14 +498,20 @@ class _HomeState extends State<HomePage> {
             break;
           case ETTTaskSubtype.ETTTaskSubtypeRegularTaskVoice:
             print("一般任务语音");
-            TeacherGeneralTaskDetailPage(lastTask);
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return TeacherGeneralTaskDetailPage(lastTask);
+            }));
             break;
           case ETTTaskSubtype.ETTTaskSubtypeRegularTaskPicture:
-            TeacherGeneralTaskDetailPage(lastTask);
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return TeacherGeneralTaskDetailPage(lastTask);
+            }));
             print("一般任务图片");
             break;
           case ETTTaskSubtype.ETTTaskSubtypeRegularTaskText:
-            TeacherGeneralTaskDetailPage(lastTask);
+            Navigator.push(context, MaterialPageRoute(builder: (context){
+              return TeacherGeneralTaskDetailPage(lastTask);
+            }));
             print("一般任务文本");
             break;
           case ETTTaskSubtype.ETTTaskSubtypeLiveCourse:

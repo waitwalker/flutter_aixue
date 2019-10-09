@@ -86,7 +86,7 @@ class _TeacherGeneralTaskDetailState extends State<TeacherGeneralTaskDetailPage>
         }
 
         if (snapshot.data.result) {
-          if (snapshot.data.model != null && snapshot.data.model.result == 1) {
+          if (snapshot.data.model != null && snapshot.data.model.result == "1") {
             TeacherTaskDetailModel resourceModel = snapshot.data.model;
             if (resourceModel != null) {
               print("$resourceModel");
@@ -184,7 +184,7 @@ class _TeacherGeneralTaskDetailState extends State<TeacherGeneralTaskDetailPage>
   Widget futureNoneChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源"),
+        title: Text("一般任务"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -211,7 +211,7 @@ class _TeacherGeneralTaskDetailState extends State<TeacherGeneralTaskDetailPage>
   Widget futureActiveChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源"),
+        title: Text("一般任务"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -240,7 +240,7 @@ class _TeacherGeneralTaskDetailState extends State<TeacherGeneralTaskDetailPage>
   Widget futureWaitingChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源"),
+        title: Text("一般任务"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -267,7 +267,7 @@ class _TeacherGeneralTaskDetailState extends State<TeacherGeneralTaskDetailPage>
   Widget futureDoneChild(ResourceList resource) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源-文档"),
+        title: Text("一般任务-文档"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
@@ -350,7 +350,7 @@ class _TeacherGeneralTaskDetailState extends State<TeacherGeneralTaskDetailPage>
   Widget futureErrorChild() {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源"),
+        title: Text("一般任务"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
