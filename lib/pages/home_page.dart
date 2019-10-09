@@ -12,7 +12,7 @@ import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_aixue/pages/teacher_discussion_task_page.dart';
 import 'package:flutter_aixue/pages/teacher_paper_item_task.dart';
-import 'package:flutter_aixue/pages/teacher_paper_page.dart';
+import 'package:flutter_aixue/pages/teacher_paper_task_detail.dart';
 import 'package:flutter_aixue/pages/message_page.dart';
 import 'package:flutter_aixue/pages/personal_information_page.dart';
 import 'package:flutter_aixue/pages/setting_page.dart';
@@ -482,7 +482,7 @@ class _HomeState extends State<HomePage> {
             /// 这里包括测验任务
             print("成卷测试任务");
             Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherPaperPage(lastTask);
+              return TeacherPaperTaskDetail(lastTask);
             }));
             break;
           case ETTTaskSubtype.ETTTaskSubtypeAutonomyTest:

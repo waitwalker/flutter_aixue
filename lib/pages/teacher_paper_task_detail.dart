@@ -8,23 +8,23 @@ import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 ///
-/// @name TeacherPaperPage
+/// @name TeacherPaperTaskDetail
 /// @description 教师测验页面 也就是试卷 H5
 /// @author lca
 /// @date 2019-09-23
 ///
-class TeacherPaperPage extends StatefulWidget {
+class TeacherPaperTaskDetail extends StatefulWidget {
 
   final LastTaskList task;
 
-  TeacherPaperPage(this.task);
+  TeacherPaperTaskDetail(this.task);
   @override
   State<StatefulWidget> createState() {
-    return _TeacherPaperState();
+    return _TeacherPaperTaskDetailState();
   }
 }
 
-class _TeacherPaperState extends State<TeacherPaperPage> {
+class _TeacherPaperTaskDetailState extends State<TeacherPaperTaskDetail> {
   LastTaskList task;
 
   TextEditingController commentController = TextEditingController();
