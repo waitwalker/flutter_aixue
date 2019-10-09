@@ -4,21 +4,21 @@ import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 ///
-/// @name TeacherPaperItemTaskPage
+/// @name TeacherPaperItemTaskDetail
 /// @description 教师互单题任务 h5
 /// @author lca
 /// @date 2019-09-26
 ///
-class TeacherPaperItemTaskPage extends StatefulWidget {
+class TeacherPaperItemTaskDetail extends StatefulWidget {
   final LastTaskList task;
-  TeacherPaperItemTaskPage(this.task);
+  TeacherPaperItemTaskDetail(this.task);
   @override
   State<StatefulWidget> createState() {
-    return _TeacherPaperItemTaskState();
+    return _TeacherPaperItemTaskDetailState();
   }
 }
 
-class _TeacherPaperItemTaskState extends State<TeacherPaperItemTaskPage> {
+class _TeacherPaperItemTaskDetailState extends State<TeacherPaperItemTaskDetail> {
   LastTaskList task;
   WebViewController webViewController;
 

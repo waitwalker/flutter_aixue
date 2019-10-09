@@ -11,7 +11,7 @@ import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_aixue/pages/teacher_discussion_task_page.dart';
-import 'package:flutter_aixue/pages/teacher_paper_item_task.dart';
+import 'package:flutter_aixue/pages/teacher_paper_item_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_paper_task_detail.dart';
 import 'package:flutter_aixue/pages/message_page.dart';
 import 'package:flutter_aixue/pages/personal_information_page.dart';
@@ -475,7 +475,7 @@ class _HomeState extends State<HomePage> {
           case ETTTaskSubtype.ETTTaskSubtypeWebviewObjectiveItem:
             print("单选多选等任务");
             Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherPaperItemTaskPage(lastTask);
+              return TeacherPaperItemTaskDetail(lastTask);
             }));
             break;
           case ETTTaskSubtype.ETTTaskSubtypePaperTest:
@@ -510,7 +510,7 @@ class _HomeState extends State<HomePage> {
           case ETTTaskSubtype.ETTTaskSubtypeWebviewSubjectiveItem:
             print("主观题任务");
             Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherPaperItemTaskPage(lastTask);
+              return TeacherPaperItemTaskDetail(lastTask);
             }));
             break;
           case ETTTaskSubtype.ETTTaskSubtypeKnowledgeGuidance:
