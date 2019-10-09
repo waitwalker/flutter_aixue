@@ -11,6 +11,7 @@ import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_aixue/pages/teacher_discussion_task_detail.dart';
+import 'package:flutter_aixue/pages/teacher_general_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_paper_item_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_paper_task_detail.dart';
 import 'package:flutter_aixue/pages/message_page.dart';
@@ -497,11 +498,14 @@ class _HomeState extends State<HomePage> {
             break;
           case ETTTaskSubtype.ETTTaskSubtypeRegularTaskVoice:
             print("一般任务语音");
+            TeacherGeneralTaskDetailPage(lastTask);
             break;
           case ETTTaskSubtype.ETTTaskSubtypeRegularTaskPicture:
+            TeacherGeneralTaskDetailPage(lastTask);
             print("一般任务图片");
             break;
           case ETTTaskSubtype.ETTTaskSubtypeRegularTaskText:
+            TeacherGeneralTaskDetailPage(lastTask);
             print("一般任务文本");
             break;
           case ETTTaskSubtype.ETTTaskSubtypeLiveCourse:

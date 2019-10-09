@@ -60,7 +60,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
     super.initState();
     task = widget.task;
 
-    future = DaoManager.teacherTaskDetailMicroCourseFetch({
+    future = DaoManager.teacherMicroCourseTaskDetailFetch({
       "jid":"9620132",
       "schoolId":"50043",
       "taskId":task.taskId,
@@ -442,7 +442,7 @@ class _TeacherMicroCourseState extends State<TeacherMicroCoursePage> {
   /// @date 2019-09-24
   ///
   loadQuestionItems() async {
-    ResponseData responseData = await DaoManager.teacherQuestionItemsFetch({
+    ResponseData responseData = await DaoManager.teacherQuestionItemTaskDetailFetch({
       "jid":"9620132",
       "schoolId":"50043",
       "taskId":task.taskId,

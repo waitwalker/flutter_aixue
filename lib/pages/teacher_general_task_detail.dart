@@ -52,7 +52,7 @@ class _TeacherGeneralTaskDetailState extends State<TeacherGeneralTaskDetailPage>
     task = widget.task;
     //initData();
 
-    future = DaoManager.teacherResourceTaskDetailFetch({
+    future = DaoManager.teacherGeneralTaskDetailFetch({
       "jid":"9620132",
       "schoolId":"50043",
       "taskId":task.taskId,

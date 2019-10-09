@@ -46,7 +46,7 @@ class _TeacherCourseListState extends State<TeacherCourseList> {
   /// @Date: 2019-08-02
   ///
   initData() async {
-    ResponseData responseData = await DaoManager.teacherSubjectsFetch({"jid":"9620132","schoolId":"50043"});
+    ResponseData responseData = await DaoManager.teacherSubjectFetch({"jid":"9620132","schoolId":"50043"});
 
     print(responseData);
     if (responseData.result) {

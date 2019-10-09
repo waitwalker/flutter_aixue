@@ -12,6 +12,12 @@ import 'package:flutter_aixue/models/teacher_task_detail_model.dart';
 import 'package:flutter_aixue/models/teacher_subject_list_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 
+///
+/// @name DaoManager
+/// @description Dao 管理类
+/// @author lca
+/// @date 2019-10-09
+///
 class DaoManager {
 
   ///
@@ -73,7 +79,7 @@ class DaoManager {
   /// @author: lca
   /// @Date: 2019-09-02
   ///
-  static Future <ResponseData> teacherSubjectsFetch(Map<String,dynamic> parameters) async {
+  static Future <ResponseData> teacherSubjectFetch(Map<String,dynamic> parameters) async {
     var response = await NetworkManager.post(Const.teacherSubjectList, parameters);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
@@ -173,7 +179,7 @@ class DaoManager {
   /// @author: lca
   /// @Date: 2019-09-23
   ///
-  static Future <ResponseData> teacherTaskDetailMicroCourseFetch(Map<String,dynamic> parameters) async {
+  static Future <ResponseData> teacherMicroCourseTaskDetailFetch(Map<String,dynamic> parameters) async {
     var response = await NetworkManager.post(Const.teacherMicroCourse, parameters);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
@@ -248,7 +254,7 @@ class DaoManager {
   /// @author lca
   /// @date 2019-09-24
   ///
-  static Future<ResponseData> teacherQuestionItemsFetch(Map<String,dynamic> parameters,{FormData data}) async {
+  static Future<ResponseData> teacherQuestionItemTaskDetailFetch(Map<String,dynamic> parameters,{FormData data}) async {
     var response = await NetworkManager.post(Const.questionItems, parameters,data: data);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题

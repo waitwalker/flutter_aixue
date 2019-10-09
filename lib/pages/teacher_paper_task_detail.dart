@@ -50,7 +50,7 @@ class _TeacherPaperTaskDetailState extends State<TeacherPaperTaskDetail> {
     super.initState();
     task = widget.task;
 
-    future = DaoManager.teacherQuestionItemsFetch({
+    future = DaoManager.teacherQuestionItemTaskDetailFetch({
       "jid":"9620132",
       "schoolId":"50043",
       "taskId":task.taskId,
