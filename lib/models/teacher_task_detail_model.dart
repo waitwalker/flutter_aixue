@@ -39,15 +39,17 @@ class Data {
   String taskTitle;
   String videoPlayTime;
   String jspUrl;
-  List<UserReplyList> userReplyList;
   String videoUrl;
   int resId;
   String videoPicUrl;
   int isLastPage;
+  String taskContent;
+  String taskAnalytical;
 
   String statisticsUrl;
   int taskInfoType;
-  List<ResourceList> resourceList;
+  List<ResourceList> resourceList;///资源列表
+  List<UserReplyList> userReplyList;///学生作答列表
 
   Data(
       {this.taskId,
