@@ -316,11 +316,14 @@ class Const {
   /// 教师课程列表
   static const String teacherCourseList = "getLessonList.do";
 
-  /// 教师学资源文档
+  /// 教师学资源 / 一般任务
   static const String teacherResource = "getTeacherStudyTaskInfo2.do";
 
   /// 教师微课程
   static const String teacherMicroCourse = "getTeacherLittleTaskInfo2.do";
+
+  /// 教师一般任务
+  static const String teacherGeneral = "getTeacherStudyTaskInfo2.do";
 
   /// 获取个人信息
   static const String personalInformation = "userInfo.do";
