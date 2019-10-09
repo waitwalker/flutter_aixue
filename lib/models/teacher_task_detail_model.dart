@@ -64,6 +64,8 @@ class Data {
         this.statisticsUrl,
         this.resourceList,
         this.taskInfoType,
+        this.taskAnalytical,
+        this.taskContent,
       });
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -73,6 +75,8 @@ class Data {
     jspUrl = json['jspUrl'];
     statisticsUrl = json['statisticsUrl'];
     taskInfoType = json['taskInfoType'];
+    taskAnalytical = json['taskAnalytical'];
+    taskContent = json['taskContent'];
     if (json['userReplyList'] != null) {
       userReplyList = new List<UserReplyList>();
       json['userReplyList'].forEach((v) {
@@ -100,6 +104,8 @@ class Data {
 
     data['statisticsUrl'] = this.statisticsUrl;
     data['taskInfoType'] = this.taskInfoType;
+    data['taskContent'] = this.taskContent;
+    data['taskAnalytical'] = this.taskAnalytical;
 
     if (this.userReplyList != null) {
       data['userReplyList'] =
