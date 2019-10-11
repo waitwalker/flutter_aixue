@@ -524,6 +524,7 @@ class _HomeState extends State<HomePage> {
             }));
             break;
           case ETTTaskSubtype.ETTTaskSubtypeKnowledgeGuidance:
+
             print("知识导学任务");
             break;
           case ETTTaskSubtype.ETTTaskAnswerSheet:
