@@ -6,6 +6,7 @@ import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/class_notice_model.dart';
+import 'package:flutter_aixue/pages/teache_class_notice_detail.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -352,7 +353,7 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
 
       /// 班级通知item点击事件
       onTap: (){
-
+        TeacherClassNoticeDetail(classNotice);
       },
     );
   }
