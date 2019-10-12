@@ -353,7 +353,9 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
 
       /// 班级通知item点击事件
       onTap: (){
-        TeacherClassNoticeDetail(classNotice);
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+          return TeacherClassNoticeDetail(classNotice);
+        }));
       },
     );
   }
