@@ -314,6 +314,15 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
                       child: Image(image: NetworkImage(userReply.userInfo.userPhoto)),
                     )
                 ),
+                Padding(
+                  padding: EdgeInsets.only(left: 20),
+                  child: Column(
+                    children: <Widget>[
+                      Text(userReply.replyName,style: TextStyle(fontSize: 15,color: ETTColor.c1_color),),
+                      Text(userReply.replyTime,style: TextStyle(fontSize: 10,color: Colors.orangeAccent),),
+                    ],
+                  ),
+                ),
               ],
             ),
 
@@ -323,6 +332,9 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
                 child: Text(userReply.replyContent),
               ),
             ),
+
+            Padding(padding: EdgeInsets.only(top: 15)),
+
             Padding(padding: EdgeInsets.only(left: 10,right: 10),
               child: Container(
                 height: 1.0,
