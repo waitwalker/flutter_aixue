@@ -334,8 +334,11 @@ class Const {
   /// 获取试卷中试题数目
   static const String questionItems = "getGroupTaskInfo.do";
 
-  /// 教师获取班级列表
+  /// 教师获取班级通知列表
   static const String classNoticeList = "getActivityList.do";
+
+  /// 教师获取班级通知详情
+  static const String classNoticeDetail = "getActivityInfo.do";
 }
 
 ///
@@ -453,6 +456,10 @@ class NetworkAssistant {
         break;
       case Const.classNoticeList:
         return "https://i.im.etiantian.net/shaishai_2_0_0/shaiDynamic/getActivityList.do";
+        break;
+      case Const.classNoticeDetail:
+        return "https://i.im.etiantian.net/shaishai_2_0_0/shaiDynamic/getActivityInfo.do";
+        break;
       default:
         return "";
         break;
