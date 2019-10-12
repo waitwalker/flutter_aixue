@@ -310,15 +310,17 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
                       width: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(image: NetworkImage(userReply.userInfo.userPhoto),fit: BoxFit.cover),
                       ),
-                      child: Image(image: NetworkImage(userReply.userInfo.userPhoto)),
                     )
                 ),
+
                 Padding(
-                  padding: EdgeInsets.only(left: 20),
+                  padding: EdgeInsets.only(left: 10),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(userReply.replyName,style: TextStyle(fontSize: 15,color: ETTColor.c1_color),),
+                      Text(userReply.userInfo.userName,style: TextStyle(fontSize: 15,color: ETTColor.c1_color),),
                       Text(userReply.replyTime,style: TextStyle(fontSize: 10,color: Colors.orangeAccent),),
                     ],
                   ),
