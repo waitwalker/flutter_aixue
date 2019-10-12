@@ -329,7 +329,7 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
                   children: <Widget>[
                     Text(classNotice.activityTitle,style: TextStyle(fontSize: 13,color: Colors.grey),),
                     IconButton(icon: Icon(Icons.delete_forever,color: ETTColor.c1_color,size: 30,), onPressed: (){
-
+                      /// 班级通知删除事件回调
                     }),
                   ],
                 ),
