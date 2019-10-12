@@ -379,9 +379,13 @@ class _HomeState extends State<HomePage> {
         ),
       ),
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context){
-          return TeacherCourseList();
-        }));
+        if (index == 3) {
+
+        } else {
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+            return TeacherCourseList();
+          }));
+        }
       },
     );
   }
