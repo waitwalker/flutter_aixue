@@ -333,6 +333,9 @@ class Const {
 
   /// 获取试卷中试题数目
   static const String questionItems = "getGroupTaskInfo.do";
+
+  /// 教师获取班级列表
+  static const String classNoticeList = "getActivityList.do";
 }
 
 ///
@@ -448,6 +451,8 @@ class NetworkAssistant {
       case Const.questionItems:
         return "http://school.etiantian.com/aixue31/im2.0?m=getGroupTaskInfo.do";
         break;
+      case Const.classNoticeList:
+        return "https://i.im.etiantian.net/shaishai_2_0_0/shaiDynamic/getActivityList.do";
       default:
         return "";
         break;

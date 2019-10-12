@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/dao/dao.dart';
 
 ///
 /// @name TeacherClassNoticeListPage
@@ -18,6 +19,18 @@ class TeacherClassNoticeListPage extends StatefulWidget {
 class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
 
   Future future;
+
+  @override
+  void initState() {
+    super.initState();
+
+    future = DaoManager.teacherClassNoticeListFetch({
+      "jid":"9620132",
+      "schoolId":"50043",
+      "type":"1",
+      "pageNum":"1",
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
