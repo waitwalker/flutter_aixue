@@ -274,7 +274,7 @@ class DaoManager {
 
   ///
   /// @name teacherClassNoticeListFetch
-  /// @description 班级列表
+  /// @description 班级通知列表
   /// @parameters
   /// @return
   /// @author lca
@@ -296,6 +296,8 @@ class DaoManager {
       throw Exception("个人信息接口请求失败");
     }
   }
+
+  
 
 
 

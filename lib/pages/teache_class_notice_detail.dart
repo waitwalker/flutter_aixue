@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
+import 'package:flutter_aixue/models/class_notice_model.dart';
 
 ///
 /// @name TeacherClassNoticeDetail
@@ -11,6 +12,9 @@ import 'package:flutter_aixue/dao/dao.dart';
 /// @date 2019-10-12
 ///
 class TeacherClassNoticeDetail extends StatefulWidget {
+  final ActivityList activity;
+  TeacherClassNoticeDetail(this.activity);
+
   @override
   State<StatefulWidget> createState() {
     return _TeacherClassNoticeDetailState();
@@ -29,6 +33,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
       "schoolId":"50043",
       "type":"1",
       "pageNum":"1",
+      "activityId":widget.activity.activityId,
     });
   }
 
