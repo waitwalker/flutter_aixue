@@ -37,8 +37,8 @@ class NetworkManager {
   /// @author: lca
   /// @Date: 2019-08-01
   ///
-  static get(url,parameters) async{
-    return await fetch(_baseUrl+url, parameters, null, Options(method:"GET"));
+  static get(interface,parameters) async{
+    return await fetch(interface, parameters, {"Accept": 'application/vnd.github.VERSION.full+json'}, Options(method: 'POST'));
   }
 
   ///

@@ -298,15 +298,15 @@ class DaoManager {
   }
 
   ///
-  /// @name teacherClassNoticeListFetch
-  /// @description 班级通知列表
+  /// @name teacherClassNoticeDetailFetch
+  /// @description 班级通知详情
   /// @parameters
   /// @return
   /// @author lca
   /// @date 2019-10-12
   ///
-  static Future<ResponseData> teacherClassNoticeDetailFetch(Map<String,dynamic> parameters,{FormData data}) async {
-    var response = await NetworkManager.post(Const.classNoticeList, parameters,data: data);
+  static Future<ResponseData> teacherClassNoticeDetailFetch(Map<String,dynamic> parameters) async {
+    var response = await NetworkManager.get(Const.classNoticeDetail,parameters);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
       print("response.data:${response.data}");
