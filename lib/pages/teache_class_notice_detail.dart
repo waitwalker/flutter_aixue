@@ -316,7 +316,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
                 ),
 
                 Padding(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.only(left: 10,top: 15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -328,7 +328,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
               ],
             ),
 
-            Padding(padding: EdgeInsets.only(left: 15,right: 15),
+            Padding(padding: EdgeInsets.only(left: 15,right: 15,top: 15),
               child: Container(
                 alignment: Alignment.centerLeft,
                 child: Text(userReply.replyContent),
