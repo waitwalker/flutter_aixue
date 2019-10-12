@@ -314,7 +314,7 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
                       width: Platform.isIOS ? 220 : 250,
                       child: Text(
                         classNotice.activityTitle,
-                        style: TextStyle(fontSize: 15),
+                        style: TextStyle(fontSize: 18),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -323,11 +323,22 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
                 ),
               ),
 
-              Padding(padding: EdgeInsets.only(top: 50,left: 20,bottom: 20),
+              Padding(
+                padding: EdgeInsets.only(left: 20,top: 10),
+                child: Container(
+                  alignment: Alignment.center,
+                  height: classNotice.activityPic!= null ? 80 : 10,
+                  child: classNotice.activityPic != null ?
+                  Image(image: NetworkImage(classNotice.activityPic),fit: BoxFit.fitHeight,) :
+                  Container(),
+                ),
+              ),
+
+              Padding(padding: EdgeInsets.only(top: 10,left: 20,bottom: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(classNotice.activityTitle,style: TextStyle(fontSize: 13,color: Colors.grey),),
+                    Text(classNotice.activityTime,style: TextStyle(fontSize: 13,color: Colors.grey),),
                     IconButton(icon: Icon(Icons.delete_forever,color: ETTColor.c1_color,size: 30,), onPressed: (){
                       /// 班级通知删除事件回调
                     }),
