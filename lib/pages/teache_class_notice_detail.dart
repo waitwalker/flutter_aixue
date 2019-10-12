@@ -315,7 +315,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(left: 20,top: 10),
-          child: Text(widget.activity.activityTitle),
+          child: Text(widget.activity.activityTitle,style: TextStyle(fontSize: 25,color: ETTColor.c1_color),),
         ),
       ],
     );
