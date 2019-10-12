@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
@@ -79,22 +81,24 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
       case ConnectionState.done:
         if (snapshot.hasError) {
           return _errorChild();
-        }
-        if (snapshot.data != null) {
-          ResponseData responseData = snapshot.data;
-          if (responseData.result && responseData.model != null) {
-            ClassNoticeModel classNoticeModel = responseData.model;
-            classNoticeList = classNoticeModel.data.activityList;
+        } else {
+          if (snapshot.data != null) {
+            ResponseData responseData = snapshot.data;
+            if (responseData.result && responseData.model != null) {
+              ClassNoticeModel classNoticeModel = responseData.model;
+              classNoticeList = classNoticeModel.data.activityList;
+            } else {
+              return _errorChild();
+            }
+            return _normalChild();
           } else {
             return _errorChild();
           }
-          return _normalChild();
-        } else {
-          return _errorChild();
         }
-
+        break;
       default :
         return _activeChild();
+        break;
     }
   }
 
@@ -278,7 +282,7 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
   }
 
   Widget _itemBuilder(BuildContext context, int index) {
-    LastTaskList lastTask = lastTaskList[index];
+    ActivityList classNotice = classNoticeList[index];
     return GestureDetector(
       child: Padding(
         padding: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 30),
@@ -309,7 +313,7 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
                     Container(
                       width: Platform.isIOS ? 220 : 250,
                       child: Text(
-                        lastTask.taskName,
+                        classNotice.activityTitle,
                         style: TextStyle(fontSize: 15),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -323,11 +327,11 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(lastTask.dateHint,style: TextStyle(fontSize: 13,color: Colors.grey),),
+                    Text(classNotice.activityTitle,style: TextStyle(fontSize: 13,color: Colors.grey),),
 
                     Row(
                       children: <Widget>[
-                        Text(lastTask.scaleHint,style: TextStyle(fontSize: 13,color: Colors.grey),),
+                        Text(classNotice.activityTitle,style: TextStyle(fontSize: 13,color: Colors.grey),),
                         Padding(padding: EdgeInsets.only(left: 10,right: 20),
                           child: Icon(Icons.account_box,size: 20,color: Colors.grey,),
                         ),
@@ -341,99 +345,9 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
         ),
       ),
 
-      /// 任务详情路由
+      ///
       onTap: (){
-        switch (lastTask.kTaskSubtype) {
-          case ETTTaskSubtype.ETTTaskSubtypeResourceStudy:
-          /// pad上教师发布的微课任务就是学资源任务中的视频任务
-            print("学资源任务");
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherResourceTaskDetailPage(lastTask);
-            }));
-            break;
-          case ETTTaskSubtype.ETTTaskSubtypeDiscussion:
-            print("讨论任务");
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherDiscussionTaskDetail(lastTask);
-            }));
-            break;
-          case ETTTaskSubtype.ETTTaskSubtypeWebviewObjectiveItem:
-            print("单选多选等任务");
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherPaperItemTaskDetail(lastTask);
-            }));
-            break;
-          case ETTTaskSubtype.ETTTaskSubtypePaperTest:
-          /// 这里包括测验任务
-            print("成卷测试任务");
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherPaperTaskDetail(lastTask);
-            }));
-            break;
-          case ETTTaskSubtype.ETTTaskSubtypeAutonomyTest:
-          /// 这种任务已经取消
-            print("自主测试任务");
-            break;
-          case ETTTaskSubtype.ETTTaskSubtypeMicroCourse:
-            print("微课程任务");
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherMicroCoursePage(lastTask);
-            }));
-            break;
-          case ETTTaskSubtype.ETTTaskSubtypeRegularTaskVoice:
-            print("一般任务语音");
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherGeneralTaskDetailPage(lastTask);
-            }));
-            break;
-          case ETTTaskSubtype.ETTTaskSubtypeRegularTaskPicture:
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherGeneralTaskDetailPage(lastTask);
-            }));
-            print("一般任务图片");
-            break;
-          case ETTTaskSubtype.ETTTaskSubtypeRegularTaskText:
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherGeneralTaskDetailPage(lastTask);
-            }));
-            print("一般任务文本");
-            break;
-          case ETTTaskSubtype.ETTTaskSubtypeLiveCourse:
-            print("直播任务");
-            break;
-          case ETTTaskSubtype.ETTTaskSubtypeWebviewSubjectiveItem:
-            print("主观题任务");
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherPaperItemTaskDetail(lastTask);
-            }));
-            break;
-          case ETTTaskSubtype.ETTTaskSubtypeKnowledgeGuidance:
 
-            print("知识导学任务");
-            break;
-          case ETTTaskSubtype.ETTTaskAnswerSheet:
-            print("答题卡任务");
-            break;
-          case ETTTaskSubtype.ETTTaskAISingle:
-          /// 已取消
-            print("AI单项任务");
-            break;
-          case ETTTaskSubtype.ETTTaskAIStudyPlan:
-          /// 已取消
-            print("AI学习计划任务");
-            break;
-          case ETTTaskSubtype.ETTTaskHoneycomb:
-          /// 蜂巢任务
-            print("蜂巢任务");
-
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return TeacherPersonalizedTaskDetail(lastTask);
-            }));
-            break;
-          case ETTTaskSubtype.ETTTaskSingSound:
-            print("先声任务");
-            break;
-        }
       },
     );
   }
