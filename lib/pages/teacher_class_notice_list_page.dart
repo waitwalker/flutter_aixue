@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
+import 'package:flutter_aixue/models/class_notice_model.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 ///
 /// @name TeacherClassNoticeListPage
@@ -20,6 +23,10 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
 
   Future future;
 
+  List<ActivityList> classNoticeList = [];
+
+  /// 刷新
+  RefreshController _refreshController = RefreshController(initialRefresh: true);
   @override
   void initState() {
     super.initState();
@@ -72,7 +79,19 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
         if (snapshot.hasError) {
           return _errorChild();
         }
-        return _normalChild();
+        if (snapshot.data != null) {
+          ResponseData responseData = snapshot.data;
+          if (responseData.result && responseData.model != null) {
+            ClassNoticeModel classNoticeModel = responseData.model;
+
+          } else {
+            return _errorChild();
+          }
+          return _normalChild();
+        } else {
+          return _errorChild();
+        }
+
       default :
         return _activeChild();
     }
@@ -206,10 +225,68 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
       ),
       body: Column(
         children: <Widget>[
-          Text("请求正常"),
+          Expanded(
+            child:SmartRefresher(
+              enablePullDown: true,
+              enablePullUp: true,
+              header: WaterDropHeader(
+                waterDropColor: Colors.lightGreen,
+              ),
+              footer: CustomFooter(
+                builder: (BuildContext context,LoadStatus mode){
+                  Widget body ;
+                  if(mode==LoadStatus.idle){
+                    body =  Text("pull up load");
+                  }
+                  else if(mode==LoadStatus.loading){
+                    body =  CupertinoActivityIndicator();
+                  }
+                  else if(mode == LoadStatus.failed){
+                    body = Text("Load Failed!Click retry!");
+                  } else if(mode == LoadStatus.noMore) {
+                    body = Text("没有更多了",style: TextStyle(color: Colors.grey,fontSize: 13),);
+                  }
+                  else{
+                    body = Text("No more Data");
+                  }
+                  return Container(
+                    height: 55.0,
+                    child: Center(child:body),
+                  );
+                },
+              ),
+              controller: _refreshController,
+              onRefresh: (){
+                _onRefresh(_refreshController, []);
+              },
+              child: StaggeredGridView.countBuilder(
+                crossAxisCount: 6,
+                itemCount: lastTaskList.length,
+                mainAxisSpacing: 0,
+                crossAxisSpacing: 0,
+                itemBuilder: _taskItemBuilder,
+                staggeredTileBuilder: (int index){
+                  return StaggeredTile.fit(2);
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  /// 刷新
+  void _onRefresh(RefreshController controller, List<String> data) async {
+    if (mounted) {
+      future = DaoManager.teacherClassNoticeListFetch({
+        "jid":"9620132",
+        "schoolId":"50043",
+        "type":"1",
+        "pageNum":"1",
+      });
+    }
+    controller.refreshCompleted();
   }
 
 }
