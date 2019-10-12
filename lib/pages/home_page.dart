@@ -531,12 +531,16 @@ class _HomeState extends State<HomePage> {
             print("答题卡任务");
             break;
           case ETTTaskSubtype.ETTTaskAISingle:
+            /// 已取消
             print("AI单项任务");
             break;
           case ETTTaskSubtype.ETTTaskAIStudyPlan:
+            /// 已取消
             print("AI学习计划任务");
             break;
           case ETTTaskSubtype.ETTTaskHoneycomb:
+
+            /// 蜂巢任务
             print("蜂巢任务");
             break;
           case ETTTaskSubtype.ETTTaskSingSound:
