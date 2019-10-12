@@ -28,6 +28,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
 
   ClassNoticeDetailModel detailModel;
   RefreshController _refreshController = RefreshController(initialRefresh: true);
+  TextEditingController commentController = TextEditingController();
   @override
   void initState() {
     super.initState();
