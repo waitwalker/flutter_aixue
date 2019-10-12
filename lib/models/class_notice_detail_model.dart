@@ -91,9 +91,16 @@ class SecondaryReplyList {
   UserInfo userInfo;
   String replyTime;
   int replyId;
+  int replyJid;
+  String replyName;
 
   SecondaryReplyList(
-      {this.replyContent, this.userInfo, this.replyTime, this.replyId});
+      {this.replyContent,
+        this.userInfo,
+        this.replyTime,
+        this.replyId,
+        this.replyJid,
+        this.replyName});
 
   SecondaryReplyList.fromJson(Map<String, dynamic> json) {
     replyContent = json['replyContent'];
@@ -102,6 +109,8 @@ class SecondaryReplyList {
         : null;
     replyTime = json['replyTime'];
     replyId = json['replyId'];
+    replyJid = json['replyJid'];
+    replyName = json['replyName'];
   }
 
   Map<String, dynamic> toJson() {
@@ -112,6 +121,8 @@ class SecondaryReplyList {
     }
     data['replyTime'] = this.replyTime;
     data['replyId'] = this.replyId;
+    data['replyJid'] = this.replyJid;
+    data['replyName'] = this.replyName;
     return data;
   }
 }
