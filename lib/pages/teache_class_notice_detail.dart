@@ -218,6 +218,55 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
             Navigator.pop(context);
           },
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.comment,size: 24,color: Colors.orangeAccent,),
+            onPressed: (){
+              showDialog(barrierDismissible: false,context: context,builder: (BuildContext context){
+                return GestureDetector(
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Padding(padding: EdgeInsets.only(left: 0.6 * MediaQuery.of(context).size.width,bottom: 0.85 * MediaQuery.of(context).size.height),
+                      child: Container(
+                        height: 200,
+                        width: 0.4 * MediaQuery.of(context).size.width,
+                        color: ETTColor.background_color,
+                        child: Padding(padding: EdgeInsets.only(left: 20,top: 15,bottom: 10),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                width: 0.4 * MediaQuery.of(context).size.width - 120,
+                                child: CupertinoTextField(
+                                  controller: commentController,
+                                  placeholder: "输入内容",
+                                  autofocus: true,
+                                  maxLines: 5,
+                                  maxLength: 300,
+                                ),
+                              ),
+                              Padding(padding: EdgeInsets.only(left: 5),
+                                child: RaisedButton(
+                                  child: Icon(Icons.send,size: 30,color: ETTColor.c1_color,),
+                                  onPressed: (){
+                                    print("评论的内容:${commentController.text}");
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              });
+            },
+          ),
+        ],
       ),
       body: Row(
         children: <Widget>[
