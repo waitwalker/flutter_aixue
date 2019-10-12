@@ -28,7 +28,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
   void initState() {
     super.initState();
 
-    future = DaoManager.teacherClassNoticeListFetch({
+    future = DaoManager.teacherClassNoticeDetailFetch({
       "jid":"9620132",
       "schoolId":"50043",
       "type":"1",
