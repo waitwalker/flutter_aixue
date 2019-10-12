@@ -4,6 +4,7 @@ import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/class_notice_model.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 ///
 /// @name TeacherClassNoticeDetail
@@ -221,6 +222,95 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
           ),
         ],
       ),
+    );
+  }
+
+  ///
+  /// @name futureDoneChild
+  /// @description 请求完成的Widget
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-09-11
+  ///
+  Widget futureDoneChild(ResourceList resource) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("学资源-文档"),
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back_ios),
+          onTap: (){
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Row(
+        children: <Widget>[
+
+          /// 左边
+          Container(
+            width: 0.6 * MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                border: Border(right: BorderSide(color: Colors.lightBlue,width: 2.0))
+            ),
+            child: leftChild(resource),
+          ),
+
+          /// 右边
+          Container(
+            width: 0.4 * MediaQuery.of(context).size.width,
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child:SmartRefresher(
+                    enablePullDown: true,
+                    enablePullUp: true,
+                    header: WaterDropHeader(
+                      waterDropColor: Colors.lightGreen,
+                    ),
+                    footer: CustomFooter(
+                      builder: (BuildContext context,LoadStatus mode){
+                        Widget body ;
+                        if(mode==LoadStatus.idle){
+                          body =  Text("pull up load");
+                        }
+                        else if(mode==LoadStatus.loading){
+                          body =  CupertinoActivityIndicator();
+                        }
+                        else if(mode == LoadStatus.failed){
+                          body = Text("Load Failed!Click retry!");
+                        } else if(mode == LoadStatus.noMore) {
+                          body = Text("没有更多了",style: TextStyle(color: Colors.grey,fontSize: 13),);
+                        }
+                        else{
+                          body = Text("No more Data");
+                        }
+                        return Container(
+                          height: 55.0,
+                          child: Center(child:body),
+                        );
+                      },
+                    ),
+                    controller: _refreshController,
+                    onRefresh: (){
+                      _onRefresh(_refreshController);
+                    },
+                    child: ListView.builder(
+                      itemCount: userReplyList.length,
+                      itemBuilder: _itemBuilder,),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _leftColumn() {
+    return Column(
+      
     );
   }
 }
