@@ -271,7 +271,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
                       _onRefresh(_refreshController);
                     },
                     child: ListView.builder(
-                      itemCount: detailModel.data.secondaryReplyList.length,
+                      itemCount: detailModel.data.secondaryReplyList != null ? detailModel.data.secondaryReplyList.length : 0,
                       itemBuilder: _itemBuilder,),
                   ),
                 ),
@@ -289,8 +289,15 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
     controller.refreshCompleted();
   }
 
+  ///
+  /// @name _itemBuilder
+  /// @description 回复卡片
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-12
+  ///
   Widget _itemBuilder(BuildContext context, int index) {
-
     SecondaryReplyList userReply = detailModel.data.secondaryReplyList[index];
     return Padding(
       padding: EdgeInsets.all(15),
