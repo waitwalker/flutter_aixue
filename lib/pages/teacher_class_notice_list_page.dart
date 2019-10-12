@@ -302,11 +302,11 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
                     Container(
                       height: 40,
                       width: 40,
-                      child: Icon(Icons.book,color: Colors.white,),
+                      child: Icon(Icons.add_alert,color: Colors.white,size: 30,),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 2,blurRadius: 2,offset: Offset(0, 2))],
-                        color: Colors.lightBlue,
+                        color: Colors.orangeAccent,
                       ),
                     ),
                     Padding(padding: EdgeInsets.only(left: 20)),
