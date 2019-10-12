@@ -324,12 +324,12 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
               ),
 
               Padding(
-                padding: EdgeInsets.only(left: 20,top: 10),
+                padding: EdgeInsets.only(left: 20,top: 10,right: 20),
                 child: Container(
                   alignment: Alignment.center,
                   height: classNotice.activityPic!= null ? 80 : 10,
                   child: classNotice.activityPic != null ?
-                  Image(image: NetworkImage(classNotice.activityPic),fit: BoxFit.fitHeight,) :
+                  Image(image: NetworkImage(classNotice.activityPic),fit: BoxFit.fitWidth,) :
                   Container(),
                 ),
               ),
