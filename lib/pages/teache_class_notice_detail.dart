@@ -27,6 +27,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
   Future future;
 
   ClassNoticeDetailModel detailModel;
+  RefreshController _refreshController = RefreshController(initialRefresh: true);
   @override
   void initState() {
     super.initState();
@@ -83,10 +84,12 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
           if (snapshot.data != null) {
             ResponseData responseData = snapshot.data;
             if (responseData.result && responseData.model != null) {
+              ClassNoticeDetailModel detail = responseData.model;
+              detailModel = detail;
+              return _normalChild(detailModel);
             } else {
               return _errorChild();
             }
-            return _normalChild();
           } else {
             return _errorChild();
           }
@@ -199,43 +202,13 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
 
   ///
   /// @name _normalChild
-  /// @description 请求正常站位
-  /// @parameters
-  /// @return
-  /// @author lca
-  /// @date 2019-10-12
-  ///
-  Widget _normalChild() {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("班级通知详情"),
-        leading: GestureDetector(
-          child: Icon(Icons.arrow_back_ios),
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: IconButton(icon: Icon(Icons.data_usage), onPressed: () {
-              print("单题任务页面 统计按钮");
-            },),
-          ),
-        ],
-      ),
-    );
-  }
-
-  ///
-  /// @name futureDoneChild
   /// @description 请求完成的Widget
   /// @parameters
   /// @return
   /// @author lca
   /// @date 2019-09-11
   ///
-  Widget futureDoneChild(ClassNoticeDetailModel detailModel) {
+  Widget _normalChild(ClassNoticeDetailModel detailModel) {
     return Scaffold(
       appBar: AppBar(
         title: Text("学资源-文档"),
@@ -298,7 +271,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
                       _onRefresh(_refreshController);
                     },
                     child: ListView.builder(
-                      itemCount: userReplyList.length,
+                      itemCount: detailModel.data.secondaryReplyList.length,
                       itemBuilder: _itemBuilder,),
                   ),
                 ),
@@ -306,6 +279,59 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// 刷新
+  void _onRefresh(RefreshController controller) async {
+//    _fetchCourse(currentSubject);
+    controller.refreshCompleted();
+  }
+
+  Widget _itemBuilder(BuildContext context, int index) {
+
+    SecondaryReplyList userReply = detailModel.data.secondaryReplyList[index];
+    return Padding(
+      padding: EdgeInsets.all(15),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Color(0xFFF2F7FF),
+            borderRadius: BorderRadius.circular(5),
+            boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.3),offset: Offset(0, 3),blurRadius: 3,spreadRadius: 3)]
+        ),
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Padding(padding: EdgeInsets.only(left: 10,top: 10),
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Image(image: NetworkImage(userReply.userInfo.userPhoto)),
+                    )
+                ),
+              ],
+            ),
+
+            Padding(padding: EdgeInsets.only(left: 15,right: 15),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(userReply.replyContent),
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(left: 10,right: 10),
+              child: Container(
+                height: 1.0,
+                color: Colors.grey,
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(top: 15)),
+          ],
+        ),
       ),
     );
   }
