@@ -211,7 +211,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
   Widget _normalChild(ClassNoticeDetailModel detailModel) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("学资源-文档"),
+        title: Text("班级通知详情"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios),
           onTap: (){
