@@ -328,15 +328,9 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(classNotice.activityTitle,style: TextStyle(fontSize: 13,color: Colors.grey),),
+                    IconButton(icon: Icon(Icons.delete_forever,color: ETTColor.c1_color,size: 30,), onPressed: (){
 
-                    Row(
-                      children: <Widget>[
-                        Text(classNotice.activityTitle,style: TextStyle(fontSize: 13,color: Colors.grey),),
-                        Padding(padding: EdgeInsets.only(left: 10,right: 20),
-                          child: Icon(Icons.account_box,size: 20,color: Colors.grey,),
-                        ),
-                      ],
-                    ),
+                    }),
                   ],
                 ),
               ),
