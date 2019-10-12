@@ -317,6 +317,16 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
           padding: EdgeInsets.only(left: 20,top: 10),
           child: Text(widget.activity.activityTitle,style: TextStyle(fontSize: 25,color: ETTColor.c1_color),),
         ),
+        
+        Padding(
+          padding: EdgeInsets.only(top: 10,left: 20,right: 20),
+          child: widget.activity.activityPic != null ? 
+          Image(image: NetworkImage(widget.activity.activityPic)) :
+          Container(),
+        ),
+        Padding(padding: EdgeInsets.only(top: 10,left: 20),
+          child: Text(detailModel.data.replyContent,style: TextStyle(fontSize: 20,color: Colors.black54),),
+        ),
       ],
     );
   }
