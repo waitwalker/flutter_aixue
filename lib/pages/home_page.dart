@@ -10,6 +10,7 @@ import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
+import 'package:flutter_aixue/pages/teacher_class_notice_list_page.dart';
 import 'package:flutter_aixue/pages/teacher_discussion_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_general_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_paper_item_task_detail.dart';
@@ -380,7 +381,9 @@ class _HomeState extends State<HomePage> {
       ),
       onTap: (){
         if (index == 3) {
-
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+            return TeacherClassNoticeListPage();
+          }));
         } else {
           Navigator.push(context, MaterialPageRoute(builder: (context){
             return TeacherCourseList();
