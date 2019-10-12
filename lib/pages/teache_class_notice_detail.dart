@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
+import 'package:flutter_aixue/models/class_notice_detail_model.dart';
 import 'package:flutter_aixue/models/class_notice_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -25,6 +26,7 @@ class TeacherClassNoticeDetail extends StatefulWidget {
 class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
   Future future;
 
+  ClassNoticeDetailModel detailModel;
   @override
   void initState() {
     super.initState();
@@ -233,7 +235,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
   /// @author lca
   /// @date 2019-09-11
   ///
-  Widget futureDoneChild(ResourceList resource) {
+  Widget futureDoneChild(ClassNoticeDetailModel detailModel) {
     return Scaffold(
       appBar: AppBar(
         title: Text("学资源-文档"),
@@ -253,7 +255,7 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
             decoration: BoxDecoration(
                 border: Border(right: BorderSide(color: Colors.lightBlue,width: 2.0))
             ),
-            child: leftChild(resource),
+            child: _leftColumn(detailModel),
           ),
 
           /// 右边
@@ -308,9 +310,14 @@ class _TeacherClassNoticeDetailState extends State<TeacherClassNoticeDetail> {
     );
   }
 
-  Widget _leftColumn() {
+  Widget _leftColumn(ClassNoticeDetailModel detailModel) {
     return Column(
-      
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 20,top: 10),
+          child: Text(widget.activity.activityTitle),
+        ),
+      ],
     );
   }
 }
