@@ -4,6 +4,7 @@ import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/class_notice_model.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 ///
@@ -83,7 +84,7 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
           ResponseData responseData = snapshot.data;
           if (responseData.result && responseData.model != null) {
             ClassNoticeModel classNoticeModel = responseData.model;
-
+            classNoticeList = classNoticeModel.data.activityList;
           } else {
             return _errorChild();
           }
@@ -261,7 +262,7 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
               },
               child: StaggeredGridView.countBuilder(
                 crossAxisCount: 6,
-                itemCount: lastTaskList.length,
+                itemCount: classNoticeList.length,
                 mainAxisSpacing: 0,
                 crossAxisSpacing: 0,
                 itemBuilder: _taskItemBuilder,
