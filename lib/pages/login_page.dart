@@ -8,6 +8,12 @@ import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/pages/home_page.dart';
 
 
+///
+/// @name LoginPage
+/// @description 登录页
+/// @author lca
+/// @date 2019-10-15
+///
 class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
