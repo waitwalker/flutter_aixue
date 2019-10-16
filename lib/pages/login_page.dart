@@ -548,6 +548,14 @@ class DialogContentState extends State<DialogContent> {
     );
   }
 
+  ///
+  /// @name phoneContainer
+  /// @description 手机号容器
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-16
+  ///
   Widget phoneContainer() {
     if (_nextStepTitle == "下一步") {
       return Padding(padding: EdgeInsets.only(left: 20,top: 40),
