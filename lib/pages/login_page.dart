@@ -34,7 +34,6 @@ class LoginState extends State<LoginPage> {
     super.initState();
   }
 
-
   @override
   void dispose() {
     super.dispose();
