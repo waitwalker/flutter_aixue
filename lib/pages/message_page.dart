@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-
+///
+/// @name MessagePage
+/// @description 消息页面
+/// @author lca
+/// @date 2019-10-18
+///
 class MessagePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
