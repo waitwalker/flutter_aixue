@@ -349,6 +349,14 @@ class _HomeState extends State<HomePage> {
     );
   }
 
+  ///
+  /// @name _itemBuilder
+  /// @description item 控件
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-18
+  ///
   Widget _itemBuilder(BuildContext context, int index) {
     Map map = itemArray[index];
     return GestureDetector(
