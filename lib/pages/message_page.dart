@@ -73,6 +73,12 @@ class _MessageState extends State<MessagePage> {
   }
 }
 
+///
+/// @name 聊天model
+/// @description 
+/// @author lca
+/// @date 2019-10-21
+///
 class ChatModel {
   final String avatarUrl;
   final String name;
