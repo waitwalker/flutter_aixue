@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
-import 'package:flutter_aixue/common/toast/toast.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/pages/home_page.dart';
 
