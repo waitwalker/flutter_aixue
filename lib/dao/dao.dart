@@ -1,6 +1,4 @@
-
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
