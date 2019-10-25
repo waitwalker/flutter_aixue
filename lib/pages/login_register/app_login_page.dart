@@ -46,6 +46,7 @@ class LoginState extends State<AppLoginPage> {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("lib/resources/images/login_bg.png"),
+          fit: BoxFit.fill
         )
       ),
 
