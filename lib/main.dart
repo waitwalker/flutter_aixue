@@ -4,7 +4,7 @@ import 'package:flutter_aixue/common/locale/localizations_delegate.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/theme/theme_manager.dart';
 import 'package:flutter_aixue/pages/teacher_app/home_page.dart';
-import 'package:flutter_aixue/pages/teacher_app/login_page.dart';
+import 'package:flutter_aixue/pages/login_register/login_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/splash_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
