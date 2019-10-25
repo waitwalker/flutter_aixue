@@ -16,7 +16,7 @@ import 'package:flutter_aixue/pages/teacher_app/teacher_general_task_detail.dart
 import 'package:flutter_aixue/pages/teacher_app/teacher_paper_item_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_paper_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_app/message_page.dart';
-import 'package:flutter_aixue/pages/teacher_app/personal_information_page.dart';
+import 'package:flutter_aixue/pages/teacher_app/teacher_personal_information_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/setting_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_course_list.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_micro_course_page.dart';
@@ -247,13 +247,13 @@ class _HomeState extends State<HomePage> {
                 return MessagePage();
                 break;
               case 1:
-                return PersonalInformationPage();
+                return TeacherPersonalInformationPage();
                 break;
               case 2:
                 return SettingPage();
                 break;
               default:
-                return PersonalInformationPage();
+                return TeacherPersonalInformationPage();
                 break;
             }
           }));

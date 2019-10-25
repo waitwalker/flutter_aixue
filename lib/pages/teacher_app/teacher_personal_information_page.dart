@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'dart:math';
-
 import 'package:dio/dio.dart';
 import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +10,19 @@ import 'package:flutter_aixue/models/personal_information_model.dart';
 import 'package:image_picker/image_picker.dart';
 
 ///
-/// @name PersonalInformationPage
+/// @name TeacherPersonalInformationPage
 /// @description 个人信息
 /// @author lca
 /// @date 2019-09-20
 ///
-class PersonalInformationPage extends StatefulWidget {
+class TeacherPersonalInformationPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _PersonState();
   }
 }
 
-class _PersonState extends State<PersonalInformationPage> {
+class _PersonState extends State<TeacherPersonalInformationPage> {
 
   /// 个人信息model
   PersonalInformationModel personalInformationModel;
