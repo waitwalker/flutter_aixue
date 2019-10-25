@@ -13,14 +13,14 @@ import 'package:flutter_aixue/pages/teacher_app/teacher_home_page.dart';
 /// @author lca
 /// @date 2019-10-15
 ///
-class LoginPage extends StatefulWidget {
+class AppLoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return LoginState();
   }
 }
 
-class LoginState extends State<LoginPage> {
+class LoginState extends State<AppLoginPage> {
 
   TextEditingController accountController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
