@@ -15,7 +15,7 @@ import 'package:flutter_aixue/pages/teacher_app/teacher_discussion_task_detail.d
 import 'package:flutter_aixue/pages/teacher_app/teacher_general_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_paper_item_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_paper_task_detail.dart';
-import 'package:flutter_aixue/pages/teacher_app/message_page.dart';
+import 'package:flutter_aixue/pages/teacher_app/teacher_message_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_personal_information_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/setting_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_course_list.dart';
@@ -27,19 +27,19 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 ///
-/// @name 首页
-/// @description 
+/// @name TeacherHomePage
+/// @description 教师首页
 /// @author lca
 /// @date 2019-09-11
 ///
-class HomePage extends StatefulWidget {
+class TeacherHomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _HomeState();
   }
 }
 
-class _HomeState extends State<HomePage> {
+class _HomeState extends State<TeacherHomePage> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -244,7 +244,7 @@ class _HomeState extends State<HomePage> {
           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
             switch (index) {
               case 0:
-                return MessagePage();
+                return TeacherMessagePage();
                 break;
               case 1:
                 return TeacherPersonalInformationPage();

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
-import 'package:flutter_aixue/pages/teacher_app/home_page.dart';
+import 'package:flutter_aixue/pages/teacher_app/teacher_home_page.dart';
 
 
 ///
@@ -182,7 +182,7 @@ class LoginState extends State<LoginPage> {
                     if (SingletonManager.sharedInstance.loginModel.result == 1) {
                       print("登录成功");
                       Navigator.push(context, MaterialPageRoute(builder: (context){
-                        return HomePage();
+                        return TeacherHomePage();
                       }));
                     } else {
                       print("登录异常:${SingletonManager.sharedInstance.loginModel.msg}");

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_aixue/common/locale/localizations_delegate.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/theme/theme_manager.dart';
-import 'package:flutter_aixue/pages/teacher_app/home_page.dart';
+import 'package:flutter_aixue/pages/teacher_app/teacher_home_page.dart';
 import 'package:flutter_aixue/pages/login_register/login_page.dart';
 import 'package:flutter_aixue/pages/launch/splash_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -374,7 +374,7 @@ class App extends StatelessWidget {
           locale: store.state.locale,
           supportedLocales: [store.state.locale,Locale('zh', 'Hans'),],
           theme: store.state.theme.themeData,
-          home: MTTLocalizations(child: HomePage(),),
+          home: MTTLocalizations(child: TeacherHomePage(),),
           routes: <String, WidgetBuilder>{
             "login": (BuildContext context) => LoginPage(),
           },
