@@ -374,7 +374,7 @@ class App extends StatelessWidget {
           locale: store.state.locale,
           supportedLocales: [store.state.locale,Locale('zh', 'Hans'),],
           theme: store.state.theme.themeData,
-          home: MTTLocalizations(child: TeacherHomePage(),),
+          home: MTTLocalizations(child: SplashPage(),),
           routes: <String, WidgetBuilder>{
             "login": (BuildContext context) => AppLoginPage(),
           },

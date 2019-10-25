@@ -169,13 +169,6 @@ packages:
       url: "https://github.com/LiuC520/flutter_drag_scale.git"
     source: git
     version: "0.0.1"
-  flutter_ijkplayer:
-    dependency: "direct main"
-    description:
-      name: flutter_ijkplayer
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.3"
   flutter_inner_drawer:
     dependency: "direct main"
     description:

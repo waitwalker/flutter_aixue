@@ -11,17 +11,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
 
 ///
-/// @Class: AnimatedSplashScreen
+/// @Class: SplashPage
 /// @Description: 启动动画页
 /// @author: lca
 /// @Date: 2019-08-06
 ///
-class AnimatedSplashScreen extends StatefulWidget {
+class SplashPage extends StatefulWidget {
   @override
   SplashScreenState createState() => SplashScreenState();
 }
 
-class SplashScreenState extends State<AnimatedSplashScreen>
+class SplashScreenState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
   int themeIndex = 0;
   int localeIndex = 0;
@@ -57,6 +57,8 @@ class SplashScreenState extends State<AnimatedSplashScreen>
   }
 
   void navigationPage() {
+
+
     Navigator.push(context, MaterialPageRoute(builder: (context){
       return AppLoginPage();
     }));

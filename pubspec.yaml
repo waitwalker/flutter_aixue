@@ -113,7 +113,7 @@ dependencies:
 
   video_player: ^0.10.2+1
 
-  flutter_ijkplayer: ^0.3.3
+  #flutter_ijkplayer: ^0.3.4
 
   image_picker: ^0.6.1+4
 
