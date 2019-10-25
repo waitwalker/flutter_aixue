@@ -6,6 +6,12 @@ import 'package:flutter_aixue/common/color/color.dart';
 
 enum PlayerState { stopped, playing, paused }
 
+///
+/// @name 音频播放组件
+/// @description 
+/// @author lca
+/// @date 2019-10-25
+///
 class AudioPlayerWidget extends StatefulWidget {
   final String url;
   final bool isLocal;
