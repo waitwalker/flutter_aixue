@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
-import 'package:flutter_aixue/pages/home_page.dart';
-import 'package:flutter_aixue/pages/message_page.dart';
-import 'package:flutter_aixue/pages/setting_page.dart';
+import 'package:flutter_aixue/pages/teacher_app/home_page.dart';
+import 'package:flutter_aixue/pages/teacher_app/message_page.dart';
+import 'package:flutter_aixue/pages/teacher_app/setting_page.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 

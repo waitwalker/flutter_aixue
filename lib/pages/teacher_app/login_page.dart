@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
-import 'package:flutter_aixue/pages/home_page.dart';
+import 'package:flutter_aixue/pages/teacher_app/home_page.dart';
 
 
 ///
