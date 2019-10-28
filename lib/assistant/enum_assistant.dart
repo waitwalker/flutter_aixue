@@ -1,4 +1,4 @@
-// 任务类型
+/// 任务类型
 enum ETTTaskType {
   ETTTaskTypeResourceStudy            ,//资源学习
   ETTTaskTypeInteractionCommunication ,//互动交流
@@ -10,7 +10,7 @@ enum ETTTaskType {
   ETTTaskTypeRegularTask              ,//一般任务
 }
 
-// 任务子类型
+/// 任务子类型
 enum ETTTaskSubtype {
   ETTTaskSubtypeResourceStudy             ,//资源学习类 包括（文档类任务，声音类任务，图片类，视频类/远程高清类）
   ETTTaskSubtypeDiscussion                ,//讨论
@@ -29,4 +29,11 @@ enum ETTTaskSubtype {
   ETTTaskAIStudyPlan                      ,//AI任务 学习计划
   ETTTaskHoneycomb                        ,//蜂巢任务
   ETTTaskSingSound                        ,//先声任务
+}
+
+/// 登录类型
+enum ETTLoginType {
+  ETTLoginTypeAccount,  /// 账号密码登录
+  ETTLoginTypeToken,    /// token登录
+  ETTLoginTypeThird,    /// 第三方登录
 }

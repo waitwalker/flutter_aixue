@@ -182,6 +182,9 @@ class LoginState extends State<AppLoginPage> {
                   if (response.result && response.model != null && SingletonManager.sharedInstance.loginModel != null) {
                     if (SingletonManager.sharedInstance.loginModel.result == 1) {
                       print("登录成功");
+
+
+
                       Navigator.push(context, MaterialPageRoute(builder: (context){
                         return TeacherHomePage();
                       }));
@@ -381,14 +384,18 @@ class LoginState extends State<AppLoginPage> {
               ),
             ),
           ),
-
         ],
       ),
-
     );
   }
 }
 
+///
+/// @name DialogContent
+/// @description 获取验证码容器
+/// @author lca
+/// @date 2019-10-28
+///
 class DialogContent extends StatefulWidget {
   DialogContent({Key key,}) : super(key: key);
 
