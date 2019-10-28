@@ -34,6 +34,25 @@ final String kCurrentLoginTime = "current_login_time"; ///本次登录时间
 ///
 class DataBaseManager {
 
+  ///
+  /// @name instance
+  /// @description 单例模式
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-28
+  ///
+  static final DataBaseManager instance = DataBaseManager.internal();
+  factory DataBaseManager() {
+    return instance;
+  }
+  DataBaseManager.internal();
+
+  static Database _database;
+
+
+
+
   Database db;
   /// 打开数据库
   open() async{
