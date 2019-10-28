@@ -182,9 +182,13 @@ class DataBaseManager {
 /// @date 2019-10-28
 ///
 class LoginDatabaseModel {
-  int recognizeId; /// id
-  int recognizeType; /// 识别类型
-  String recognizeTypeName; /// 识别类型名称
+  int id; /// id
+  String jid; /// jid
+  int login_type; /// 登录类型
+  String account; /// 账号
+  String password; /// 密码
+  String last_login_time; /// 上次登录时间
+  String current_login_time; /// 本次次登录时间
   String recognizeContent; /// 识别内容
   String recognizeTime; /// 识别时间
   bool isSelected = false;
