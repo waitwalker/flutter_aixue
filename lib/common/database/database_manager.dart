@@ -194,19 +194,19 @@ class DataBaseManager {
     return result;
   }
 
-  /// 更新
-  Future<int> update(LoginDatabaseModel recognizeModel) async {
-    return await db.update(
-        kTableName,
-        recognizeModel.toMap(),
-        where: '$kRecognizeId = ?',
-        whereArgs: [recognizeModel.recognizeId]);
+  ///
+  /// @name closeDatabase
+  /// @description 关闭数据库
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-28
+  ///
+  closeDatabase() async {
+    Database db = await DataBaseManager.instance.database;
+    await db.close();
   }
 
-  /// 关闭数据库
-  close() async {
-    await database.close();
-  }
 
 }
 
