@@ -48,10 +48,16 @@ class DataBaseManager {
     return _instance;
   }
 
-  DataBaseManager.internal();
-
   static Database _database;
 
+  ///
+  /// @name database
+  /// @description 数据库实例
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-28
+  ///
   Future<Database> get database async {
     if (_database != null) {
       return _database;
