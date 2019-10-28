@@ -157,7 +157,21 @@ class DataBaseManager {
   ///
   Future<int> deleteAllLoginModel() async {
     Database db = await DataBaseManager.instance.database;
-    var result = db.delete(kLastLoginTime,where: '$kId > 0');
+    var result = db.delete(kLoginTableName,where: '$kId > 0');
+    return result;
+  }
+
+  ///
+  /// @name deleteLoginModelByJid
+  /// @description 根据jid删除登录model
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-28
+  ///
+  Future<int> deleteLoginModelByJid(String jid) async {
+    Database db = await DataBaseManager.instance.database;
+    var result = await db.delete(kLoginTableName,where: '$kJid = ?',whereArgs: [jid]);
     return result;
   }
 
