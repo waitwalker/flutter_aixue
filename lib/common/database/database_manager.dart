@@ -87,10 +87,6 @@ class DataBaseManager {
     return _db;
   }
 
-  createTables() async {
-
-  }
-
 
 
   Database db;
@@ -112,13 +108,13 @@ class DataBaseManager {
   }
 
   /// 插入数据
-  Future<RecognizeModel> insert(RecognizeModel recognizeModel) async {
+  Future<LoginDatabaseModel> insert(LoginDatabaseModel recognizeModel) async {
     recognizeModel.recognizeId = await db.insert(kTableName, recognizeModel.toMap());
     return recognizeModel;
   }
 
   /// 查询所有数据
-  Future<List<RecognizeModel>> queryAll() async {
+  Future<List<LoginDatabaseModel>> queryAll() async {
     List<Map> maps = await db.query(kTableName,columns: [
       kRecognizeId,
       kRecognizeType,
@@ -129,15 +125,15 @@ class DataBaseManager {
 
     if (maps == null || maps.length == 0) return null;
 
-    List<RecognizeModel> models = [];
+    List<LoginDatabaseModel> models = [];
     for(int i = 0; i < maps.length; i++) {
-      models.add(RecognizeModel.fromMap(maps[i]));
+      models.add(LoginDatabaseModel.fromMap(maps[i]));
     }
     return models;
   }
 
   /// 根据id 查找
-  Future<RecognizeModel> query(int id) async {
+  Future<LoginDatabaseModel> query(int id) async {
     List<Map> maps = await db.query(kTableName,
         columns: [
           kRecognizeId,
@@ -148,7 +144,7 @@ class DataBaseManager {
         ],
         where: '$kRecognizeId = ?', whereArgs: [id]);
     if (maps.length > 0) {
-      return RecognizeModel.fromMap(maps.first);
+      return LoginDatabaseModel.fromMap(maps.first);
     }
     return null;
   }
@@ -164,7 +160,7 @@ class DataBaseManager {
   }
 
   /// 更新
-  Future<int> update(RecognizeModel recognizeModel) async {
+  Future<int> update(LoginDatabaseModel recognizeModel) async {
     return await db.update(
         kTableName,
         recognizeModel.toMap(),
@@ -179,7 +175,13 @@ class DataBaseManager {
 
 }
 
-class RecognizeModel {
+///
+/// @name 登录数据库模型
+/// @description 
+/// @author lca
+/// @date 2019-10-28
+///
+class LoginDatabaseModel {
   int recognizeId; /// id
   int recognizeType; /// 识别类型
   String recognizeTypeName; /// 识别类型名称
@@ -189,7 +191,7 @@ class RecognizeModel {
   int currentIndex = 0;
 
   /// 构造
-  RecognizeModel({
+  LoginDatabaseModel({
     this.recognizeId,
     this.recognizeType,
     this.recognizeTypeName,
@@ -211,13 +213,11 @@ class RecognizeModel {
   }
 
   /// 转模型
-  RecognizeModel.fromMap(Map<String,dynamic> map) {
+  LoginDatabaseModel.fromMap(Map<String,dynamic> map) {
     recognizeId = map[kRecognizeId];
     recognizeType = map[kRecognizeType];
     recognizeTypeName = map[kRecognizeTypeName];
     recognizeContent = map[kRecognizeContent];
     recognizeTime = map[kRecognizeTime];
   }
-
-
 }
