@@ -122,21 +122,43 @@ class DataBaseManager {
     return models;
   }
 
-  /// 根据id 查找
-  Future<LoginDatabaseModel> query(int id) async {
-    List<Map> maps = await db.query(kTableName,
+  ///
+  /// @name queryByJid
+  /// @description 根据JID查找登录模型
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-28
+  ///
+  Future<LoginDatabaseModel> queryLoginModelByJid(String jid) async {
+    Database db = await DataBaseManager.instance.database;
+    List<Map> maps = await db.query(kLoginTableName,
         columns: [
-          kRecognizeId,
-          kRecognizeType,
-          kRecognizeTypeName,
-          kRecognizeContent,
-          kRecognizeTime
-        ],
-        where: '$kRecognizeId = ?', whereArgs: [id]);
-    if (maps.length > 0) {
-      return LoginDatabaseModel.fromMap(maps.first);
-    }
+          kId,
+          kJid,
+          kLoginType,
+          kAccount,
+          kPassword,
+          kLastLoginTime,
+          kCurrentLoginTime],
+        where: '$kJid = ?', whereArgs: [jid]
+      );
+    if (maps.length > 0) return LoginDatabaseModel.fromMap(maps.first);
     return null;
+  }
+
+  ///
+  /// @name deleteAllLoginModel
+  /// @description 删除所有的登陆模型数据
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-28
+  ///
+  Future<int> deleteAllLoginModel() async {
+    Database db = await DataBaseManager.instance.database;
+    var result = db.delete(kLastLoginTime,where: '$kId > 0');
+    return result;
   }
 
   /// 删除所有
