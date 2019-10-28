@@ -35,10 +35,19 @@ class DataBaseManager {
   /// @author lca
   /// @date 2019-10-28
   ///
-  static final DataBaseManager instance = DataBaseManager.internal();
-  factory DataBaseManager() {
-    return instance;
+  factory DataBaseManager() => _getInstance();
+  static DataBaseManager get instance => DataBaseManager._getInstance();
+  static DataBaseManager _instance;
+  DataBaseManager._internal() {
+    // 初始化
   }
+  static DataBaseManager _getInstance() {
+    if (_instance == null) {
+      _instance = new DataBaseManager._internal();
+    }
+    return _instance;
+  }
+
   DataBaseManager.internal();
 
   static Database _database;
