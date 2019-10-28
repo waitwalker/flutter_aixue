@@ -11,6 +11,7 @@ final String kRecognizeTime = "识别时间"; /// 识别时间
 
 /// 登录相关字段
 final String kLoginTableName = "Login_Table"; ///登录表名称
+final String kId = "_id"; /// id
 final String kJid = "jid"; /// jid
 final String kLoginType = "login_type"; ///登录类型
 final String kAccount = "login_account"; ///登录账号
@@ -58,11 +59,36 @@ class DataBaseManager {
     return _database;
   }
 
+  ///
+  /// @name initDatabase
+  /// @description 初始化数据库
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-28
+  ///
   initDatabase() async {
     var databasePath = await getDatabasesPath();
     String path = join(databasePath,"flutter_aixue.db");
-    var db = await openDatabase(path,version: 1);
-    return db;
+    var _db = await openDatabase(path,version: 1, onCreate: (Database db, int version) async {
+
+      /// 创建登录表
+      await db.execute('''
+          CREATE TABLE $kLoginTableName (
+            $kId INTEGER PRIMARY KEY, 
+            $kJid TEXT, 
+            $kLoginType INTEGER,
+            $kAccount TEXT, 
+            $kPassword TEXT,
+            $kLastLoginTime TEXT, 
+            $kCurrentLoginTime TEXT)
+          ''');
+    });
+    return _db;
+  }
+
+  createTables() async {
+
   }
 
 
