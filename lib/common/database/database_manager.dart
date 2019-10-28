@@ -1,14 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-final String kTableName = 'recognized';
-final String kRecognizeId = "_id";/// id
-final String kRecognizeType = "识别类型"; /// 识别类型
-final String kRecognizeTypeName = "识别类型名称"; /// 识别类型名称
-final String kRecognizeContent = "识别内容"; /// 识别内容
-final String kRecognizeTime = "识别时间"; /// 识别时间
-
-
 /// 登录相关字段
 final String kLoginTableName = "Login_Table"; ///登录表名称
 final String kId = "_id"; /// id
@@ -87,40 +79,38 @@ class DataBaseManager {
     return _db;
   }
 
-
-
-  Database db;
-  /// 打开数据库
-  open() async{
-    var databasePath = await getDatabasesPath();
-    String fullPath = join(databasePath,"recognize.db");
-
-    db = await openDatabase(fullPath,version: 1,onCreate: (Database database, int version) async {
-      await database.execute('''
-          CREATE TABLE $kTableName (
-            $kRecognizeId INTEGER PRIMARY KEY, 
-            $kRecognizeType INTEGER, 
-            $kRecognizeTypeName TEXT, 
-            $kRecognizeContent TEXT, 
-            $kRecognizeTime TEXT)
-          ''');
-    });
+  ///
+  /// @name insertLoginModel
+  /// @description 插入登录模型
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-28
+  ///
+  Future<int> insertLoginModel(LoginDatabaseModel model) async {
+    Database db = await DataBaseManager.instance.database;
+    var result = await db.insert(kLoginTableName, model.toMap());
+    return result;
   }
 
-  /// 插入数据
-  Future<LoginDatabaseModel> insert(LoginDatabaseModel recognizeModel) async {
-    recognizeModel.recognizeId = await db.insert(kTableName, recognizeModel.toMap());
-    return recognizeModel;
-  }
-
-  /// 查询所有数据
-  Future<List<LoginDatabaseModel>> queryAll() async {
-    List<Map> maps = await db.query(kTableName,columns: [
-      kRecognizeId,
-      kRecognizeType,
-      kRecognizeTypeName,
-      kRecognizeContent,
-      kRecognizeTime
+  ///
+  /// @name queryAllLoginModel
+  /// @description 查询所有的登陆数据
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-28
+  ///
+  Future<List<LoginDatabaseModel>> queryAllLoginModel() async {
+    Database db = await DataBaseManager.instance.database;
+    List<Map> maps = await db.query(kLoginTableName,columns: [
+      kId,
+      kJid,
+      kLoginType,
+      kAccount,
+      kPassword,
+      kLastLoginTime,
+      kCurrentLoginTime
     ]);
 
     if (maps == null || maps.length == 0) return null;
@@ -170,7 +160,7 @@ class DataBaseManager {
 
   /// 关闭数据库
   close() async {
-    await db.close();
+    await database.close();
   }
 
 }
@@ -184,44 +174,46 @@ class DataBaseManager {
 class LoginDatabaseModel {
   int id; /// id
   String jid; /// jid
-  int login_type; /// 登录类型
+  int loginType; /// 登录类型
   String account; /// 账号
   String password; /// 密码
-  String last_login_time; /// 上次登录时间
-  String current_login_time; /// 本次次登录时间
-  String recognizeContent; /// 识别内容
-  String recognizeTime; /// 识别时间
-  bool isSelected = false;
-  int currentIndex = 0;
+  String lastLoginTime; /// 上次登录时间
+  String currentLoginTime; /// 本次次登录时间
 
   /// 构造
   LoginDatabaseModel({
-    this.recognizeId,
-    this.recognizeType,
-    this.recognizeTypeName,
-    this.recognizeContent,
-    this.recognizeTime});
+    this.jid,
+    this.loginType,
+    this.account,
+    this.password,
+    this.lastLoginTime,
+    this.currentLoginTime
+  });
 
   /// 转字典
   Map<String,dynamic> toMap() {
     var map = <String,dynamic>{
-      kRecognizeType:recognizeType,
-      kRecognizeTypeName:recognizeTypeName,
-      kRecognizeContent:recognizeContent,
-      kRecognizeTime:recognizeTime,
+      kJid:jid,
+      kLoginType:loginType,
+      kAccount:account,
+      kPassword:password,
+      kLastLoginTime:lastLoginTime,
+      kCurrentLoginTime:currentLoginTime
     };
-    if (recognizeId != null) {
-      map[kRecognizeId] = recognizeId;
+    if (kId != null) {
+      map[kId] = id;
     }
     return map;
   }
 
   /// 转模型
   LoginDatabaseModel.fromMap(Map<String,dynamic> map) {
-    recognizeId = map[kRecognizeId];
-    recognizeType = map[kRecognizeType];
-    recognizeTypeName = map[kRecognizeTypeName];
-    recognizeContent = map[kRecognizeContent];
-    recognizeTime = map[kRecognizeTime];
+    id = map[kId];
+    jid = map[kJid];
+    loginType = map[kLoginType];
+    account = map[kAccount];
+    password = map[kPassword];
+    lastLoginTime = map[lastLoginTime];
+    currentLoginTime = map[currentLoginTime];
   }
 }
