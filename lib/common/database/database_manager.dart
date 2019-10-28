@@ -50,6 +50,20 @@ class DataBaseManager {
 
   static Database _database;
 
+  Future<Database> get database async {
+    if (_database != null) {
+      return _database;
+    }
+    _database = await initDatabase();
+    return _database;
+  }
+
+  initDatabase() async {
+    var databasePath = await getDatabasesPath();
+    String path = join(databasePath,"flutter_aixue.db");
+    var db = await openDatabase(path,version: 1);
+    return db;
+  }
 
 
 
