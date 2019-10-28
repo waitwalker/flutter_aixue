@@ -175,14 +175,23 @@ class DataBaseManager {
     return result;
   }
 
-  /// 删除所有
-  Future<Null> deleteAll() async {
-    await db.delete(kTableName,where: '$kRecognizeId > 0');
-  }
-
-  /// 根据id 删除
-  Future<int> delete(int id) async {
-    return await db.delete(kTableName,where: '$kRecognizeId = ?',whereArgs: [id]);
+  ///
+  /// @name updateLoginModel
+  /// @description 更新登录model
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-28
+  ///
+  Future<int> updateLoginModel(LoginDatabaseModel model) async {
+    Database db = await DataBaseManager.instance.database;
+    var result = await db.update(
+      kLoginTableName,
+      model.toMap(),
+      where: '$kJid = ?',
+      whereArgs: [model.jid],
+    );
+    return result;
   }
 
   /// 更新
