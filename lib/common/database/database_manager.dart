@@ -8,6 +8,30 @@ final String kRecognizeTypeName = "识别类型名称"; /// 识别类型名称
 final String kRecognizeContent = "识别内容"; /// 识别内容
 final String kRecognizeTime = "识别时间"; /// 识别时间
 
+
+/// 登录相关字段
+final String kLoginTableName = "Login_Table"; ///登录表名称
+final String kJid = "jid"; /// jid
+final String kLoginType = "login_type"; ///登录类型
+final String kAccount = "login_account"; ///登录账号
+final String kPassword = "login_password"; ///登录密码
+final String kLastLoginTime = "last_login_time"; ///上次登录时间
+final String kCurrentLoginTime = "current_login_time"; ///本次登录时间
+/// 其他字段待加
+
+
+
+
+
+
+
+
+///
+/// @name DataBaseManager
+/// @description 本地持久化管理类
+/// @author lca
+/// @date 2019-10-28
+///
 class DataBaseManager {
 
   Database db;
