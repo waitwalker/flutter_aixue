@@ -183,11 +183,11 @@ class LoginState extends State<AppLoginPage> {
                     if (SingletonManager.sharedInstance.loginModel.result == 1) {
                       print("登录成功");
 
-
-
                       Navigator.push(context, MaterialPageRoute(builder: (context){
                         return TeacherHomePage();
                       }));
+
+
                     } else {
                       print("登录异常:${SingletonManager.sharedInstance.loginModel.msg}");
                     }

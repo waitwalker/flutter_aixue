@@ -1,4 +1,6 @@
 import 'package:flutter_aixue/assistant/enum_assistant.dart';
+import 'package:flutter_aixue/models/login_model.dart';
+
 
 ///
 /// @name AppLoginManager
@@ -28,6 +30,10 @@ class AppLoginManager {
     }
     return _instance;
   }
+
+
+  /// 登录 model
+  Data loginModel;
 
   static login(String account, String password, ETTLoginType loginType) {
 
