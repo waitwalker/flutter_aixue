@@ -1,3 +1,4 @@
+import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/assistant/enum_assistant.dart';
 import 'package:flutter_aixue/dao/dao.dart';
@@ -39,6 +40,8 @@ class AppLoginManager {
   /// 登录 model
   Data loginModel;
 
+  bool _isLoading = true;
+
   ///
   /// @name routeToPage
   /// @description 登录后的路由页
@@ -47,14 +50,18 @@ class AppLoginManager {
   /// @author lca
   /// @date 2019-10-29
   ///
-  routeToPage(BuildContext context, Map<String,dynamic> parameters, ETTLoginType type) async {
+  routeToPage(BuildContext context, Map<String,dynamic> parameters) async {
     /// 显示加载圈
+    _isLoading = true;
+    showLoading();
     var response = await DaoManager.loginFetch(parameters);
     if (response.result && response.model != null) {
       AppLoginManager.instance.loginModel = response.model;
+      _isLoading = false;
       _enterToApp(context, response.model);
     } else {
       print("登录异常,请稍候重试");
+      _isLoading = false;
     }
     print(response);
   }
@@ -79,6 +86,17 @@ class AppLoginManager {
       Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: TeacherHomePage()));
     }
   }
+
+  showLoading() {
+    FlareLoading(
+      name: 'loading.flr',
+      loopAnimation: 'Loading',
+      endAnimation: 'Complete',
+      isLoading: _isLoading,//boolean based loading
+    );
+  }
+
+
 
   static login(String account, String password, ETTLoginType loginType) {
 

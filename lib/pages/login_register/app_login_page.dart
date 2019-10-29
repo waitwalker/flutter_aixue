@@ -181,7 +181,7 @@ class LoginState extends State<AppLoginPage> {
                 onPressed: (accountValued && passwordValued) ? () async {
 
                   Map <String, String> para = {"uName":accountController.text,"pwd":passwordController.text};
-                  AppLoginManager.instance.routeToPage(context,para,ETTLoginType.ETTLoginTypeAccount);
+                  AppLoginManager.instance.routeToPage(context,para);
                 } : null,),
             ),
           ),
