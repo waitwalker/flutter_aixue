@@ -38,15 +38,35 @@ class AppLoginManager {
   /// 登录 model
   Data loginModel;
 
+  ///
+  /// @name routeToPage
+  /// @description 登录后的路由页
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-29
+  ///
   routeToPage(BuildContext context, Map<String,dynamic> parameters, ETTLoginType type) async {
+    /// 显示加载圈
     var response = await DaoManager.loginFetch(parameters);
     if (response.result && response.model != null) {
       AppLoginManager.instance.loginModel = response.model;
-      
+
+
     } else {
       print("登录异常,请稍候重试");
     }
     print(response);
+  }
+
+  enterToApp(BuildContext context,Data model) {
+    if (model.uType == 1 || model.uType == 2) {
+      Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: TeacherHomePage()));
+    } else if (model.uType == 3 || model.uType == 4) {
+      Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: StudentHomePage()));
+    } else if (model.uType == 5 || model.uType == 5) {
+      Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: TeacherHomePage()));
+    }
   }
 
   static login(String account, String password, ETTLoginType loginType) {
