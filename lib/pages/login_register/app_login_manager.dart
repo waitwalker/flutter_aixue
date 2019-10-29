@@ -1,5 +1,6 @@
 import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_aixue/assistant/enum_assistant.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/login_model.dart';
@@ -40,8 +41,6 @@ class AppLoginManager {
   /// 登录 model
   Data loginModel;
 
-  bool _isLoading = true;
-
   ///
   /// @name routeToPage
   /// @description 登录后的路由页
@@ -52,16 +51,14 @@ class AppLoginManager {
   ///
   routeToPage(BuildContext context, Map<String,dynamic> parameters) async {
     /// 显示加载圈
-    _isLoading = true;
-    showLoading();
+    showLoading(context);
     var response = await DaoManager.loginFetch(parameters);
     if (response.result && response.model != null) {
-      AppLoginManager.instance.loginModel = response.model;
-      _isLoading = false;
-      _enterToApp(context, response.model);
+      AppLoginManager.instance.loginModel = response.model.data;
+      Navigator.of(context).pop();
+      _enterToApp(context, response.model.data);
     } else {
       print("登录异常,请稍候重试");
-      _isLoading = false;
     }
     print(response);
   }
@@ -87,13 +84,16 @@ class AppLoginManager {
     }
   }
 
-  showLoading() {
-    FlareLoading(
-      name: 'loading.flr',
-      loopAnimation: 'Loading',
-      endAnimation: 'Complete',
-      isLoading: _isLoading,//boolean based loading
-    );
+  showLoading(BuildContext context) {
+    showDialog(context: context,builder: (context) {
+      return Center(
+        child: Container(
+          width: 80,
+          height: 80,
+          child: CircularProgressIndicator(),
+        ),
+      );
+    });
   }
 
 
