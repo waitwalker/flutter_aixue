@@ -1,4 +1,3 @@
-import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_aixue/assistant/enum_assistant.dart';
@@ -51,7 +50,7 @@ class AppLoginManager {
   ///
   routeToPage(BuildContext context, Map<String,dynamic> parameters) async {
     /// 显示加载圈
-    showLoading(context);
+    _showLoading(context);
     var response = await DaoManager.loginFetch(parameters);
     if (response.result && response.model != null) {
       AppLoginManager.instance.loginModel = response.model.data;
@@ -73,8 +72,10 @@ class AppLoginManager {
   ///
   _enterToApp(BuildContext context,Data model) {
     if (model.uType == 1 || model.uType == 2) {
+
       /// 教师
       Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: TeacherHomePage()));
+      print("教师加载完成");
     } else if (model.uType == 3 || model.uType == 4) {
       /// 学生
       Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: StudentHomePage()));
@@ -84,7 +85,15 @@ class AppLoginManager {
     }
   }
 
-  showLoading(BuildContext context) {
+  ///
+  /// @name _showLoading
+  /// @description 显示加载圈
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-29
+  ///
+  _showLoading(BuildContext context) {
     showDialog(context: context,builder: (context) {
       return Center(
         child: Container(

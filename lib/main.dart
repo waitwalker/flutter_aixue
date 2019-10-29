@@ -344,7 +344,7 @@ import 'package:redux/redux.dart';
 
 void main() => runApp(App());
 
-
+/// 主要入口
 class App extends StatelessWidget {
   final store = Store<AppState>(
     appReducer,
@@ -378,6 +378,96 @@ class App extends StatelessWidget {
           routes: <String, WidgetBuilder>{
             "login": (BuildContext context) => AppLoginPage(),
           },
+        );
+      }),
+    );
+  }
+}
+
+///
+/// @name LoginApp
+/// @description 登录App
+/// @author lca
+/// @date 2019-10-29
+///
+class LoginApp extends StatelessWidget {
+  final store = Store<AppState>(
+    appReducer,
+    initialState: AppState(
+        theme: ThemeManager.defaultTheme(),
+        locale: Locale("zh","CH")
+    ),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreProvider(
+      store: store,
+      child: StoreBuilder<AppState>(builder: (context,store){
+        //store.state.platformLocale = Localizations.localeOf(context);
+        return MaterialApp(
+          debugShowCheckedModeBanner: false, /// 去掉debug标签
+          debugShowMaterialGrid: false,
+          localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            MTTLocalizationsDelegate.delegate,
+            ChineseCupertinoLocalizations.delegate, // 自定义的delegate
+
+            DefaultCupertinoLocalizations.delegate, // 目前只包含英文
+          ],
+          locale: store.state.locale,
+          supportedLocales: [store.state.locale,Locale('zh', 'Hans'),],
+          theme: store.state.theme.themeData,
+          home: MTTLocalizations(child: AppLoginPage(),),
+          routes: <String, WidgetBuilder>{
+            "login": (BuildContext context) => AppLoginPage(),
+          },
+        );
+      }),
+    );
+  }
+}
+
+///
+/// @name HomeApp
+/// @description 进入主页App
+/// @author lca
+/// @date 2019-10-29
+///
+class HomeApp extends StatelessWidget {
+  final Widget homePage;
+  HomeApp(this.homePage);
+
+  final store = Store<AppState>(
+    appReducer,
+    initialState: AppState(
+        theme: ThemeManager.defaultTheme(),
+        locale: Locale("zh","CH")
+    ),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreProvider(
+      store: store,
+      child: StoreBuilder<AppState>(builder: (context,store){
+        //store.state.platformLocale = Localizations.localeOf(context);
+        return MaterialApp(
+          debugShowCheckedModeBanner: false, /// 去掉debug标签
+          debugShowMaterialGrid: false,
+          localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            MTTLocalizationsDelegate.delegate,
+            ChineseCupertinoLocalizations.delegate, // 自定义的delegate
+
+            DefaultCupertinoLocalizations.delegate, // 目前只包含英文
+          ],
+          locale: store.state.locale,
+          supportedLocales: [store.state.locale,Locale('zh', 'Hans'),],
+          theme: store.state.theme.themeData,
+          home: MTTLocalizations(child: homePage),
         );
       }),
     );
