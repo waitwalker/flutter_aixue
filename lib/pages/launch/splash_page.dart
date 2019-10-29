@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_aixue/common/locale/locale_mamager.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/theme/theme_manager.dart';
+import 'package:flutter_aixue/main.dart';
 import 'package:flutter_aixue/pages/login_register/app_login_page.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -30,8 +31,7 @@ class SplashScreenState extends State<SplashPage>
   Animation<double> animation;
 
   startTime() async {
-    var _duration = Duration(milliseconds: 2000);
-
+    var _duration = Duration(milliseconds: 1500);
     return Timer(_duration, navigationPage);
   }
 
@@ -58,10 +58,11 @@ class SplashScreenState extends State<SplashPage>
 
   void navigationPage() {
 
+    runApp(LoginApp());
 
-    Navigator.push(context, MaterialPageRoute(builder: (context){
-      return AppLoginPage();
-    }));
+//    Navigator.push(context, MaterialPageRoute(builder: (context){
+//      return AppLoginPage();
+//    }));
   }
 
   @override
