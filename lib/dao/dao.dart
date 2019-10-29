@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter_aixue/assistant/enum_assistant.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
 import 'package:flutter_aixue/models/class_notice_detail_model.dart';

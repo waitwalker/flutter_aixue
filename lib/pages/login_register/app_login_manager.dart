@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/assistant/enum_assistant.dart';
+import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/login_model.dart';
+import 'package:flutter_aixue/pages/teacher_app/teacher_home_page.dart';
+import 'package:page_transition/page_transition.dart';
 
 
 ///
@@ -31,9 +35,19 @@ class AppLoginManager {
     return _instance;
   }
 
-
   /// 登录 model
   Data loginModel;
+
+  routeToPage(BuildContext context, Map<String,dynamic> parameters, ETTLoginType type) async {
+    var response = await DaoManager.loginFetch(parameters);
+    if (response.result && response.model != null) {
+      AppLoginManager.instance.loginModel = response.model;
+      
+    } else {
+      print("登录异常,请稍候重试");
+    }
+    print(response);
+  }
 
   static login(String account, String password, ETTLoginType loginType) {
 

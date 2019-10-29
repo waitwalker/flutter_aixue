@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_aixue/assistant/enum_assistant.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
+import 'package:flutter_aixue/pages/login_register/app_login_manager.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_home_page.dart';
+import 'package:page_transition/page_transition.dart';
 
 
 ///
@@ -178,23 +181,7 @@ class LoginState extends State<AppLoginPage> {
                 onPressed: (accountValued && passwordValued) ? () async {
 
                   Map <String, String> para = {"uName":accountController.text,"pwd":passwordController.text};
-                  var response = await DaoManager.loginFetch(para);
-                  if (response.result && response.model != null && SingletonManager.sharedInstance.loginModel != null) {
-                    if (SingletonManager.sharedInstance.loginModel.result == 1) {
-                      print("登录成功");
-
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
-                        return TeacherHomePage();
-                      }));
-
-
-                    } else {
-                      print("登录异常:${SingletonManager.sharedInstance.loginModel.msg}");
-                    }
-                  } else {
-                    print("登录异常,请稍候重试");
-                  }
-                  print(response);
+                  AppLoginManager.instance.routeToPage(context,para,ETTLoginType.ETTLoginTypeAccount);
                 } : null,),
             ),
           ),
