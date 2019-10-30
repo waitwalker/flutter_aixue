@@ -58,9 +58,7 @@ class SplashScreenState extends State<SplashPage>
 
   void navigationPage() {
 
-    Navigator.push(context, MaterialPageRoute(builder: (context){
-      return AppLoginPage();
-    }));
+    Navigator.pushNamedAndRemoveUntil(context, "/login", (Route<dynamic> route) => false);
   }
 
   @override

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_aixue/common/locale/localizations_delegate.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/theme/theme_manager.dart';
+import 'package:flutter_aixue/pages/placeholder_page/placeholder_page.dart';
+import 'package:flutter_aixue/pages/student_app/student_home_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_home_page.dart';
 import 'package:flutter_aixue/pages/login_register/app_login_page.dart';
 import 'package:flutter_aixue/pages/launch/splash_page.dart';
@@ -46,15 +48,15 @@ class App extends StatelessWidget {
           theme: store.state.theme.themeData,
           home: MTTLocalizations(child: SplashPage(),),
           routes: <String, WidgetBuilder>{
-            "login": (BuildContext context) => AppLoginPage(),
-            "login": (BuildContext context) => AppLoginPage(),
-            "login": (BuildContext context) => AppLoginPage(),
+            "/login": (BuildContext context) => AppLoginPage(),
+            "/teacher_home": (BuildContext context) => TeacherHomePage(),
+            "/student_home": (BuildContext context) => StudentHomePage(),
           },
           onUnknownRoute: (RouteSettings setting) {
             String name = setting.name;
             print("onUnknownRoute:$name");
-            return new MaterialPageRoute(builder: (context) {
-              return new NotFoundPage();
+            return MaterialPageRoute(builder: (context) {
+              return PlaceholderPage();
             });
           },
         );
