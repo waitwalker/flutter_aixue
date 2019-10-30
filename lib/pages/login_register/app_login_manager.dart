@@ -74,11 +74,11 @@ class AppLoginManager {
     if (model.uType == 1 || model.uType == 2) {
 
       /// 教师
-      Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: TeacherHomePage()));
+      Navigator.pushNamedAndRemoveUntil(context, "/teacher_home", (Route<dynamic> route) => false);
       print("教师加载完成");
     } else if (model.uType == 3 || model.uType == 4) {
       /// 学生
-      Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: StudentHomePage()));
+      Navigator.pushNamedAndRemoveUntil(context, "/student_home", (Route<dynamic> route) => false);
     } else if (model.uType == 5 || model.uType == 5) {
       /// 家长
       Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: TeacherHomePage()));

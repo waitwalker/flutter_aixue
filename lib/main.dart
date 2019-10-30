@@ -48,6 +48,7 @@ class App extends StatelessWidget {
           theme: store.state.theme.themeData,
           home: MTTLocalizations(child: SplashPage(),),
           routes: <String, WidgetBuilder>{
+            "/splash": (BuildContext context) => SplashPage(),
             "/login": (BuildContext context) => AppLoginPage(),
             "/teacher_home": (BuildContext context) => TeacherHomePage(),
             "/student_home": (BuildContext context) => StudentHomePage(),
