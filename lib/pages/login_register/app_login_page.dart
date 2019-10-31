@@ -34,6 +34,14 @@ class LoginState extends State<AppLoginPage> {
     super.initState();
   }
 
+  ///
+  /// @name 读取用户缓存数据
+  /// @description
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-31
+  ///
   _readUserData() async {
     Map <String, String> map = await AppLoginManager.instance.readUserData();
     if (map != null) {

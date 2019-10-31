@@ -139,6 +139,7 @@ class AppLoginManager {
         print(insertResult);
         if (insertResult == 1) {
           SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+          sharedPreferences.setBool("autoLogin", true);
           sharedPreferences.setString("jid", AppLoginManager.instance.loginModel.jid.toString());
         }
       } else {
@@ -151,6 +152,7 @@ class AppLoginManager {
 
         if (updateResult == 1) {
           SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+          sharedPreferences.setBool("autoLogin", true);
           sharedPreferences.setString("jid", AppLoginManager.instance.loginModel.jid.toString());
         }
       }
@@ -165,7 +167,9 @@ class AppLoginManager {
   /// @author lca
   /// @date 2019-10-31
   ///
-  exitApp(BuildContext context) {
+  exitApp(BuildContext context) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setBool("autoLogin", false);
     Navigator.pushNamedAndRemoveUntil(context, "/login", (Route<dynamic> route)=>false);
   }
 
