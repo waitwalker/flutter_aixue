@@ -56,8 +56,7 @@ class SplashScreenState extends State<SplashPage>
     LocaleManager.changeLocale(store, localeIndex);
   }
 
-  void navigationPage() {
-
+  void navigationPage() async {
     Navigator.pushNamedAndRemoveUntil(context, "/login", (Route<dynamic> route) => false);
   }
 

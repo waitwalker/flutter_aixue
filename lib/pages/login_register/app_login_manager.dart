@@ -197,6 +197,18 @@ class AppLoginManager {
     return null;
   }
 
+  autoLogin() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool autoLogin = sharedPreferences.getBool("autoLogin");
+    if (autoLogin != null && autoLogin == true) {
+      Map<String,String> map = await readUserData();
+      if (map != null) {
+        
+      }
+    }
+
+  }
+
 
 
   static login(String account, String password, ETTLoginType loginType) {
