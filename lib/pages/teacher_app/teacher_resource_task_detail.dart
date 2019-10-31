@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
+import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/audio_player_widget.dart';
 import 'package:flutter_aixue/common/widgets/photo_view.dart';
 import 'package:flutter_aixue/common/widgets/video_player_widget.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_detail_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -170,7 +172,9 @@ class _TeacherResourceTaskDetailState extends State<TeacherResourceTaskDetailPag
   }
   @override
   Widget build(BuildContext context) {
-    return loadFutureBuilder();
+    return StoreBuilder<AppState>(builder: (context, store) {
+      return loadFutureBuilder();
+    });
   }
 
   ///

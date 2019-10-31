@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
+import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/class_notice_model.dart';
 import 'package:flutter_aixue/pages/teacher_app/teache_class_notice_detail.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -45,7 +47,9 @@ class _TeacherClassNoticeListState extends State<TeacherClassNoticeListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return _createFutureBuilder();
+    return StoreBuilder<AppState>(builder: (context, store) {
+      return _createFutureBuilder();
+    });
   }
 
   ///

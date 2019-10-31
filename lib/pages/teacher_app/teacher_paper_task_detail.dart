@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_question_model.dart';
 import 'package:flutter_aixue/models/teacher_task_detail_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 ///
@@ -191,22 +193,24 @@ class _TeacherPaperTaskDetailState extends State<TeacherPaperTaskDetail> {
   /// @date 2019-09-11
   ///
   Widget futureWaitingChild() {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("试卷/测验"),
-        leading: GestureDetector(
-          child: Icon(Icons.arrow_back_ios),
-          onTap: (){
-            Navigator.pop(context);
-          },
+    return StoreBuilder<AppState>(builder: (context, store) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("试卷/测验"),
+          leading: GestureDetector(
+            child: Icon(Icons.arrow_back_ios),
+            onTap: (){
+              Navigator.pop(context);
+            },
+          ),
         ),
-      ),
-      body: Center(
-        child: Container(
-          child: CircularProgressIndicator(),
+        body: Center(
+          child: Container(
+            child: CircularProgressIndicator(),
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   ///

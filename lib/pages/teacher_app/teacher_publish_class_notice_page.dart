@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_aixue/common/redux/app_state.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 ///
 /// @name 发布班级通知
@@ -17,7 +19,18 @@ class TeacherPublishClassNoticePage extends StatefulWidget {
 class _TeacherPublishClassNoticeState extends State<TeacherPublishClassNoticePage> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
+    return StoreBuilder<AppState>(builder: (context, store) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("个性化任务"),
+          leading: GestureDetector(
+            child: Icon(Icons.arrow_back_ios),
+            onTap: (){
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      );
+    });
   }
 }

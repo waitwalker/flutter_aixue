@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 ///
@@ -30,19 +32,20 @@ class _TeacherPersonalizedTaskState extends State<TeacherPersonalizedTaskDetail>
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("个性化任务"),
-        leading: GestureDetector(
-          child: Icon(Icons.arrow_back_ios),
-          onTap: (){
-            Navigator.pop(context);
-          },
+    return StoreBuilder<AppState>(builder: (context, store) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("个性化任务"),
+          leading: GestureDetector(
+            child: Icon(Icons.arrow_back_ios),
+            onTap: (){
+              Navigator.pop(context);
+            },
+          ),
         ),
-      ),
-      body: _body(),
-    );
+        body: _body(),
+      );
+    });
   }
 
   ///

@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
+import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/personal_information_model.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:image_picker/image_picker.dart';
 
 ///
@@ -130,12 +132,14 @@ class _PersonState extends State<TeacherPersonalInformationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("个人信息"),
-      ),
-      body: _body(),
-    );
+    return StoreBuilder<AppState>(builder: (context, store) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("个人信息"),
+        ),
+        body: _body(),
+      );
+    });
   }
 
   ///

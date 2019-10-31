@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/pages/login_register/app_login_manager.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 ///
 /// @name SettingPage
@@ -35,13 +37,14 @@ class _SettingState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("设置"),
-      ),
-      body: _bodyNormal(),
-    );
+    return StoreBuilder<AppState>(builder: (context, store) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("设置"),
+        ),
+        body: _bodyNormal(),
+      );
+    });
   }
 
   ///

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_aixue/common/redux/app_state.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 ///
 /// @name TeacherMessagePage
@@ -17,59 +19,61 @@ class TeacherMessagePage extends StatefulWidget {
 class _MessageState extends State<TeacherMessagePage> {
   @override
   Widget build(BuildContext context) {
+    return StoreBuilder<AppState>(builder: (context, store) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("消息"),
+        ),
+        body: Row(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
+              ),
+              width: 0.4 * MediaQuery.of(context).size.width,
+              child: ListView.builder(
+                itemCount: ChatModel.dummyData.length,
+                itemBuilder: (context, index) {
+                  ChatModel _model = ChatModel.dummyData[index];
+                  return Column(
+                    children: <Widget>[
+                      Divider(
+                        height: 12.0,
+                      ),
+                      ListTile(
+                        leading: CircleAvatar(
+                          radius: 24.0,
+                          backgroundImage: NetworkImage(_model.avatarUrl),
+                        ),
+                        title: Row(
+                          children: <Widget>[
+                            Text(_model.name),
+                            SizedBox(
+                              width: 16.0,
+                            ),
+                            Text(
+                              _model.datetime,
+                              style: TextStyle(fontSize: 12.0),
+                            ),
+                          ],
+                        ),
+                        subtitle: Text(_model.message),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 14.0,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+    });
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("消息"),
-      ),
-      body: Row(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
-            ),
-            width: 0.4 * MediaQuery.of(context).size.width,
-            child: ListView.builder(
-              itemCount: ChatModel.dummyData.length,
-              itemBuilder: (context, index) {
-                ChatModel _model = ChatModel.dummyData[index];
-                return Column(
-                  children: <Widget>[
-                    Divider(
-                      height: 12.0,
-                    ),
-                    ListTile(
-                      leading: CircleAvatar(
-                        radius: 24.0,
-                        backgroundImage: NetworkImage(_model.avatarUrl),
-                      ),
-                      title: Row(
-                        children: <Widget>[
-                          Text(_model.name),
-                          SizedBox(
-                            width: 16.0,
-                          ),
-                          Text(
-                            _model.datetime,
-                            style: TextStyle(fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                      subtitle: Text(_model.message),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        size: 14.0,
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }
 
