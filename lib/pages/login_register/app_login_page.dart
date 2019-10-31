@@ -30,8 +30,22 @@ class LoginState extends State<AppLoginPage> {
 
   @override
   void initState() {
-
+    _readUserData();
     super.initState();
+  }
+
+  _readUserData() async {
+    Map <String, String> map = await AppLoginManager.instance.readUserData();
+    if (map != null) {
+      String account = map["account"];
+      String password = map["password"];
+      setState(() {
+        accountController.text = account;
+        passwordController.text = password;
+        accountValued = true;
+        passwordValued = true;
+      });
+    }
   }
 
   @override
