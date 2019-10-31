@@ -105,6 +105,18 @@ class AppLoginManager {
     });
   }
 
+  ///
+  /// @name exitApp
+  /// @description 退出APP
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-31
+  ///
+  exitApp(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context, "/login", (Route<dynamic> route)=>false);
+  }
+
 
 
   static login(String account, String password, ETTLoginType loginType) {

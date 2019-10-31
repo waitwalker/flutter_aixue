@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/pages/login_register/app_login_manager.dart';
 
 ///
 /// @name SettingPage
@@ -231,7 +232,7 @@ class _SettingState extends State<SettingPage> {
                       children: <Widget>[
                         Padding(padding: EdgeInsets.only(top: 10)),
                         RaisedButton(child: Text("退出登录"),onPressed: (){
-                          Navigator.pushNamedAndRemoveUntil(context, "/login", (Route<dynamic> route)=>false);
+                          AppLoginManager.instance.exitApp(context);
                         },),
                         Padding(
                           padding: EdgeInsets.only(top: 10),
