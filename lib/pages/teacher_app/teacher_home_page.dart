@@ -250,7 +250,7 @@ class _HomeState extends State<TeacherHomePage> {
                 return TeacherPersonalInformationPage();
                 break;
               case 2:
-                return SettingPage();
+                return TeacherSettingPage();
                 break;
               default:
                 return TeacherPersonalInformationPage();

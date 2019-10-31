@@ -48,7 +48,7 @@ class _TabNavigatorState extends State<TabNavigator> {
               TeacherMessagePage(),
             ],
           ),
-          drawer: SettingPage(),
+          drawer: TeacherSettingPage(),
 
           // 底部导航
           bottomNavigationBar: BottomNavigationBar(

@@ -11,14 +11,14 @@ import 'package:flutter_redux/flutter_redux.dart';
 /// @author lca
 /// @date 2019-09-23
 ///
-class SettingPage extends StatefulWidget {
+class TeacherSettingPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _SettingState();
+    return _TeacherSettingState();
   }
 }
 
-class _SettingState extends State<SettingPage> {
+class _TeacherSettingState extends State<TeacherSettingPage> {
 
   /// 是否点击播放源
   bool isTappedVideoSourceSetting = false;
