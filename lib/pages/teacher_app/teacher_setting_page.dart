@@ -203,7 +203,7 @@ class _SettingState extends State<SettingPage> {
                               padding: EdgeInsets.only(right: 15),
                               child: Row(
                                 children: <Widget>[
-                                  Text("绑定"),
+                                  Text("20KB"),
                                   Padding(
                                     padding: EdgeInsets.only(left: 10),
                                     child: Icon(Icons.keyboard_arrow_right,size: 24,color: ETTColor.c1_color,),
@@ -213,6 +213,24 @@ class _SettingState extends State<SettingPage> {
                             ),
                           ],
                         ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Divider(
+                            indent: 15,
+                            endIndent: 15,
+                            color: ETTColor.c1_color,
+                            height: 0.5,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){},
+                    child: Column(
+                      children: <Widget>[
+                        Padding(padding: EdgeInsets.only(top: 10)),
+                        RaisedButton(child: Text("退出登录"),onPressed: (){},),
                         Padding(
                           padding: EdgeInsets.only(top: 10),
                           child: Divider(

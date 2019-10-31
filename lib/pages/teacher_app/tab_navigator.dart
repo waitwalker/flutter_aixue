@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_home_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_message_page.dart';
-import 'package:flutter_aixue/pages/teacher_app/setting_page.dart';
+import 'package:flutter_aixue/pages/teacher_app/teacher_setting_page.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 

@@ -17,7 +17,7 @@ import 'package:flutter_aixue/pages/teacher_app/teacher_paper_item_task_detail.d
 import 'package:flutter_aixue/pages/teacher_app/teacher_paper_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_message_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_personal_information_page.dart';
-import 'package:flutter_aixue/pages/teacher_app/setting_page.dart';
+import 'package:flutter_aixue/pages/teacher_app/teacher_setting_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_course_list.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_micro_course_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_personalized_task_detail.dart';
