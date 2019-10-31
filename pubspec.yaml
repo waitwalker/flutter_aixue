@@ -119,6 +119,8 @@ dependencies:
 
   flare_loading: ^2.1.0
 
+  date_format: ^1.0.8
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

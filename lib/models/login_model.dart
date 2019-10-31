@@ -23,6 +23,7 @@ class LoginModel {
 }
 
 class Data {
+  String password;
   String onlineTestUrl;
   int squareFlag;
   int sex;
@@ -53,7 +54,9 @@ class Data {
   int schoolId;
 
   Data(
-      {this.onlineTestUrl,
+      {
+        this.password,
+        this.onlineTestUrl,
         this.squareFlag,
         this.sex,
         this.schoolName,
@@ -83,6 +86,7 @@ class Data {
         this.schoolId});
 
   Data.fromJson(Map<String, dynamic> json) {
+    password = json['password'];
     onlineTestUrl = json['onlineTestUrl'];
     squareFlag = json['squareFlag'];
     sex = json['sex'];
@@ -115,6 +119,7 @@ class Data {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['password'] = this.password;
     data['onlineTestUrl'] = this.onlineTestUrl;
     data['squareFlag'] = this.squareFlag;
     data['sex'] = this.sex;

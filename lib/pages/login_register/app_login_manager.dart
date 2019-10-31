@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_aixue/assistant/enum_assistant.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_aixue/models/login_model.dart';
 import 'package:flutter_aixue/pages/student_app/student_home_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_home_page.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 ///
@@ -55,6 +57,7 @@ class AppLoginManager {
     var response = await DaoManager.loginFetch(parameters);
     if (response.result && response.model != null) {
       AppLoginManager.instance.loginModel = response.model.data;
+      AppLoginManager.instance.loginModel.password = parameters["pwd"];
       Navigator.of(context).pop();
       _enterToApp(context, response.model.data);
 
@@ -110,9 +113,37 @@ class AppLoginManager {
     });
   }
 
-  _handleLocalCache() {
+  _handleLocalCache() async {
     if (AppLoginManager.instance.loginModel != null) {
-      var result = DataBaseManager.instance.queryLoginModelByJid(AppLoginManager.instance.loginModel.jid.toString());
+      var result = await DataBaseManager.instance.queryLoginModelByJid(AppLoginManager.instance.loginModel.jid.toString());
+      if (result == null) {
+        LoginDatabaseModel loginDatabaseModel = LoginDatabaseModel();
+        loginDatabaseModel.jid = AppLoginManager.instance.loginModel.jid.toString();
+        loginDatabaseModel.account = AppLoginManager.instance.loginModel.userName;
+        loginDatabaseModel.password = AppLoginManager.instance.loginModel.password;
+        loginDatabaseModel.loginType = AppLoginManager.instance.loginModel.uType;
+        String dateStr = formatDate(DateTime.now(), [yyyy, '-', mm, '-', dd, '  ', h, ':', nn, ':', ss, ' ', am]);
+        loginDatabaseModel.currentLoginTime = dateStr;
+        loginDatabaseModel.lastLoginTime = "空";
+        var insertResult = await DataBaseManager.instance.insertLoginModel(loginDatabaseModel);
+        print(insertResult);
+        if (insertResult == 1) {
+          SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+          sharedPreferences.setString("jid", AppLoginManager.instance.loginModel.jid.toString());
+        }
+      } else {
+        LoginDatabaseModel loginDatabaseModel = result;
+        loginDatabaseModel.lastLoginTime = loginDatabaseModel.currentLoginTime;
+        String dateStr = formatDate(DateTime.now(), [yyyy, '-', mm, '-', dd, '  ', h, ':', nn, ':', ss, ' ', am]);
+        loginDatabaseModel.currentLoginTime = dateStr;
+        var updateResult = await DataBaseManager.instance.updateLoginModel(loginDatabaseModel);
+        print(updateResult);
+
+        if (updateResult == 1) {
+          SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+          sharedPreferences.setString("jid", AppLoginManager.instance.loginModel.jid.toString());
+        }
+      }
 
     }
   }

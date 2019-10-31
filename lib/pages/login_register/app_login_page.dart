@@ -1,13 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_aixue/assistant/enum_assistant.dart';
 import 'package:flutter_aixue/common/color/color.dart';
-import 'package:flutter_aixue/common/singleton/singleton_manager.dart';
-import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/pages/login_register/app_login_manager.dart';
-import 'package:flutter_aixue/pages/teacher_app/teacher_home_page.dart';
-import 'package:page_transition/page_transition.dart';
 
 
 ///
