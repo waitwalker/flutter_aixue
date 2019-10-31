@@ -230,7 +230,9 @@ class _SettingState extends State<SettingPage> {
                     child: Column(
                       children: <Widget>[
                         Padding(padding: EdgeInsets.only(top: 10)),
-                        RaisedButton(child: Text("退出登录"),onPressed: (){},),
+                        RaisedButton(child: Text("退出登录"),onPressed: (){
+                          Navigator.pushNamedAndRemoveUntil(context, "/login", (Route<dynamic> route)=>false);
+                        },),
                         Padding(
                           padding: EdgeInsets.only(top: 10),
                           child: Divider(
