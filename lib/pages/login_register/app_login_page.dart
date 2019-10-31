@@ -2,7 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/common/database/database_manager.dart';
 import 'package:flutter_aixue/pages/login_register/app_login_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 ///
@@ -28,6 +30,7 @@ class LoginState extends State<AppLoginPage> {
 
   @override
   void initState() {
+
     super.initState();
   }
 

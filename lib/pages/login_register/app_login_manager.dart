@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +63,7 @@ class AppLoginManager {
       Navigator.of(context).pop();
       _enterToApp(context, response.model.data);
 
-      _handleLocalCache();
+      _writeUserDataToCache();
     } else {
       print("登录异常,请稍候重试");
     }
@@ -113,7 +115,15 @@ class AppLoginManager {
     });
   }
 
-  _handleLocalCache() async {
+  ///
+  /// @name _writeUserDataToCache
+  /// @description 写入用户数据
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-31
+  ///
+  _writeUserDataToCache() async {
     if (AppLoginManager.instance.loginModel != null) {
       var result = await DataBaseManager.instance.queryLoginModelByJid(AppLoginManager.instance.loginModel.jid.toString());
       if (result == null) {
@@ -144,7 +154,6 @@ class AppLoginManager {
           sharedPreferences.setString("jid", AppLoginManager.instance.loginModel.jid.toString());
         }
       }
-
     }
   }
 
@@ -158,6 +167,30 @@ class AppLoginManager {
   ///
   exitApp(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, "/login", (Route<dynamic> route)=>false);
+  }
+
+  ///
+  /// @name readUserData
+  /// @description 读取用户数据
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-31
+  ///
+  Future<Map<String,String>> readUserData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String jid = sharedPreferences.getString("jid");
+    if (jid != null) {
+      LoginDatabaseModel loginDatabaseModel = await DataBaseManager.instance.queryLoginModelByJid(jid);
+      if (loginDatabaseModel != null) {
+        Map <String,String> map = {
+          "account":loginDatabaseModel.account,
+          "password":loginDatabaseModel.password,
+        };
+        return map;
+      }
+    }
+    return null;
   }
 
 
