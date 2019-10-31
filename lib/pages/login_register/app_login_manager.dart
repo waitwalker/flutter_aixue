@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_aixue/assistant/enum_assistant.dart';
+import 'package:flutter_aixue/common/database/database_manager.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/login_model.dart';
 import 'package:flutter_aixue/pages/student_app/student_home_page.dart';
@@ -56,6 +57,8 @@ class AppLoginManager {
       AppLoginManager.instance.loginModel = response.model.data;
       Navigator.of(context).pop();
       _enterToApp(context, response.model.data);
+
+      _handleLocalCache();
     } else {
       print("登录异常,请稍候重试");
     }
@@ -83,6 +86,8 @@ class AppLoginManager {
       /// 家长
       Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: TeacherHomePage()));
     }
+
+
   }
 
   ///
@@ -103,6 +108,13 @@ class AppLoginManager {
         ),
       );
     });
+  }
+
+  _handleLocalCache() {
+    if (AppLoginManager.instance.loginModel != null) {
+      var result = DataBaseManager.instance.queryLoginModelByJid(AppLoginManager.instance.loginModel.jid.toString());
+
+    }
   }
 
   ///

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_aixue/common/database/database_manager.dart';
 import 'package:flutter_aixue/common/locale/localizations_delegate.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/theme/theme_manager.dart';
@@ -12,9 +13,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-//}
 
-void main() => runApp(App());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  DataBaseManager.instance.initDatabase();
+  runApp(App());
+}
 
 /// 主要入口
 class App extends StatelessWidget {
