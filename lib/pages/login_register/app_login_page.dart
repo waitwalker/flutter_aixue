@@ -45,8 +45,8 @@ class LoginState extends State<AppLoginPage> {
   _readUserData() async {
     Map <String, String> map = await AppLoginManager.instance.readUserData();
     if (map != null) {
-      String account = map["account"];
-      String password = map["password"];
+      String account = map["uName"];
+      String password = map["pwd"];
       setState(() {
         accountController.text = account;
         passwordController.text = password;

@@ -188,8 +188,8 @@ class AppLoginManager {
       LoginDatabaseModel loginDatabaseModel = await DataBaseManager.instance.queryLoginModelByJid(jid);
       if (loginDatabaseModel != null) {
         Map <String,String> map = {
-          "account":loginDatabaseModel.account,
-          "password":loginDatabaseModel.password,
+          "uName":loginDatabaseModel.account,
+          "pwd":loginDatabaseModel.password,
         };
         return map;
       }
@@ -197,16 +197,23 @@ class AppLoginManager {
     return null;
   }
 
-  autoLogin() async {
+  ///
+  /// @name autoLogin
+  /// @description 自动登录
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-10-31
+  ///
+  autoLogin(BuildContext context) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     bool autoLogin = sharedPreferences.getBool("autoLogin");
     if (autoLogin != null && autoLogin == true) {
       Map<String,String> map = await readUserData();
       if (map != null) {
-        
+        routeToPage(context, map);
       }
     }
-
   }
 
 
