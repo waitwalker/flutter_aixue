@@ -80,7 +80,6 @@ class AppLoginManager {
   ///
   _enterToApp(BuildContext context,Data model) {
     if (model.uType == 1 || model.uType == 2) {
-
       /// 教师
       Navigator.pushNamedAndRemoveUntil(context, "/teacher_home", (Route<dynamic> route) => false);
       print("教师加载完成");
@@ -91,8 +90,6 @@ class AppLoginManager {
       /// 家长
       Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: TeacherHomePage()));
     }
-
-
   }
 
   ///
