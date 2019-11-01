@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:wasm';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,8 +17,6 @@ import 'package:flutter_aixue/pages/student_app/student_personal_information_pag
 import 'package:flutter_aixue/pages/student_app/student_personalized_recommendation_page.dart';
 import 'package:flutter_aixue/pages/student_app/student_self_study_page.dart';
 import 'package:flutter_aixue/pages/student_app/student_setting_page.dart';
-import 'package:flutter_aixue/pages/teacher_app/teacher_class_notice_list_page.dart';
-import 'package:flutter_aixue/pages/teacher_app/teacher_course_list.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_discussion_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_general_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_micro_course_page.dart';
@@ -336,16 +333,7 @@ class _StudentHomeState extends State {
         children: <Widget>[
           Container(
             height: topHeaderHeight,
-            child: GridView.builder(
-              scrollDirection: Axis.horizontal,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.8
-              ),
-              itemBuilder: _itemBuilder,
-              itemCount: 5,
-            ),
+            color: ETTColor.c1_color,
           ),
 
           Padding(
@@ -408,67 +396,6 @@ class _StudentHomeState extends State {
       ),
     );
   }
-
-  ///
-  /// @name _itemBuilder
-  /// @description item 控件
-  /// @parameters
-  /// @return
-  /// @author lca
-  /// @date 2019-10-18
-  ///
-  Widget _itemBuilder(BuildContext context, int index) {
-    Map map = itemArray[index];
-    return GestureDetector(
-      child: Padding(
-        padding: EdgeInsets.only(left: 20,right: 20,top: 30,bottom: 30),
-        child:Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(5.0),
-            boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 3,blurRadius: 3,offset: Offset(0, 3))],
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                height: 40,
-                width: 40,
-                child: Icon(map["icon"],color: Colors.white,),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.2),spreadRadius: 2,blurRadius: 2,offset: Offset(0, 2))],
-                  color: map["color"],
-                ),
-              ),
-              Padding(padding: EdgeInsets.only(top: 20),
-                child: Text(map["title"],style: TextStyle(fontSize: 16),),
-              ),
-            ],
-          ),
-        ),
-      ),
-      onTap: (){
-        if (index == 3) {
-          Navigator.push(context, MaterialPageRoute(builder: (context){
-            return TeacherClassNoticeListPage();
-          }));
-        } else {
-          Navigator.push(context, MaterialPageRoute(builder: (context){
-            return TeacherCourseList();
-          }));
-        }
-      },
-    );
-  }
-
-  List<Map<String,dynamic>> itemArray = [
-    {"title":"我的课程","icon":Icons.bookmark,"color":Colors.redAccent},
-    {"title":"班级管理","icon":Icons.supervised_user_circle,"color":Colors.lightBlueAccent},
-    {"title":"班级圈","icon":Icons.send,"color":Colors.greenAccent},
-    {"title":"班级通知","icon":Icons.add_alert,"color":Colors.orangeAccent},
-    {"title":"校内公告","icon":Icons.library_books,"color":Colors.amberAccent},
-  ];
 
   Widget _taskItemBuilder(BuildContext context, int index) {
     LastTaskList lastTask = lastTaskList[index];
