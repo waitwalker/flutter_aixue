@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -10,18 +9,21 @@ import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
+import 'package:flutter_aixue/pages/student_app/student_class_page.dart';
+import 'package:flutter_aixue/pages/student_app/student_message_page.dart';
+import 'package:flutter_aixue/pages/student_app/student_personal_information_page.dart';
+import 'package:flutter_aixue/pages/student_app/student_personalized_recommendation_page.dart';
+import 'package:flutter_aixue/pages/student_app/student_self_study_page.dart';
+import 'package:flutter_aixue/pages/student_app/student_setting_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_class_notice_list_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_course_list.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_discussion_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_general_task_detail.dart';
-import 'package:flutter_aixue/pages/teacher_app/teacher_message_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_micro_course_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_paper_item_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_paper_task_detail.dart';
-import 'package:flutter_aixue/pages/teacher_app/teacher_personal_information_page.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_personalized_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_resource_task_detail.dart';
-import 'package:flutter_aixue/pages/teacher_app/teacher_setting_page.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -255,25 +257,25 @@ class _StudentHomeState extends State {
           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
             switch (index) {
               case 0:
-                return TeacherMessagePage();
+                return StudentClassPage();
                 break;
               case 1:
-                return TeacherPersonalInformationPage();
+                return StudentSelfStudyPage();
                 break;
               case 2:
-                return TeacherSettingPage();
+                return StudentPersonalizedRecommendationPage();
                 break;
               case 3:
-                return TeacherMessagePage();
+                return StudentMessagePage();
                 break;
               case 4:
-                return TeacherPersonalInformationPage();
+                return StudentPersonalInformationPage();
                 break;
               case 5:
-                return TeacherSettingPage();
+                return StudentSettingPage();
                 break;
               default:
-                return TeacherPersonalInformationPage();
+                return StudentSelfStudyPage();
                 break;
             }
           }));
