@@ -212,7 +212,11 @@ class AppLoginManager {
       Map<String,String> map = await readUserData();
       if (map != null) {
         routeToPage(context, map);
+      } else {
+        Navigator.pushNamedAndRemoveUntil(context, "/login", (Route<dynamic> route) => false);
       }
+    } else {
+      Navigator.pushNamedAndRemoveUntil(context, "/login", (Route<dynamic> route) => false);
     }
   }
 
