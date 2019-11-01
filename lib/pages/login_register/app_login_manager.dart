@@ -222,8 +222,4 @@ class AppLoginManager {
 
 
 
-  static login(String account, String password, ETTLoginType loginType) {
-
-  }
-
 }
