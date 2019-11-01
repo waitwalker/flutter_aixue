@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:wasm';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -48,6 +49,10 @@ class _StudentHomeState extends State {
 
   List<LastTaskList> lastTaskList = [];
 
+  ScrollController scrollController = ScrollController();
+
+  double topHeaderHeight = 200.0;
+
   /// 刷新
   RefreshController _refreshController =
   RefreshController(initialRefresh: true);
@@ -57,6 +62,22 @@ class _StudentHomeState extends State {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight
     ]);
+
+    scrollController.addListener((){
+      print("滚动范围: ${scrollController.offset}");
+      topHeaderHeight = 200.0 - scrollController.offset;
+      if (topHeaderHeight <= 0.0) {
+        topHeaderHeight = 0.0;
+      }
+
+      if (topHeaderHeight > 200.0) {
+        topHeaderHeight = 200.0;
+      }
+
+      setState(() {
+
+      });
+    });
     super.initState();
   }
 
@@ -314,7 +335,7 @@ class _StudentHomeState extends State {
       child: Column(
         children: <Widget>[
           Container(
-            height: 200,
+            height: topHeaderHeight,
             child: GridView.builder(
               scrollDirection: Axis.horizontal,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -370,6 +391,7 @@ class _StudentHomeState extends State {
                 _onRefresh(_refreshController, []);
               },
               child: StaggeredGridView.countBuilder(
+                controller: scrollController,
                 crossAxisCount: 6,
                 itemCount: lastTaskList.length,
                 mainAxisSpacing: 0,
