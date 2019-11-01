@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
+import 'package:flutter_aixue/pages/login_register/app_login_manager.dart';
 import 'package:flutter_aixue/pages/student_app/student_class_page.dart';
 import 'package:flutter_aixue/pages/student_app/student_message_page.dart';
 import 'package:flutter_aixue/pages/student_app/student_personal_information_page.dart';
@@ -182,6 +184,20 @@ class _StudentHomeState extends State {
                 ),
                 height: 80,
                 width: 80,
+                child: CachedNetworkImage(
+                  imageUrl: AppLoginManager.instance.loginModel.photo,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                          colorFilter:
+                          ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
+                    ),
+                  ),
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
 
               Padding(padding: EdgeInsets.only(top: 20)),
