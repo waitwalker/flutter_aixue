@@ -273,7 +273,7 @@ class LoginDatabaseModel {
     loginType = map[kLoginType];
     account = map[kAccount];
     password = map[kPassword];
-    lastLoginTime = map[lastLoginTime];
-    currentLoginTime = map[currentLoginTime];
+    lastLoginTime = map[kLastLoginTime];
+    currentLoginTime = map[kCurrentLoginTime];
   }
 }
