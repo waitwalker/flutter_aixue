@@ -73,7 +73,6 @@ class _StudentMessageState extends State<StudentMessagePage> {
         ),
       );
     });
-
   }
 }
 
