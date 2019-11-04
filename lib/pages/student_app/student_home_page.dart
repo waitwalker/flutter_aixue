@@ -338,8 +338,8 @@ class _StudentHomeState extends State {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(padding: EdgeInsets.only(left: 20)),
-                  Text("我的任务(未完成14)",style: TextStyle(fontSize: 30),),
-                  Padding(padding: EdgeInsets.only(left: 180)),
+                  Text("我的任务(未完成14)",style: TextStyle(fontSize: 20),),
+                  Padding(padding: EdgeInsets.only(left: 580)),
                   Icon(Icons.search),
                 ],
               ),
@@ -347,7 +347,7 @@ class _StudentHomeState extends State {
           ),
 
           Container(
-            height: 100,
+            height: 80,
             color: ETTColor.c1_color,
           ),
 
