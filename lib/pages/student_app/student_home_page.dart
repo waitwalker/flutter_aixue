@@ -48,7 +48,7 @@ class _StudentHomeState extends State {
 
   ScrollController scrollController = ScrollController();
 
-  double topHeaderHeight = 200.0;
+  double topHeaderHeight = 80.0;
 
   /// 刷新
   RefreshController _refreshController =
@@ -62,13 +62,13 @@ class _StudentHomeState extends State {
 
     scrollController.addListener((){
       print("滚动范围: ${scrollController.offset}");
-      topHeaderHeight = 200.0 - scrollController.offset;
+      topHeaderHeight = 80.0 - scrollController.offset;
       if (topHeaderHeight <= 0.0) {
         topHeaderHeight = 0.0;
       }
 
-      if (topHeaderHeight > 200.0) {
-        topHeaderHeight = 200.0;
+      if (topHeaderHeight > 80.0) {
+        topHeaderHeight = 80.0;
       }
 
       setState(() {
@@ -333,6 +333,21 @@ class _StudentHomeState extends State {
         children: <Widget>[
           Container(
             height: topHeaderHeight,
+            child: Padding(padding: EdgeInsets.only(top: 20,),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(padding: EdgeInsets.only(left: 20)),
+                  Text("我的任务(未完成14)",style: TextStyle(fontSize: 30),),
+                  Padding(padding: EdgeInsets.only(left: 180)),
+                  Icon(Icons.search),
+                ],
+              ),
+            ),
+          ),
+
+          Container(
+            height: 100,
             color: ETTColor.c1_color,
           ),
 
