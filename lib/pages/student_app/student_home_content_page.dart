@@ -30,7 +30,10 @@ class StudentHomeContentPage extends StatefulWidget {
   }
 }
 
-class _StudentHomeContentState extends State<StudentHomeContentPage> {
+class _StudentHomeContentState extends State<StudentHomeContentPage> with AutomaticKeepAliveClientMixin {
+
+  @override
+  bool get wantKeepAlive => true;
 
   List<LastTaskList> lastTaskList = [];
 

@@ -28,7 +28,7 @@ class StudentHomePage extends StatefulWidget {
   }
 }
 
-class _StudentHomeState extends State<StudentHomePage> with SingleTickerProviderStateMixin{
+class _StudentHomeState extends State<StudentHomePage> with TickerProviderStateMixin{
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -38,7 +38,8 @@ class _StudentHomeState extends State<StudentHomePage> with SingleTickerProvider
 
   @override
   void initState() {
-    _tabController = new TabController(vsync: this, length: 5);
+    _tabController = TabController(length: 0, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
     _tabController.addListener(() {
       print(_tabController.toString());
       print(_tabController.index);
@@ -279,7 +280,6 @@ class _StudentHomeState extends State<StudentHomePage> with SingleTickerProvider
               ],
             ),
           ),
-
 
           Expanded(
             child: TabBarView(
