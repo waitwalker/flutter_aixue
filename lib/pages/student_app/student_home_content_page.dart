@@ -146,6 +146,9 @@ class _StudentHomeContentState extends State<StudentHomeContentPage> {
               onRefresh: (){
                 _onRefresh(_refreshController, []);
               },
+              onLoading: (){
+
+              },
               child: StaggeredGridView.countBuilder(
                 controller: scrollController,
                 crossAxisCount: 6,

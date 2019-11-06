@@ -34,8 +34,6 @@ class _StudentHomeState extends State<StudentHomePage> with SingleTickerProvider
 
   TabController _tabController;
 
-  ScrollController scrollController = ScrollController();
-
   double topHeaderHeight = 80.0;
 
   @override
@@ -50,22 +48,6 @@ class _StudentHomeState extends State<StudentHomePage> with SingleTickerProvider
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight
     ]);
-
-    scrollController.addListener((){
-      print("滚动范围: ${scrollController.offset}");
-      topHeaderHeight = 80.0 - scrollController.offset;
-      if (topHeaderHeight <= 0.0) {
-        topHeaderHeight = 0.0;
-      }
-
-      if (topHeaderHeight > 80.0) {
-        topHeaderHeight = 80.0;
-      }
-
-      setState(() {
-
-      });
-    });
     super.initState();
   }
 
@@ -284,8 +266,8 @@ class _StudentHomeState extends State<StudentHomePage> with SingleTickerProvider
           ),
 
           Container(
-            height: 80,
-            color: ETTColor.c1_color,
+            height: 50,
+            color: Colors.amber,
             child: TabBar(
               controller: _tabController,
               tabs: <Widget>[
