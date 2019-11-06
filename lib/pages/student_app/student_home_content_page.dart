@@ -89,11 +89,11 @@ class _StudentHomeContentState extends State<StudentHomeContentPage> {
 
   /// 上拉加载更多
   void _onLoading(RefreshController controller, List<String> data) async {
-    await Future.delayed(Duration(milliseconds: 2000));
-    for (int i = 0; i < 10; i++) {
-      data.add("Item $i");
-    }
-    if (mounted) setState(() {});
+    await Future.delayed(Duration(milliseconds: 1000));
+//    for (int i = 0; i < 10; i++) {
+//      data.add("Item $i");
+//    }
+//    if (mounted) setState(() {});
     controller.loadComplete();
     controller.loadNoData();
   }
@@ -147,7 +147,7 @@ class _StudentHomeContentState extends State<StudentHomeContentPage> {
                 _onRefresh(_refreshController, []);
               },
               onLoading: (){
-
+                _onLoading(_refreshController, []);
               },
               child: StaggeredGridView.countBuilder(
                 controller: scrollController,
