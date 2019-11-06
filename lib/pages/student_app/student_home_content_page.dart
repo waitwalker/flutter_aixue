@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_aixue/assistant/enum_assistant.dart';
@@ -18,7 +17,12 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-
+///
+/// @name StudentHomeContentPage
+/// @description 学生首页内容页
+/// @author lca
+/// @date 2019-11-06
+///
 class StudentHomeContentPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

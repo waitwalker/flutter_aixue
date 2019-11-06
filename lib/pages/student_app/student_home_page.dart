@@ -304,9 +304,9 @@ class _StudentHomeState extends State<StudentHomePage> with SingleTickerProvider
               controller: _tabController,
               children: <Widget>[
                 StudentHomeContentPage(),
-                ListViewContnet(),
+                Container(color: Colors.greenAccent,),
                 StudentHomeContentPage(),
-                ListViewContnet(),
+                Container(color: Colors.deepPurple,),
                 StudentHomeContentPage(),
               ],
             ),
