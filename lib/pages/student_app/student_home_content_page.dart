@@ -16,6 +16,7 @@ import 'package:flutter_aixue/pages/teacher_app/teacher_resource_task_detail.dar
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:redux/redux.dart';
 
 ///
 /// @name StudentHomeContentPage
@@ -43,10 +44,15 @@ class _StudentHomeContentState extends State<StudentHomeContentPage> with Automa
   /// 刷新
   RefreshController _refreshController = RefreshController(initialRefresh: true);
 
+  Store currentStore;
+
   @override
   void initState() {
     scrollController.addListener((){
       print("当前滚动距离:${scrollController.offset}");
+      if (currentStore != null) {
+        currentStore.state.runtimeData.homeScrollOffset = scrollController.offset;
+      }
     });
     super.initState();
   }
@@ -55,6 +61,7 @@ class _StudentHomeContentState extends State<StudentHomeContentPage> with Automa
   Widget build(BuildContext context) {
     return StoreBuilder<AppState>(
         builder: (context,store){
+          currentStore = store;
           return homeBodyContainer();
         });
   }

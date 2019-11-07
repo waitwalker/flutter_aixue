@@ -14,6 +14,7 @@ import 'package:flutter_aixue/pages/student_app/student_personalized_recommendat
 import 'package:flutter_aixue/pages/student_app/student_self_study_page.dart';
 import 'package:flutter_aixue/pages/student_app/student_setting_page.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
 
 ///
 /// @name StudentHomePage
@@ -92,7 +93,7 @@ class _StudentHomeState extends State<StudentHomePage> with TickerProviderStateM
             },),
             title: Text("首页",style: TextStyle(fontSize: 18,color: Colors.white),),
           ),
-          body: homeBodyContainer(),
+          body: homeBodyContainer(store),
         );
       },
     );
@@ -246,7 +247,12 @@ class _StudentHomeState extends State<StudentHomePage> with TickerProviderStateM
   /// @author: lca
   /// @Date: 2019-09-02
   ///
-  Widget homeBodyContainer() {
+  Widget homeBodyContainer(Store store) {
+
+    if (store.state.runtimeData.homeScrollOffset >= 80.0) {
+      topHeaderHeight
+    }
+
     return Container(
       color: Colors.transparent,
       child: Column(
