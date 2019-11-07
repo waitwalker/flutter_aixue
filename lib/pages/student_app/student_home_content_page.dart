@@ -41,8 +41,15 @@ class _StudentHomeContentState extends State<StudentHomeContentPage> with Automa
   double topHeaderHeight = 80.0;
 
   /// 刷新
-  RefreshController _refreshController =
-  RefreshController(initialRefresh: true);
+  RefreshController _refreshController = RefreshController(initialRefresh: true);
+
+  @override
+  void initState() {
+    scrollController.addListener((){
+      print("当前滚动距离:${scrollController.offset}");
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
