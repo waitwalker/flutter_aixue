@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_aixue/common/database/database_manager.dart';
 import 'package:flutter_aixue/common/locale/localizations_delegate.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
+import 'package:flutter_aixue/common/runtime_data/runtime_data.dart';
 import 'package:flutter_aixue/common/theme/theme_manager.dart';
 import 'package:flutter_aixue/pages/placeholder_page/placeholder_page.dart';
 import 'package:flutter_aixue/pages/student_app/student_home_page.dart';
@@ -14,19 +15,31 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 
+///
+/// @name main
+/// @description 程序入口
+/// @author lca
+/// @date 2019-11-07
+///
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   DataBaseManager.instance.initDatabase();
   runApp(App());
 }
 
-/// 主要入口
+///
+/// @name App
+/// @description app入口
+/// @author lca
+/// @date 2019-11-07
+///
 class App extends StatelessWidget {
   final store = Store<AppState>(
     appReducer,
     initialState: AppState(
-        theme: ThemeManager.defaultTheme(),
-        locale: Locale("zh","CH")
+      theme: ThemeManager.defaultTheme(),
+      locale: Locale("zh","CH"),
+      runtimeData: RuntimeData(homeScrollOffset: 0.0),
     ),
   );
 
@@ -106,112 +119,4 @@ class _LocalizationsState extends State<MTTLocalizations> {
     super.dispose();
   }
 }
-
-
-
-/**
- *
- *
- * import 'package:flutter/material.dart';
-    // import 'mock/list.dart' as newsList;
-
-    const TITLE = '标题标题标题标题标题标题标题';
-    const SUB_TITLE = '二级标题二级标题二级标题二级标题二级标题二级标题二级标题二级标题二';
-    const IMAGE_SRC =
-    'http://cms-bucket.ws.126.net/2019/06/20/68fa7f186ffe4479ab27efabd4d94246.png';
-
-    void main() {
-    runApp(MyApp());
-    }
-
-    class MyApp extends StatelessWidget {
-    MyApp({Key key}) : super(key: key);
-
-    @override
-    Widget build(BuildContext context) {
-    return MaterialApp(
-    home: Scaffold(
-    appBar: AppBar(
-    title: Text('TabController'),
-    backgroundColor: Colors.pink,
-    ),
-    body: TabControllerDemo(),
-    ),
-    );
-    }
-    }
-
-    class TabControllerDemo extends StatefulWidget {
-    TabControllerDemo({Key key}) : super(key: key);
-
-    _TabControllerDemoState createState() => _TabControllerDemoState();
-    }
-
-    class _TabControllerDemoState extends State<TabControllerDemo>
-    with SingleTickerProviderStateMixin {
-    TabController _tabController;
-
-    @override
-    void initState() {
-    super.initState();
-    this._tabController = new TabController(vsync: this, length: 5);
-    this._tabController.addListener(() {
-    print(this._tabController.toString());
-    print(this._tabController.index);
-    print(this._tabController.length);
-    print(this._tabController.previousIndex);
-    });
-    }
-
-    @override
-    Widget build(BuildContext context) {
-    return Scaffold(
-    appBar: AppBar(
-    backgroundColor: Colors.black,
-    title: TabBar(
-    controller: this._tabController,
-    tabs: <Widget>[
-    Tab(text: '女装'),
-    Tab(text: '男装'),
-    Tab(text: '童装'),
-    Tab(text: '夏装'),
-    Tab(text: '冬装'),
-    ],
-    ),
-    ),
-    body: TabBarView(
-    controller: this._tabController,
-    children: <Widget>[
-    ListViewContnet(),
-    ListViewContnet(),
-    ListViewContnet(),
-    ListViewContnet(),
-    ListViewContnet(),
-    ],
-    ));
-    }
-    }
-
-    class ListViewContnet extends StatelessWidget {
-    const ListViewContnet({Key key}) : super(key: key);
-
-    @override
-    Widget build(BuildContext context) {
-    return ListView(
-    children: <Widget>[
-    ListTile(title: Text(TITLE)),
-    ListTile(title: Text(TITLE)),
-    ListTile(title: Text(TITLE)),
-    ListTile(title: Text(TITLE)),
-    ListTile(title: Text(TITLE)),
-    ListTile(title: Text(TITLE)),
-    ListTile(title: Text(TITLE)),
-    ListTile(title: Text(TITLE)),
-    ListTile(title: Text(TITLE)),
-    ListTile(title: Text(TITLE)),
-    ],
-    );
-    }
-    }
- * */
 

@@ -8,5 +8,5 @@
 class RuntimeData {
   /// 首页滚动距离
   final double homeScrollOffset;
-  RuntimeData(this.homeScrollOffset);
+  RuntimeData({this.homeScrollOffset});
 }
