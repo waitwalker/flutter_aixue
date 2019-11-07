@@ -52,6 +52,9 @@ class _StudentHomeContentState extends State<StudentHomeContentPage> with Automa
       print("当前滚动距离:${scrollController.offset}");
       if (currentStore != null) {
         currentStore.state.runtimeData.homeScrollOffset = scrollController.offset;
+        setState(() {
+          
+        });
       }
     });
     super.initState();
