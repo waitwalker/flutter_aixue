@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_aixue/assistant/enum_assistant.dart';
 import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
+import 'package:flutter_aixue/common/redux/runtime_data_reducer.dart';
+import 'package:flutter_aixue/common/runtime_data/runtime_data.dart';
 import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_discussion_task_detail.dart';
@@ -51,9 +53,10 @@ class _StudentHomeContentState extends State<StudentHomeContentPage> with Automa
     scrollController.addListener((){
       print("当前滚动距离:${scrollController.offset}");
       if (currentStore != null) {
-        currentStore.state.runtimeData.homeScrollOffset = scrollController.offset;
+        RuntimeData runtimeData = RuntimeData(homeScrollOffset: scrollController.offset);
+        currentStore.dispatch(RefreshRuntimeDataAction(runtimeData));
         setState(() {
-          
+
         });
       }
     });
