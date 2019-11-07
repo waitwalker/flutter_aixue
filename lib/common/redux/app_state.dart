@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_aixue/common/redux/runtime_data_reducer.dart';
 import 'package:flutter_aixue/common/redux/theme_data_reducer.dart';
 import 'package:flutter_aixue/common/runtime_data/runtime_data.dart';
 import 'package:flutter_aixue/common/theme/mtt_theme.dart';
@@ -34,8 +35,9 @@ class AppState {
  */
 AppState appReducer(AppState state, action) {
   return AppState(
-    theme: ThemeDataReducer(state.theme,action),
-    locale: LocaleReducer(state.locale,action),
+    theme: ThemeDataReducer(state.theme, action),
+    locale: LocaleReducer(state.locale, action),
+    runtimeData: RuntimeDataReducer(state.runtimeData, action),
   );
 }
 
