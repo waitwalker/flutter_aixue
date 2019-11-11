@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_aixue/common/color/color.dart';
+import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
+import 'package:flutter_aixue/dao/dao.dart';
 import 'package:flutter_aixue/pages/login_register/app_login_manager.dart';
 import 'package:flutter_aixue/pages/student_app/student_class_page.dart';
 import 'package:flutter_aixue/pages/student_app/student_home_content_page.dart';
@@ -41,6 +43,7 @@ class _StudentHomeState extends State<StudentHomePage> with TickerProviderStateM
   void initState() {
     _tabController = TabController(length: 0, vsync: this);
     _tabController = TabController(length: 5, vsync: this);
+    initData();
     _tabController.addListener(() {
       print(_tabController.toString());
       print(_tabController.index);
@@ -51,6 +54,20 @@ class _StudentHomeState extends State<StudentHomePage> with TickerProviderStateM
       DeviceOrientation.landscapeRight
     ]);
     super.initState();
+  }
+
+  ///
+  /// @Method: initData
+  /// @Parameter:
+  /// @ReturnType:
+  /// @Description: 加载数据
+  /// @author: lca
+  /// @Date: 2019-08-02
+  ///
+  initData() async {
+    ResponseData responseData = await DaoManager.studentHomeWorkInfoFetch({"jid":"9620132","schoolId":"50043"});
+    print(responseData);
+
   }
 
 

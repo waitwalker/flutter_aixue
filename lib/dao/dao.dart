@@ -344,7 +344,7 @@ class DaoManager {
       response.model = model;
       return response;
     } else {
-      throw Exception("个人信息接口请求失败");
+      throw Exception("学生首页科目请求失败");
     }
   }
 
