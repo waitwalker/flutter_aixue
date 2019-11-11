@@ -7,6 +7,7 @@ import 'package:flutter_aixue/models/class_notice_detail_model.dart';
 import 'package:flutter_aixue/models/class_notice_model.dart';
 import 'package:flutter_aixue/models/login_model.dart';
 import 'package:flutter_aixue/models/personal_information_model.dart';
+import 'package:flutter_aixue/models/student/student_subject_model.dart';
 import 'package:flutter_aixue/models/teacher_course_list_model.dart';
 import 'package:flutter_aixue/models/teacher_question_model.dart';
 import 'package:flutter_aixue/models/teacher_task_detail_model.dart';
@@ -315,6 +316,31 @@ class DaoManager {
 
       var resultMap = json.decode(jsonString);
       var model = ClassNoticeDetailModel.fromJson(resultMap);
+      response.model = model;
+      return response;
+    } else {
+      throw Exception("个人信息接口请求失败");
+    }
+  }
+
+  ///
+  /// @name studentHomeWorkInfoFetch
+  /// @description 学生首页workInfo接口
+  /// @parameters
+  /// @return
+  /// @author lca
+  /// @date 2019-11-11
+  ///
+  static Future<ResponseData> studentHomeWorkInfoFetch(Map<String,dynamic> parameters) async {
+    var response = await NetworkManager.get(Const.classNoticeDetail,parameters);
+    if (response.result) {
+      Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
+      print("response.data:${response.data}");
+
+      String jsonString = response.data;
+
+      var resultMap = json.decode(jsonString);
+      var model = StudentSubjectModel.fromJson(resultMap);
       response.model = model;
       return response;
     } else {
