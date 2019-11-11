@@ -339,6 +339,9 @@ class Const {
 
   /// 教师获取班级通知详情
   static const String classNoticeDetail = "getActivityInfo.do";
+
+  /// 学生获取科目列表
+  static const String studentSubject = "getWorkInfo.do";
 }
 
 ///
@@ -459,6 +462,9 @@ class NetworkAssistant {
         break;
       case Const.classNoticeDetail:
         return "https://i.im.etiantian.net/shaishai_2_0_0/shaiDynamic/getActivityInfo.do";
+        break;
+      case Const.studentSubject:
+        return "https://school.etiantian.com/aixue33/im3.1.5?m=getWorkInfo.do";
         break;
       default:
         return "";

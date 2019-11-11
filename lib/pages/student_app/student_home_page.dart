@@ -65,7 +65,7 @@ class _StudentHomeState extends State<StudentHomePage> with TickerProviderStateM
   /// @Date: 2019-08-02
   ///
   initData() async {
-    ResponseData responseData = await DaoManager.studentHomeWorkInfoFetch({"jid":"9620132","schoolId":"50043"});
+    ResponseData responseData = await DaoManager.studentHomeWorkInfoFetch({"jid":AppLoginManager.instance.loginModel.jid,"schoolId":AppLoginManager.instance.loginModel.schoolId});
     print(responseData);
 
   }
