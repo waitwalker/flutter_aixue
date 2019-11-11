@@ -332,7 +332,7 @@ class DaoManager {
   /// @date 2019-11-11
   ///
   static Future<ResponseData> studentHomeWorkInfoFetch(Map<String,dynamic> parameters) async {
-    var response = await NetworkManager.get(Const.classNoticeDetail,parameters);
+    var response = await NetworkManager.get(Const.studentSubject,parameters);
     if (response.result) {
       Utf8Decoder utf8decoder = Utf8Decoder();//修复中文乱码问题
       print("response.data:${response.data}");
