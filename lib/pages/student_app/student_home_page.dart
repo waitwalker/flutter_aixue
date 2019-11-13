@@ -7,6 +7,7 @@ import 'package:flutter_aixue/common/network/network_manager.dart';
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/widgets/smart_drawer.dart';
 import 'package:flutter_aixue/dao/dao.dart';
+import 'package:flutter_aixue/models/student/student_subject_model.dart';
 import 'package:flutter_aixue/pages/login_register/app_login_manager.dart';
 import 'package:flutter_aixue/pages/student_app/student_class_page.dart';
 import 'package:flutter_aixue/pages/student_app/student_home_content_page.dart';
@@ -34,22 +35,21 @@ class StudentHomePage extends StatefulWidget {
 class _StudentHomeState extends State<StudentHomePage> with TickerProviderStateMixin{
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
+  List<SubjectList> subjectList = [];
+  StudentSubjectModel subjectModel;
   TabController _tabController;
-
   double topHeaderHeight = 80.0;
 
   @override
   void initState() {
     _tabController = TabController(length: 0, vsync: this);
-    _tabController = TabController(length: 5, vsync: this);
-    initData();
     _tabController.addListener(() {
       print(_tabController.toString());
       print(_tabController.index);
       print(_tabController.length);
       print(_tabController.previousIndex);
     });
+    initData();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight
     ]);
@@ -68,6 +68,13 @@ class _StudentHomeState extends State<StudentHomePage> with TickerProviderStateM
     ResponseData responseData = await DaoManager.studentHomeWorkInfoFetch({"jid":AppLoginManager.instance.loginModel.jid,"schoolId":AppLoginManager.instance.loginModel.schoolId});
     print(responseData);
 
+    if (responseData.model != null) {
+      subjectModel = responseData.model;
+      _tabController = TabController(length: subjectModel.data.classTypeList.first.subjectList.length, vsync: this);
+      setState(() {
+        subjectList = subjectModel.data.classTypeList.first.subjectList;
+      });
+    }
   }
 
 
@@ -298,27 +305,26 @@ class _StudentHomeState extends State<StudentHomePage> with TickerProviderStateM
             height: 50,
             color: Colors.amber,
             child: TabBar(
-              controller: _tabController,
-              tabs: <Widget>[
-                Tab(text: '女装'),
-                Tab(text: '男装'),
-                Tab(text: '童装'),
-                Tab(text: '夏装'),
-                Tab(text: '冬装'),
-              ],
+                labelColor: Colors.black,
+                labelPadding: EdgeInsets.fromLTRB(20, 0, 10, 5),
+                isScrollable: true,
+                controller: _tabController,
+                indicator: UnderlineTabIndicator(
+                    borderSide: BorderSide(width: 3,color: Colors.blue),
+                    insets: EdgeInsets.only(bottom: 10)
+                ),
+                tabs: subjectList.map<Tab>((SubjectList subject){
+                  return Tab(text: subject.subjectName,);
+                }).toList()
             ),
           ),
 
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: <Widget>[
-                StudentHomeContentPage(),
-                Container(color: Colors.greenAccent,),
-                StudentHomeContentPage(),
-                Container(color: Colors.deepPurple,),
-                StudentHomeContentPage(),
-              ],
+              children: subjectList.map((SubjectList subject){
+                return StudentHomeContentPage();
+              }).toList(),
             ),
           ),
         ],
