@@ -303,15 +303,17 @@ class _StudentHomeState extends State<StudentHomePage> with TickerProviderStateM
 
           Container(
             height: 50,
+            width: MediaQuery.of(context).size.width,
             color: Colors.amber,
+            alignment: Alignment.centerLeft,
             child: TabBar(
                 labelColor: Colors.black,
-                labelPadding: EdgeInsets.fromLTRB(20, 0, 10, 5),
+                labelPadding: EdgeInsets.fromLTRB(40, 0, 10, 5),
                 isScrollable: true,
                 controller: _tabController,
                 indicator: UnderlineTabIndicator(
                     borderSide: BorderSide(width: 3,color: Colors.blue),
-                    insets: EdgeInsets.only(bottom: 10)
+                    insets: EdgeInsets.only(bottom: 10,left: 20)
                 ),
                 tabs: subjectList.map<Tab>((SubjectList subject){
                   return Tab(text: subject.subjectName,);
