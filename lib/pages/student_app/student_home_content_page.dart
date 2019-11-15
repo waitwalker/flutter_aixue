@@ -7,6 +7,7 @@ import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/redux/runtime_data_reducer.dart';
 import 'package:flutter_aixue/common/runtime_data/runtime_data.dart';
 import 'package:flutter_aixue/dao/dao.dart';
+import 'package:flutter_aixue/models/student/student_subject_model.dart';
 import 'package:flutter_aixue/models/teacher_task_model.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_discussion_task_detail.dart';
 import 'package:flutter_aixue/pages/teacher_app/teacher_general_task_detail.dart';
@@ -27,6 +28,9 @@ import 'package:redux/redux.dart';
 /// @date 2019-11-06
 ///
 class StudentHomeContentPage extends StatefulWidget {
+  final SubjectList subject;
+  StudentHomeContentPage({this.subject});
+  
   @override
   State<StatefulWidget> createState() {
     return _StudentHomeContentState();
