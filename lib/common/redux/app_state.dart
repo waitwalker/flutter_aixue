@@ -29,7 +29,7 @@ class AppState {
  * @method  创建Reducer
  * @description 描述一下方法的作用
  * @date: 2019-07-05 09:47
- * @author: 作者名
+ * @author: liuca
  * @param
  * @return
  */

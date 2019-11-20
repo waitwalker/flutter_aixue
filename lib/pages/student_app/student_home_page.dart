@@ -272,7 +272,6 @@ class _StudentHomeState extends State<StudentHomePage> with TickerProviderStateM
   /// @Date: 2019-09-02
   ///
   Widget homeBodyContainer(Store store) {
-
     topHeaderHeight = 80.0 - store.state.runtimeData.homeScrollOffset;
     if (store.state.runtimeData.homeScrollOffset >= 80.0) {
       topHeaderHeight = 0.0;
