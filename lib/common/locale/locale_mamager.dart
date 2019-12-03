@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter_aixue/common/redux/app_state.dart';
 import 'package:flutter_aixue/common/redux/local_reducer.dart';
 import 'package:redux/redux.dart';
